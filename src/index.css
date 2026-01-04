@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,44 +11,161 @@
 
   body {
     @apply bg-white text-gray-900 antialiased;
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
-      Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'cv11', 'ss01';
   }
 }
 
 @layer components {
   .container-page {
-    @apply max-w-6xl mx-auto px-6 lg:px-8;
+    @apply max-w-7xl mx-auto px-6 lg:px-8;
   }
+}
 
-  .btn-primary {
-    @apply inline-flex items-center justify-center rounded-full px-7 py-3.5
-    font-semibold text-white bg-indigo-600 hover:bg-indigo-700
-    transition-colors duration-200;
+/* Custom scrollbar élégante */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-50;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-yellow-400 to-orange-500 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply from-yellow-500 to-orange-600;
+}
+
+/* Selection professionnelle */
+::selection {
+  @apply bg-yellow-400/30 text-gray-900;
+}
+
+::-moz-selection {
+  @apply bg-yellow-400/30 text-gray-900;
+}
+
+/* Focus visible pour accessibilité */
+*:focus-visible {
+  @apply outline-none ring-2 ring-orange-400 ring-offset-2;
+}
+
+/* Disable tap highlight sur mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Smooth transitions globales */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Select custom styling */
+select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 1.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+}
+
+/* Animations optimisées */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-
-  .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-full px-7 py-3.5
-    font-semibold text-gray-800 border border-gray-200 hover:border-gray-300
-    hover:bg-gray-50 transition-colors duration-200;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
-  .card {
-    @apply rounded-3xl border border-gray-100 bg-white shadow-sm;
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Gradient text premium */
+.gradient-text-premium {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(135deg, #fbbf24 0%, #f97316 100%);
+}
+
+/* Glass effect moderne */
+.glass-modern {
+  @apply backdrop-blur-xl bg-white/5 border border-white/10;
+  backdrop-filter: blur(20px);
+}
+
+/* Shadow premium */
+.shadow-premium {
+  box-shadow: 
+    0 10px 40px -10px rgba(0, 0, 0, 0.1),
+    0 2px 8px -2px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-premium-lg {
+  box-shadow: 
+    0 20px 60px -15px rgba(0, 0, 0, 0.15),
+    0 5px 15px -5px rgba(0, 0, 0, 0.08);
+}
+
+/* Hover effects professionnels */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 20px 60px -15px rgba(0, 0, 0, 0.2),
+    0 5px 15px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Input focus moderne */
+input:focus,
+select:focus,
+textarea:focus {
+  @apply ring-4 ring-orange-100 border-orange-500;
+}
+
+/* Button states */
+button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
+}
 
-  .card-hover {
-    @apply transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg;
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Responsive typography */
+@media (max-width: 640px) {
+  html {
+    font-size: 15px;
   }
+}
 
-  .hero-gradient {
-    background: radial-gradient(1200px circle at 20% 10%, rgba(99,102,241,.18), transparent 55%),
-      radial-gradient(900px circle at 80% 30%, rgba(168,85,247,.14), transparent 50%),
-      linear-gradient(180deg, #ffffff 0%, #fafafa 60%, #ffffff 100%);
+@media (min-width: 1280px) {
+  html {
+    font-size: 16px;
   }
+}
 
-  .gradient-text {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(90deg, #4f46e5 0%, #7c3aed 55%, #a855f7 100%);
+/* Print styles */
+@media print {
+  body {
+    @apply text-black bg-white;
   }
 }

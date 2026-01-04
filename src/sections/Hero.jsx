@@ -1,4 +1,4 @@
-import { ArrowRight, Zap, Star, CheckCircle } from "lucide-react";
+import { ArrowRight, Star, CheckCircle, TrendingDown, Euro } from "lucide-react";
 
 export default function Hero() {
   const goForm = () => {
@@ -44,21 +44,22 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Titre principal */}
+          {/* Titre principal - OPTIMISÉ */}
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.1] mb-8 tracking-tight">
-            L'énergie solaire
+            Divisez votre facture EDF
             <span className="block mt-3 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-500">
-              accessible à tous
+              par 3 avec le solaire
             </span>
           </h1>
 
+          {/* Sous-titre - OPTIMISÉ */}
           <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed max-w-2xl font-light">
-            Économisez jusqu'à 70% sur vos factures d'électricité. 
-            Étude personnalisée gratuite en 2 minutes.
+            Étude de faisabilité gratuite en 2 minutes.
+            <strong className="block mt-2 text-white font-semibold">Réponse sous 48h · Sans engagement</strong>
           </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-16">
+          {/* CTA - SIMPLIFIÉ (1 seul bouton) */}
+          <div className="mb-16">
             <button
               onClick={goForm}
               className="group relative overflow-hidden bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-10 py-5 rounded-xl font-semibold text-lg shadow-2xl hover:shadow-yellow-500/50 transition-all duration-300 hover:scale-[1.02]"
@@ -68,21 +69,14 @@ export default function Hero() {
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </span>
             </button>
-
-            <a
-              href="#avantages"
-              className="group backdrop-blur-xl bg-white/5 border border-white/10 text-white px-10 py-5 rounded-xl font-semibold text-lg hover:bg-white/10 transition-all duration-300"
-            >
-              Découvrir les avantages
-            </a>
           </div>
 
-          {/* Stats cards modernes */}
+          {/* Stats cards - OPTIMISÉES (orientées résultats) */}
           <div className="grid grid-cols-3 gap-6">
             {[
-              { value: "-70%", label: "d'économies moyennes", icon: CheckCircle },
-              { value: "2 min", label: "pour l'étude complète", icon: Zap },
-              { value: "48h", label: "délai de réponse", icon: Star }
+              { value: "2 847", label: "installations réalisées", icon: CheckCircle },
+              { value: "-70%", label: "d'économies moyennes", icon: TrendingDown },
+              { value: "10 000€", label: "d'aides possibles*", icon: Euro }
             ].map((stat, i) => {
               const Icon = stat.icon;
               return (
@@ -97,10 +91,15 @@ export default function Hero() {
               );
             })}
           </div>
+
+          {/* Note légale aides */}
+          <p className="mt-4 text-xs text-gray-500 font-light">
+            * Montant variable selon revenus, zone géographique et puissance installée
+          </p>
         </div>
       </div>
 
-      {/* Scroll indicator élégant */}
+      {/* Scroll indicator */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
         <div className="flex flex-col items-center gap-2 animate-bounce">
           <div className="w-5 h-8 border-2 border-white/30 rounded-full flex justify-center p-1">

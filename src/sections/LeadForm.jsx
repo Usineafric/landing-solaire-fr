@@ -12,8 +12,8 @@ export default function LeadForm() {
     isOwner: "",
     housingType: "",
     postalCode: "",
-    requestType: "Étude",
-    timeframe: "< 6 mois",
+    requestType: "Étude de faisabilité gratuite",
+    timeframe: "3-6 mois",
     firstName: "",
     lastName: "",
     phone: "",
@@ -45,6 +45,14 @@ export default function LeadForm() {
         setBlocked(true);
         return;
       }
+      
+      // Validation code postal France métropolitaine
+      const firstTwo = form.postalCode.substring(0, 2);
+      const invalidCodes = ['97', '98', '00', '20'];
+      if (invalidCodes.includes(firstTwo)) {
+        setError("Service disponible en France métropolitaine uniquement");
+        return;
+      }
     }
     if (step === 2 && !isStep2Valid) return;
     setStep((s) => Math.min(3, s + 1));
@@ -57,6 +65,15 @@ export default function LeadForm() {
       setBlocked(true);
       return;
     }
+    
+    // Validation téléphone français
+    const phoneRegex = /^(?:(?:\+|00)33|0)[1-9](?:\d{8})$/;
+    const cleanPhone = form.phone.replace(/\s/g, '');
+    if (!phoneRegex.test(cleanPhone)) {
+      setError("Format de téléphone invalide (ex: 06 12 34 56 78)");
+      return;
+    }
+    
     setSubmitting(true);
     try {
       // eslint-disable-next-line no-console
@@ -216,7 +233,7 @@ export default function LeadForm() {
                       setBlocked(false);
                       setForm({
                         isOwner: "", housingType: "", postalCode: "",
-                        requestType: "Étude", timeframe: "< 6 mois",
+                        requestType: "Étude de faisabilité gratuite", timeframe: "3-6 mois",
                         firstName: "", lastName: "", phone: "", email: "",
                         consent: false,
                       });
@@ -239,12 +256,12 @@ export default function LeadForm() {
                         <div className="space-y-8">
                           <div>
                             <label className="block text-sm font-semibold text-gray-900 mb-4">
-                              Statut d'occupation
+                              Êtes-vous propriétaire de votre logement ?
                             </label>
                             <div className="grid grid-cols-2 gap-4">
                               {[
-                                { v: "yes", label: "Propriétaire", icon: CheckCircle2 },
-                                { v: "no", label: "Locataire", icon: Home }
+                                { v: "yes", label: "Oui, je suis propriétaire", icon: CheckCircle2 },
+                                { v: "no", label: "Non", icon: Home }
                               ].map((o) => {
                                 const Icon = o.icon;
                                 return (
@@ -307,11 +324,18 @@ export default function LeadForm() {
                                 placeholder="75001"
                                 className="w-full border-2 border-gray-200 rounded-2xl pl-14 pr-6 py-5 text-lg font-medium focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-100 transition-all"
                                 inputMode="numeric"
+                                maxLength="5"
                               />
                             </div>
                           </div>
                         </div>
                       </div>
+
+                      {error && (
+                        <div className="rounded-2xl border-2 border-red-200 bg-red-50 p-5 text-red-800 font-medium">
+                          {error}
+                        </div>
+                      )}
 
                       <button
                         type="button"
@@ -345,24 +369,24 @@ export default function LeadForm() {
                             onChange={(e) => setForm((f) => ({ ...f, requestType: e.target.value }))}
                             className="w-full border-2 border-gray-200 rounded-2xl px-6 py-5 text-lg font-medium focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-100 transition-all bg-white appearance-none cursor-pointer"
                           >
-                            <option>Information</option>
-                            <option>Étude de faisabilité</option>
-                            <option>Demande de devis</option>
+                            <option>Étude de faisabilité gratuite</option>
+                            <option>Demande de devis personnalisé</option>
                           </select>
                         </div>
 
                         <div>
                           <label className="block text-sm font-semibold text-gray-900 mb-4">
-                            Échéance du projet
+                            Quand souhaitez-vous installer ?
                           </label>
                           <select
                             value={form.timeframe}
                             onChange={(e) => setForm((f) => ({ ...f, timeframe: e.target.value }))}
                             className="w-full border-2 border-gray-200 rounded-2xl px-6 py-5 text-lg font-medium focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-100 transition-all bg-white appearance-none cursor-pointer"
                           >
-                            <option>Projet immédiat</option>
-                            <option>Moins de 6 mois</option>
-                            <option>Simple information</option>
+                            <option>Dans les 3 mois</option>
+                            <option>3-6 mois</option>
+                            <option>6-12 mois</option>
+                            <option>Plus d'1 an (je me renseigne)</option>
                           </select>
                         </div>
                       </div>
@@ -464,8 +488,8 @@ export default function LeadForm() {
                             required
                           />
                           <span className="text-sm text-gray-700 leading-relaxed font-light">
-                            En soumettant ce formulaire, j'accepte que mes données soient utilisées par IDTRADING LLC 
-                            pour traiter ma demande. Contact : <a href="mailto:privacy@leadspodium.com" className="underline font-medium text-orange-600">privacy@leadspodium.com</a>
+                            J'accepte que mes données soient utilisées pour traiter ma demande. 
+                            Contact : <a href="mailto:privacy@leadspodium.com" className="underline font-medium text-orange-600">privacy@leadspodium.com</a>
                           </span>
                         </label>
                       </div>

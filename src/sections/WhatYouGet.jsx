@@ -1,4 +1,4 @@
-import { CheckCircle2, ClipboardList, ShieldCheck, UserCheck } from "lucide-react";
+import { ClipboardList, ShieldCheck, UserCheck, FileCheck } from "lucide-react";
 
 export default function WhatYouGet() {
   const benefits = [
@@ -18,9 +18,9 @@ export default function WhatYouGet() {
       description: "Contact uniquement si votre projet présente une réelle cohérence. Aucune sollicitation commerciale agressive."
     },
     {
-      icon: CheckCircle2,
-      title: "Approche transparente",
-      description: "Aucune promesse de rendement fictive. Pas de simulation d'aides trompeuse. Uniquement des faits vérifiables."
+      icon: FileCheck,
+      title: "Données vérifiables",
+      description: "Estimations basées sur votre consommation réelle, l'ensoleillement local et la surface disponible. Zéro extrapolation marketing."
     }
   ];
 

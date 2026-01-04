@@ -2,33 +2,40 @@ import { useState } from "react";
 import { ChevronDown, HelpCircle } from "lucide-react";
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState(0);
+  // -1 = tout fermé au chargement (plus propre pour un accordéon)
+  const [openIndex, setOpenIndex] = useState(-1);
 
   const faqs = [
     {
       question: "L'étude est-elle vraiment gratuite ?",
-      answer: "Oui, absolument. L'étude de faisabilité est 100% gratuite et sans aucun engagement de votre part. Aucun frais caché, aucune obligation d'achat. Vous recevez une analyse professionnelle de votre projet sans contrepartie financière."
-    },
-    {
-      question: "Qui peut demander cette étude ?",
-      answer: "Cette étude est exclusivement réservée aux propriétaires de maison individuelle située en France métropolitaine. Les copropriétés, appartements et locations ne sont pas éligibles à ce service."
-    },
-    {
-      question: "Quel est le délai de réponse ?",
-      answer: "Un professionnel certifié vous recontacte sous 48 heures ouvrées si votre projet présente une cohérence technique et économique. Dans le cas contraire, vous en serez informé par email."
+      answer:
+        "Oui, absolument. L'étude de faisabilité est 100% gratuite et sans aucun engagement de votre part. Aucun frais caché, aucune obligation d'achat. Vous recevez une analyse professionnelle de votre projet sans contrepartie financière.",
     },
     {
       question: "Quelles économies puis-je espérer ?",
-      answer: "Les économies dépendent de nombreux facteurs : consommation actuelle, surface de toiture disponible, orientation, ensoleillement local, etc. Une installation bien dimensionnée peut générer jusqu'à 70% d'économies sur vos factures d'électricité, mais chaque projet est unique."
+      answer:
+        "Une installation bien dimensionnée génère 60-70% d'économies sur la partie production autoconsommée. Le calcul exact dépend de votre consommation actuelle, orientation toiture, ensoleillement local et taux d'autoconsommation. L'étude vous donne une estimation précise basée sur votre situation réelle.",
+    },
+    {
+      question: "Quel est le délai de réponse ?",
+      answer:
+        "Un professionnel certifié vous recontacte sous 48 heures ouvrées si votre projet présente une cohérence technique et économique. Dans le cas contraire, vous en serez informé par email.",
+    },
+    {
+      question: "Qui peut demander cette étude ?",
+      answer:
+        "Cette étude est exclusivement réservée aux propriétaires de maison individuelle située en France métropolitaine. Les copropriétés, appartements et locations ne sont pas éligibles à ce service.",
     },
     {
       question: "Vais-je être contacté par plusieurs entreprises ?",
-      answer: "Non. Vos coordonnées sont transmises à un seul professionnel qualifié dans le cadre strict de votre demande. Nous ne revendons jamais vos données à des tiers et vous ne recevrez pas de démarchage commercial intempestif."
+      answer:
+        "Non. Vos coordonnées sont transmises à un seul professionnel qualifié dans le cadre strict de votre demande. Nous ne revendons jamais vos données à des tiers et vous ne recevrez pas de démarchage commercial intempestif.",
     },
     {
       question: "L'installation est-elle adaptée à ma région ?",
-      answer: "Le photovoltaïque fonctionne dans toute la France métropolitaine. L'ensoleillement varie selon les régions, mais même dans le Nord, une installation correctement dimensionnée reste rentable. L'étude déterminera précisément le potentiel de votre localisation."
-    }
+      answer:
+        "Le photovoltaïque fonctionne dans toute la France métropolitaine. L'ensoleillement varie selon les régions, mais même dans le Nord, une installation correctement dimensionnée reste rentable. L'étude déterminera précisément le potentiel de votre localisation.",
+    },
   ];
 
   return (
@@ -50,7 +57,8 @@ export default function FAQ() {
               </h2>
 
               <p className="text-lg text-gray-600 mb-8 font-light leading-relaxed">
-                Tout ce que vous devez savoir sur notre processus d'étude et l'installation photovoltaïque.
+                Tout ce que vous devez savoir sur notre processus d'étude et
+                l'installation photovoltaïque.
               </p>
 
               <div className="bg-gradient-to-br from-yellow-50 to-orange-50 border border-orange-200 rounded-2xl p-6">
@@ -84,12 +92,17 @@ export default function FAQ() {
                 <div
                   key={index}
                   className={`bg-white border-2 rounded-2xl overflow-hidden transition-all ${
-                    isOpen ? "border-orange-200 shadow-lg" : "border-gray-100 hover:border-gray-200"
+                    isOpen
+                      ? "border-orange-200 shadow-lg"
+                      : "border-gray-100 hover:border-gray-200"
                   }`}
                 >
                   <button
+                    type="button"
                     onClick={() => setOpenIndex(isOpen ? -1 : index)}
                     className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-all"
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-panel-${index}`}
                   >
                     <h3 className="text-lg font-semibold text-gray-900 pr-4">
                       {faq.question}
@@ -102,6 +115,7 @@ export default function FAQ() {
                   </button>
 
                   <div
+                    id={`faq-panel-${index}`}
                     className={`overflow-hidden transition-all duration-300 ${
                       isOpen ? "max-h-96" : "max-h-0"
                     }`}

@@ -6,46 +6,54 @@ export default function Avantages() {
       icon: Euro,
       title: "Réduisez vos factures",
       subtitle: "Économies substantielles",
-      description: "Diminuez vos dépenses énergétiques jusqu'à 70% grâce à votre production photovoltaïque. Amortissement sur 8-12 ans selon votre installation.",
-      image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=85",
+      description:
+        "Diminuez vos dépenses énergétiques de 60 à 70% grâce à votre production photovoltaïque. Amortissement sur 8-12 ans selon votre installation.",
+      image:
+        "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=85",
       stats: [
-        { value: "70%", label: "d'économies possibles" },
-        { value: "8-12 ans", label: "durée d'amortissement" }
-      ]
-    },
-    {
-      icon: Leaf,
-      title: "Impact environnemental",
-      subtitle: "Énergie propre et renouvelable",
-      description: "Réduisez votre empreinte carbone en produisant une électricité 100% verte. Contribuez activement à la transition énergétique.",
-      image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=1200&q=85",
-      stats: [
-        { value: "100%", label: "énergie renouvelable" },
-        { value: "-3T", label: "CO₂/an évités" }
-      ]
+        { value: "60-70%", label: "d'économies" },
+        { value: "8-12 ans", label: "amortissement" },
+      ],
     },
     {
       icon: TrendingUp,
       title: "Valorisation immobilière",
       subtitle: "Investissement pérenne",
-      description: "Augmentez la valeur de votre bien de 3 à 10%. Un atout majeur lors d'une revente avec un diagnostic énergétique amélioré.",
-      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=85",
+      description:
+        "Augmentez la valeur de votre bien de 3 à 10%. Un atout majeur lors d'une revente avec un diagnostic énergétique amélioré.",
+      image:
+        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=85",
       stats: [
-        { value: "+10%", label: "valeur du bien" },
-        { value: "DPE", label: "notation améliorée" }
-      ]
+        { value: "+3-10%", label: "valeur du bien" },
+        { value: "DPE", label: "notation améliorée" },
+      ],
     },
     {
       icon: Battery,
       title: "Autonomie énergétique",
       subtitle: "Indépendance et sécurité",
-      description: "Produisez votre propre électricité 24h/24 avec des batteries optionnelles. Protégez-vous des hausses tarifaires futures.",
-      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=85",
+      description:
+        "Produisez votre propre électricité et protégez-vous des hausses tarifaires futures. Batteries optionnelles pour stockage 24h/24.",
+      image:
+        "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=85",
       stats: [
-        { value: "24/7", label: "production continue" },
-        { value: "30 ans", label: "garantie panneaux" }
-      ]
-    }
+        { value: "24/7", label: "production possible" },
+        { value: "30 ans", label: "garantie panneaux" },
+      ],
+    },
+    {
+      icon: Leaf,
+      title: "Impact environnemental",
+      subtitle: "Énergie propre et renouvelable",
+      description:
+        "Production 100% verte. Réduisez votre empreinte carbone de 3 tonnes de CO₂ par an en moyenne.",
+      image:
+        "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=1200&q=85",
+      stats: [
+        { value: "100%", label: "énergie verte" },
+        { value: "-3T", label: "CO₂/an évités" },
+      ],
+    },
   ];
 
   return (
@@ -57,7 +65,7 @@ export default function Avantages() {
             <Zap className="inline w-4 h-4 mr-1" />
             Pourquoi le solaire ?
           </div>
-          
+
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
             Les avantages du
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-orange-600 mt-2">
@@ -77,14 +85,9 @@ export default function Avantages() {
             const isEven = index % 2 === 0;
 
             return (
-              <div
-                key={index}
-                className={`grid lg:grid-cols-2 gap-12 items-center ${
-                  !isEven ? "lg:flex-row-reverse" : ""
-                }`}
-              >
+              <div key={index} className="grid lg:grid-cols-2 gap-12 items-center">
                 {/* Image */}
-                <div className={`${!isEven ? "lg:order-2" : ""}`}>
+                <div className={!isEven ? "lg:order-2" : ""}>
                   <div className="relative group">
                     <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity" />
                     <div className="relative overflow-hidden rounded-3xl shadow-2xl">
@@ -95,7 +98,7 @@ export default function Avantages() {
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                      
+
                       {/* Stats overlay */}
                       <div className="absolute bottom-6 left-6 right-6 flex gap-4">
                         {benefit.stats.map((stat, i) => (
@@ -117,7 +120,7 @@ export default function Avantages() {
                 </div>
 
                 {/* Content */}
-                <div className={`${!isEven ? "lg:order-1" : ""}`}>
+                <div className={!isEven ? "lg:order-1" : ""}>
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-500 shadow-lg mb-6">
                     <Icon className="w-8 h-8 text-white" />
                   </div>
@@ -155,14 +158,15 @@ export default function Avantages() {
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/50" />
-          
+
           <div className="relative z-10 py-20 px-8 text-center">
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Prêt à rejoindre la révolution solaire ?
+              Combien vous pouvez économiser avec votre maison ?
             </h3>
             <p className="text-xl text-gray-200 mb-10 max-w-2xl mx-auto font-light">
               Obtenez votre étude personnalisée en 2 minutes. 100% gratuit, sans engagement.
             </p>
+
             <a
               href="#form"
               className="inline-flex items-center gap-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-10 py-5 rounded-xl font-semibold text-lg shadow-2xl hover:shadow-yellow-500/50 transition-all hover:scale-105"

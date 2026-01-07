@@ -1,27 +1,16 @@
-import Hero from "./sections/Hero";
-import Avantages from "./sections/Avantages";
-import PreFilter from "./sections/PreFilter";
-import HowItWorks from "./sections/HowItWorks";
-import WhatYouGet from "./sections/WhatYouGet";
-import FAQ from "./sections/FAQ";
-import LeadForm from "./sections/LeadForm";
-import Reassurance from "./sections/Reassurance";
-import FooterLegal from "./sections/FooterLegal";
-import StickyCta from "./sections/StickyCta";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import MentionsLegales from "./pages/MentionsLegales";
+import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
 
 export default function App() {
   return (
-    <>
-      <Hero />
-      <Avantages />
-      <PreFilter />
-      <HowItWorks />
-      <WhatYouGet />
-      <FAQ />
-      <LeadForm />
-      <Reassurance />
-      <FooterLegal />
-      <StickyCta />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/mentions-legales" element={<MentionsLegales />} />
+        <Route path="/politique-de-confidentialite" element={<PolitiqueConfidentialite />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

@@ -48,7 +48,7 @@ export default function LeadForm() {
       
       // Validation code postal France métropolitaine
       const firstTwo = form.postalCode.substring(0, 2);
-      const invalidCodes = ['97', '98', '00', '20'];
+      const invalidCodes = ['97', '98']; // Uniquement DOM-TOM
       if (invalidCodes.includes(firstTwo)) {
         setError("Service disponible en France métropolitaine uniquement");
         return;
@@ -59,33 +59,73 @@ export default function LeadForm() {
   };
 
   const submit = async (e) => {
-    e.preventDefault();
-    setError("");
-    if (!isStep3Valid || !isEligible) {
-      setBlocked(true);
-      return;
+  e.preventDefault();
+  setError("");
+  if (!isStep3Valid || !isEligible) {
+    setBlocked(true);
+    return;
+  }
+  
+  // Validation téléphone français (AMÉLIORÉE)
+  const cleanPhone = form.phone.replace(/[\s.-]/g, '');
+  const phoneRegex = /^(?:(?:\+|00)33|0)[1-9]\d{8}$/;
+  if (!phoneRegex.test(cleanPhone)) {
+    setError("Format de téléphone invalide (ex: 06 12 34 56 78)");
+    return;
+  }
+  
+  // Validation email renforcée
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(form.email)) {
+    setError("Format d'email invalide");
+    return;
+  }
+  
+  setSubmitting(true);
+  try {
+    // Import dynamique Supabase
+    const { saveLead, checkDuplicateEmail } = await import('../lib/supabase.js');
+    
+    // Vérifier les doublons
+    const duplicate = await checkDuplicateEmail(form.email);
+    if (duplicate) {
+      const daysSince = Math.floor(
+        (new Date() - new Date(duplicate.created_at)) / (1000 * 60 * 60 * 24)
+      );
+      
+      if (daysSince < 7) {
+        setError(
+          `Vous avez déjà soumis une demande il y a ${daysSince} jour${daysSince > 1 ? 's' : ''}. ` +
+          `Nous vous contacterons bientôt.`
+        );
+        setSubmitting(false);
+        return;
+      }
     }
     
-    // Validation téléphone français
-    const phoneRegex = /^(?:(?:\+|00)33|0)[1-9](?:\d{8})$/;
-    const cleanPhone = form.phone.replace(/\s/g, '');
-    if (!phoneRegex.test(cleanPhone)) {
-      setError("Format de téléphone invalide (ex: 06 12 34 56 78)");
-      return;
+    // Sauvegarder le lead
+    await saveLead(form);
+    
+    // Tracking conversion (optionnel)
+    if (window.gtag) {
+      window.gtag('event', 'conversion', {
+        event_category: 'Lead',
+        event_label: 'Solar Study Request',
+        value: 1,
+      });
     }
     
-    setSubmitting(true);
-    try {
-      // eslint-disable-next-line no-console
-      console.log("LEAD_SOLAR_FR", { ...form, createdAt: new Date().toISOString() });
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setSent(true);
-    } catch (err) {
-      setError("Une erreur est survenue. Veuillez réessayer.");
-    } finally {
-      setSubmitting(false);
-    }
-  };
+    setSent(true);
+  } catch (err) {
+    console.error('Submission error:', err);
+    setError(
+      err.message || 
+      "Une erreur est survenue lors de l'envoi. Veuillez réessayer."
+    );
+  } finally {
+    setSubmitting(false);
+  }
+};
 
   return (
     <section id="form" className="relative py-32 overflow-hidden bg-gradient-to-b from-gray-50 to-white">

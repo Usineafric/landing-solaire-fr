@@ -219,7 +219,7 @@ function generateConfirmationEmailHTML(lead) {
           <tr>
             <td style="background-color: #111827; padding: 30px; text-align: center;">
               <p style="margin: 0; color: #9ca3af; font-size: 13px;">
-                Neclid LTD · Service clientèle France
+                LeadsPodium - Panneaux Solaire
               </p>
             </td>
           </tr>

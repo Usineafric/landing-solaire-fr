@@ -228,7 +228,7 @@ export default function PolitiqueConfidentialite() {
                 <li className="flex items-start gap-3 bg-gray-50 rounded-lg p-4 border border-gray-200">
                   <span className="text-gray-600 font-bold mt-1">3.</span>
                   <div>
-                    <span className="font-semibold text-gray-900">Personnel autorisé d'IDTRADING LLC</span>
+                    <span className="font-semibold text-gray-900">Personnel autorisé de NECLID LTD</span>
                     <p className="text-sm text-gray-600 mt-1">
                       Pour la gestion administrative de votre demande
                     </p>

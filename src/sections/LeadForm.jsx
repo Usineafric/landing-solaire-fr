@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
 import { ArrowRight, CheckCircle2, AlertTriangle, Zap, Lock, Shield, Home, MapPin, Clock, User, Mail, Phone } from "lucide-react";
+import { saveLead } from "../lib/supabase";
+import { sendConfirmationEmail, sendAdminNotification } from "../lib/resend";
 
 export default function LeadForm() {
   const [step, setStep] = useState(1);
@@ -48,7 +50,7 @@ export default function LeadForm() {
       
       // Validation code postal France métropolitaine
       const firstTwo = form.postalCode.substring(0, 2);
-      const invalidCodes = ['97', '98']; // Uniquement DOM-TOM
+      const invalidCodes = ['97', '98', '00', '20'];
       if (invalidCodes.includes(firstTwo)) {
         setError("Service disponible en France métropolitaine uniquement");
         return;
@@ -59,73 +61,57 @@ export default function LeadForm() {
   };
 
   const submit = async (e) => {
-  e.preventDefault();
-  setError("");
-  if (!isStep3Valid || !isEligible) {
-    setBlocked(true);
-    return;
-  }
-  
-  // Validation téléphone français (AMÉLIORÉE)
-  const cleanPhone = form.phone.replace(/[\s.-]/g, '');
-  const phoneRegex = /^(?:(?:\+|00)33|0)[1-9]\d{8}$/;
-  if (!phoneRegex.test(cleanPhone)) {
-    setError("Format de téléphone invalide (ex: 06 12 34 56 78)");
-    return;
-  }
-  
-  // Validation email renforcée
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(form.email)) {
-    setError("Format d'email invalide");
-    return;
-  }
-  
-  setSubmitting(true);
-  try {
-    // Import dynamique Supabase
-    const { saveLead, checkDuplicateEmail } = await import('../lib/supabase.js');
+    e.preventDefault();
+    setError("");
+    if (!isStep3Valid || !isEligible) {
+      setBlocked(true);
+      return;
+    }
     
-    // Vérifier les doublons
-    const duplicate = await checkDuplicateEmail(form.email);
-    if (duplicate) {
-      const daysSince = Math.floor(
-        (new Date() - new Date(duplicate.created_at)) / (1000 * 60 * 60 * 24)
-      );
-      
-      if (daysSince < 7) {
-        setError(
-          `Vous avez déjà soumis une demande il y a ${daysSince} jour${daysSince > 1 ? 's' : ''}. ` +
-          `Nous vous contacterons bientôt.`
-        );
-        setSubmitting(false);
-        return;
+    // Validation téléphone français
+    const phoneRegex = /^(?:(?:\+|00)33|0)[1-9](?:\d{8})$/;
+    const cleanPhone = form.phone.replace(/\s/g, '');
+    if (!phoneRegex.test(cleanPhone)) {
+      setError("Format de téléphone invalide (ex: 06 12 34 56 78)");
+      return;
+    }
+    
+    setSubmitting(true);
+    try {
+      // 1. Sauvegarder dans Supabase
+      console.log("💾 Sauvegarde dans Supabase...");
+      await saveLead(form);
+      console.log("✅ Lead sauvegardé dans Supabase");
+
+      // 2. Envoyer email de confirmation au prospect
+      console.log("📧 Envoi email confirmation...");
+      try {
+        await sendConfirmationEmail(form);
+        console.log("✅ Email confirmation envoyé");
+      } catch (emailError) {
+        console.warn("⚠️ Échec email confirmation (lead sauvegardé quand même):", emailError);
+        // On continue même si l'email échoue
       }
+
+      // 3. Envoyer notification admin
+      console.log("🔔 Envoi notification admin...");
+      try {
+        await sendAdminNotification(form);
+        console.log("✅ Notification admin envoyée");
+      } catch (notifError) {
+        console.warn("⚠️ Échec notification admin (lead sauvegardé quand même):", notifError);
+        // On continue même si la notification échoue
+      }
+
+      // 4. Afficher succès
+      setSent(true);
+    } catch (err) {
+      console.error("❌ Erreur submission:", err);
+      setError("Une erreur est survenue. Veuillez réessayer.");
+    } finally {
+      setSubmitting(false);
     }
-    
-    // Sauvegarder le lead
-    await saveLead(form);
-    
-    // Tracking conversion (optionnel)
-    if (window.gtag) {
-      window.gtag('event', 'conversion', {
-        event_category: 'Lead',
-        event_label: 'Solar Study Request',
-        value: 1,
-      });
-    }
-    
-    setSent(true);
-  } catch (err) {
-    console.error('Submission error:', err);
-    setError(
-      err.message || 
-      "Une erreur est survenue lors de l'envoi. Veuillez réessayer."
-    );
-  } finally {
-    setSubmitting(false);
-  }
-};
+  };
 
   return (
     <section id="form" className="relative py-32 overflow-hidden bg-gradient-to-b from-gray-50 to-white">
@@ -262,9 +248,12 @@ export default function LeadForm() {
                   <h3 className="text-4xl font-bold text-gray-900 mb-4">
                     Demande confirmée
                   </h3>
-                  <p className="text-lg text-gray-600 mb-10 max-w-md mx-auto font-light leading-relaxed">
+                  <p className="text-lg text-gray-600 mb-6 max-w-md mx-auto font-light leading-relaxed">
                     Votre étude sera réalisée sous <strong className="font-semibold">48 heures ouvrées</strong>.
-                    Un expert vous contactera si votre projet correspond à nos critères.
+                  </p>
+                  <p className="text-md text-gray-600 mb-10 max-w-md mx-auto font-light leading-relaxed">
+                    📧 Vous recevrez un <strong className="font-semibold">email de confirmation</strong> dans quelques minutes.
+                    Vérifiez vos spams si besoin.
                   </p>
                   <button
                     onClick={() => {

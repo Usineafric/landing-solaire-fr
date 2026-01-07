@@ -52,7 +52,7 @@ export default function FooterLegal() {
             <nav className="space-y-3">
               {[
                 { icon: FileText, label: "Mentions légales", href: "/mentions-legales" },
-                { icon: Shield, label: "Politique de confidentialité", href: "/politique-confidentialite" },
+                { icon: Shield, label: "Politique de confidentialité", href: "/politique-de-confidentialite" },
                 { icon: Cookie, label: "Gestion des cookies", href: "/cookies" }
               ].map((link, i) => {
                 const Icon = link.icon;

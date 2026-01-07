@@ -16,12 +16,11 @@ export default function FooterLegal() {
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-gray-500 flex-shrink-0 mt-0.5" />
                 <div>
-                  <div className="font-semibold text-gray-300 mb-1">IDTRADING LLC</div>
+                  <div className="font-semibold text-gray-300 mb-1">Neclid LTD</div>
                   <div className="leading-relaxed">
-                    La villa Torrimar<br />
-                    Reina Margarita 112<br />
-                    Guaynabo, 00969<br />
-                    Puerto Rico
+                    5 Hagdud Haivri 1006<br />
+                    7745511 Ashdod<br />
+                    Israël
                   </div>
                 </div>
               </div>
@@ -111,7 +110,7 @@ export default function FooterLegal() {
         <div className="pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-gray-500">
             <div className="font-light">
-              © {currentYear} IDTRADING LLC · Tous droits réservés
+              © {currentYear} Neclid LTD · Tous droits réservés
             </div>
             <div className="flex items-center gap-2 font-light">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />

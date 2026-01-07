@@ -218,12 +218,8 @@ function generateConfirmationEmailHTML(lead) {
           <!-- Footer -->
           <tr>
             <td style="background-color: #111827; padding: 30px; text-align: center;">
-              <p style="margin: 0 0 8px 0; color: #9ca3af; font-size: 13px; font-weight: 600;">
-                Neclid LTD
-              </p>
-              <p style="margin: 0; color: #6b7280; font-size: 12px; line-height: 1.5;">
-                5 Hagdud Haivri 1006<br />
-                7745511 Ashdod, Israël
+              <p style="margin: 0; color: #9ca3af; font-size: 13px;">
+                Neclid LTD · Service clientèle France
               </p>
             </td>
           </tr>
@@ -340,7 +336,7 @@ function generateAdminNotificationHTML(lead) {
           <tr>
             <td style="background-color: #111827; padding: 20px; text-align: center;">
               <p style="margin: 0; color: #6b7280; font-size: 12px;">
-                Neclid LTD · 5 Hagdud Haivri 1006 · 7745511 Ashdod, Israël
+                Neclid LTD · Service clientèle France
               </p>
             </td>
           </tr>

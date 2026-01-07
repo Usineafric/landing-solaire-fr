@@ -52,13 +52,11 @@ export default function MentionsLegales() {
 
             <div className="space-y-4 text-gray-700">
               <div className="border-l-4 border-orange-400 pl-4">
-                <div className="font-semibold text-gray-900 mb-2">IDTRADING LLC</div>
+                <div className="font-semibold text-gray-900 mb-2">NECLID ltd</div>
                 <div className="space-y-1 text-sm font-light">
-                  <p>La villa Torrimar</p>
-                  <p>Reina Margarita 112</p>
-                  <p>Guaynabo, 00969</p>
-                  <p>Puerto Rico</p>
-                </div>
+                  <p>5 Hagdud Haivri</p>
+                  <p>7745511 Ashdod</p>
+                  </div>
               </div>
 
               <div className="pt-4">
@@ -118,7 +116,7 @@ export default function MentionsLegales() {
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed font-light mb-4">
                 L'ensemble du contenu de ce site (textes, images, graphismes, logos, 
-                icônes, sons, logiciels) est la propriété exclusive d'IDTRADING LLC 
+                icônes, sons, logiciels) est la propriété exclusive de NECLID LTD 
                 ou de ses partenaires.
               </p>
               <p className="text-gray-700 leading-relaxed font-light">
@@ -191,8 +189,8 @@ export default function MentionsLegales() {
             </h2>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed font-light mb-4">
-                IDTRADING LLC s'efforce d'assurer l'exactitude et la mise à jour 
-                des informations diffusées sur ce site. Toutefois, IDTRADING LLC 
+                NECLID LTD s'efforce d'assurer l'exactitude et la mise à jour 
+                des informations diffusées sur ce site. Toutefois, NECLID LTD 
                 ne peut garantir l'exactitude, la précision ou l'exhaustivité des 
                 informations mises à disposition.
               </p>
@@ -211,9 +209,9 @@ export default function MentionsLegales() {
             </h2>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed font-light">
-                Les présentes mentions légales sont régies par le droit de Porto Rico. 
+                Les présentes mentions légales sont régies par le droit d'Israel. 
                 En cas de litige, et à défaut d'accord amiable, les tribunaux compétents 
-                de Porto Rico seront seuls compétents.
+                d'Israêl seront seuls compétents.
               </p>
             </div>
           </section>
@@ -242,7 +240,7 @@ export default function MentionsLegales() {
       <footer className="border-t border-gray-200 py-8 mt-16">
         <div className="container-page text-center">
           <p className="text-sm text-gray-500 font-light">
-            © {new Date().getFullYear()} IDTRADING LLC · Tous droits réservés
+            © {new Date().getFullYear()} NECLID LTD · Tous droits réservés
           </p>
         </div>
       </footer>

@@ -43,7 +43,7 @@ export default function PolitiqueConfidentialite() {
             Notre Engagement
           </h2>
           <p className="text-gray-700 leading-relaxed font-light">
-            IDTRADING LLC accorde une importance capitale à la protection de vos 
+            NECLID LTD accorde une importance capitale à la protection de vos 
             données personnelles. Cette politique de confidentialité vous informe 
             de manière transparente sur la collecte, l'utilisation et la protection 
             de vos informations personnelles, conformément au Règlement Général sur 
@@ -71,11 +71,10 @@ export default function PolitiqueConfidentialite() {
 
             <div className="space-y-4 text-gray-700">
               <div className="border-l-4 border-purple-400 pl-4">
-                <div className="font-semibold text-gray-900 mb-2">IDTRADING LLC</div>
+                <div className="font-semibold text-gray-900 mb-2">NECLID LTD</div>
                 <div className="space-y-1 text-sm font-light">
-                  <p>La villa Torrimar</p>
-                  <p>Reina Margarita 112</p>
-                  <p>Guaynabo, 00969, Puerto Rico</p>
+                  <p>5 Hagdud Haivri</p>
+                  <p>7745511 Ashdod</p>
                   <p className="pt-2">
                     Email :{" "}
                     <a
@@ -514,7 +513,7 @@ export default function PolitiqueConfidentialite() {
       <footer className="border-t border-gray-200 py-8 mt-16">
         <div className="container-page text-center">
           <p className="text-sm text-gray-500 font-light">
-            © {new Date().getFullYear()} IDTRADING LLC · Tous droits réservés
+            © {new Date().getFullYear()} NECLID LTD · Tous droits réservés
           </p>
         </div>
       </footer>

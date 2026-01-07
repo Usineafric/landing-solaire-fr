@@ -18,9 +18,7 @@ export default function FooterLegal() {
                 <div>
                   <div className="font-semibold text-gray-300 mb-1">Neclid LTD</div>
                   <div className="leading-relaxed">
-                    5 Hagdud Haivri 1006<br />
-                    7745511 Ashdod<br />
-                    Israël
+                    Service clientèle France
                   </div>
                 </div>
               </div>
@@ -54,7 +52,7 @@ export default function FooterLegal() {
             <nav className="space-y-3">
               {[
                 { icon: FileText, label: "Mentions légales", href: "/mentions-legales" },
-                { icon: Shield, label: "Politique de confidentialité", href: "/politique-de-confidentialite" },
+                { icon: Shield, label: "Politique de confidentialité", href: "/politique-confidentialite" },
                 { icon: Cookie, label: "Gestion des cookies", href: "/cookies" }
               ].map((link, i) => {
                 const Icon = link.icon;

@@ -15,9 +15,9 @@ export default function AdminLogin() {
     setError("");
     setLoading(true);
 
-    // Identifiants admin (à changer !)
-    const ADMIN_EMAIL = "aimarketing127@gmail.com";
-    const ADMIN_PASSWORD = "Admin2024!Solaire";
+    // ✅ Identifiants depuis variables d'environnement
+    const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL;
+    const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
 
     try {
       // Simulation délai serveur
@@ -135,20 +135,6 @@ export default function AdminLogin() {
           >
             ← Retour au site
           </a>
-        </div>
-
-        {/* Credentials info (DEVELOPMENT ONLY - À RETIRER EN PROD) */}
-        <div className="mt-8 bg-yellow-900/20 border border-yellow-500/30 rounded-xl p-4">
-          <p className="text-xs text-yellow-200 font-light text-center mb-2">
-            🔑 <strong>Identifiants par défaut :</strong>
-          </p>
-          <p className="text-xs text-yellow-300 font-mono text-center">
-            Email: aimarketing127@gmail.com<br />
-            Password: Admin2024!Solaire
-          </p>
-          <p className="text-xs text-yellow-200/60 font-light text-center mt-2">
-            ⚠️ Changez ces identifiants en production !
-          </p>
         </div>
       </div>
     </div>

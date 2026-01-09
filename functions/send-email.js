@@ -1,13 +1,14 @@
-// netlify/functions/send-email.js
-// Fonction serverless pour envoyer les emails via Resend
+// functions/send-email.js
+// Fonction serverless Cloudflare pour envoyer les emails via Resend
 
-const RESEND_API_KEY = process.env.VITE_RESEND_API_KEY;
 const ADMIN_EMAIL = 'aimarketing127@gmail.com';
 const FROM_EMAIL = 'onboarding@resend.dev';
 
-exports.handler = async (event) => {
+export async function onRequest(context) {
+  const { request, env } = context;
+  
   // Headers CORS
-  const headers = {
+  const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
@@ -15,25 +16,23 @@ exports.handler = async (event) => {
   };
 
   // Gérer les requêtes OPTIONS (preflight CORS)
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 200,
-      headers,
-      body: '',
-    };
+  if (request.method === 'OPTIONS') {
+    return new Response(null, {
+      status: 200,
+      headers: corsHeaders,
+    });
   }
 
   // Vérifier méthode POST
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      headers,
-      body: JSON.stringify({ error: 'Method Not Allowed' }),
-    };
+  if (request.method !== 'POST') {
+    return new Response(JSON.stringify({ error: 'Method Not Allowed' }), {
+      status: 405,
+      headers: corsHeaders,
+    });
   }
 
   try {
-    const { type, leadData } = JSON.parse(event.body);
+    const { type, leadData } = await request.json();
 
     console.log('📧 Envoi email type:', type);
 
@@ -62,7 +61,7 @@ exports.handler = async (event) => {
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Authorization': `Bearer ${env.VITE_RESEND_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(emailData),
@@ -77,21 +76,19 @@ exports.handler = async (event) => {
 
     console.log('✅ Email envoyé:', data.id);
 
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({ success: true, id: data.id }),
-    };
+    return new Response(JSON.stringify({ success: true, id: data.id }), {
+      status: 200,
+      headers: corsHeaders,
+    });
 
   } catch (error) {
     console.error('❌ Erreur fonction:', error);
-    return {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({ error: error.message }),
-    };
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: corsHeaders,
+    });
   }
-};
+}
 
 /**
  * Template HTML pour l'email de confirmation prospect

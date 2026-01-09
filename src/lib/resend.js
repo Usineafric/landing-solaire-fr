@@ -1,12 +1,12 @@
 // src/lib/resend.js
-// Client Resend utilisant Netlify Functions
+// Client Resend utilisant Cloudflare Functions
 
 /**
- * Envoie l'email de confirmation au prospect via Netlify Function
+ * Envoie l'email de confirmation au prospect via Cloudflare Function
  */
 export async function sendConfirmationEmail(leadData) {
   try {
-    const response = await fetch('/.netlify/functions/send-email', {
+    const response = await fetch('/send-email', { // ⬅️ Changé ici
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -33,11 +33,11 @@ export async function sendConfirmationEmail(leadData) {
 }
 
 /**
- * Envoie la notification admin via Netlify Function
+ * Envoie la notification admin via Cloudflare Function
  */
 export async function sendAdminNotification(leadData) {
   try {
-    const response = await fetch('/.netlify/functions/send-email', {
+    const response = await fetch('/send-email', { // ⬅️ Changé ici
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

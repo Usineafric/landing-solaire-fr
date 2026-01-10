@@ -37,28 +37,32 @@ export default function LeadForm() {
     setError("");
     setBlocked(false);
     setStep((s) => Math.max(1, s - 1));
+    document.getElementById('form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
   };
 
   const next = () => {
     setError("");
     if (step === 1) {
-      if (!isStep1Valid) return;
-      if (!isEligible) {
+        if (!isStep1Valid) return;
+        if (!isEligible) {
         setBlocked(true);
         return;
-      }
-      
-      // Validation code postal France métropolitaine
-      const firstTwo = form.postalCode.substring(0, 2);
-      const invalidCodes = ['97', '98', '00', '20'];
-      if (invalidCodes.includes(firstTwo)) {
+        }
+        
+        // Validation code postal France métropolitaine
+        const firstTwo = form.postalCode.substring(0, 2);
+        const invalidCodes = ['97', '98', '00', '20'];
+        if (invalidCodes.includes(firstTwo)) {
         setError("Service disponible en France métropolitaine uniquement");
         return;
-      }
+        }
     }
     if (step === 2 && !isStep2Valid) return;
     setStep((s) => Math.min(3, s + 1));
-  };
+    // ⬇️ AJOUTE CETTE LIGNE
+    document.getElementById('form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
 
   const submit = async (e) => {
     e.preventDefault();

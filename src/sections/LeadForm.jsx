@@ -34,35 +34,45 @@ export default function LeadForm() {
   const isEligible = useMemo(() => form.isOwner === "yes" && form.housingType === "house", [form.isOwner, form.housingType]);
 
   const back = () => {
-    setError("");
-    setBlocked(false);
-    setStep((s) => Math.max(1, s - 1));
-    document.getElementById('form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-  };
+  setError("");
+  setBlocked(false);
+  setStep((s) => Math.max(1, s - 1));
+  // Scroll vers le formulaire (pas la section entière)
+  setTimeout(() => {
+    document.getElementById('lead-form-card')?.scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'center' 
+    });
+  }, 100);
+};
 
   const next = () => {
-    setError("");
-    if (step === 1) {
-        if (!isStep1Valid) return;
-        if (!isEligible) {
-        setBlocked(true);
-        return;
-        }
-        
-        // Validation code postal France métropolitaine
-        const firstTwo = form.postalCode.substring(0, 2);
-        const invalidCodes = ['97', '98', '00', '20'];
-        if (invalidCodes.includes(firstTwo)) {
-        setError("Service disponible en France métropolitaine uniquement");
-        return;
-        }
+  setError("");
+  if (step === 1) {
+    if (!isStep1Valid) return;
+    if (!isEligible) {
+      setBlocked(true);
+      return;
     }
-    if (step === 2 && !isStep2Valid) return;
-    setStep((s) => Math.min(3, s + 1));
-    // ⬇️ AJOUTE CETTE LIGNE
-    document.getElementById('form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    };
+    
+    // Validation code postal France métropolitaine
+    const firstTwo = form.postalCode.substring(0, 2);
+    const invalidCodes = ['97', '98', '00', '20'];
+    if (invalidCodes.includes(firstTwo)) {
+      setError("Service disponible en France métropolitaine uniquement");
+      return;
+    }
+  }
+  if (step === 2 && !isStep2Valid) return;
+  setStep((s) => Math.min(3, s + 1));
+  // Scroll vers le formulaire (pas la section entière)
+  setTimeout(() => {
+    document.getElementById('lead-form-card')?.scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'center' 
+    });
+  }, 100);
+};
 
   const submit = async (e) => {
     e.preventDefault();
@@ -278,7 +288,9 @@ export default function LeadForm() {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={submit} className="p-10 md:p-12">
+                <form 
+                id="lead-form-card"
+                onSubmit={submit} className="p-10 md:p-12">
                   {step === 1 && (
                     <div className="space-y-8">
                       <div>

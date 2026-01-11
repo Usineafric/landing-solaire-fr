@@ -1,4 +1,5 @@
 import { Shield, Award, CheckCircle, Zap, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function GarantiesMini() {
   const guarantees = [
@@ -136,19 +137,29 @@ export default function GarantiesMini() {
               </div>
             </div>
 
-            {/* Bouton CTA */}
-            <a
-              href="#form"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105 text-sm"
-            >
-              <Shield className="w-4 h-4" />
-              Recevoir mon étude sécurisée
-              <ArrowRight className="w-4 h-4" />
-            </a>
+            {/* Boutons CTA */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="#form"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105 text-sm"
+              >
+                <Shield className="w-4 h-4" />
+                Recevoir mon étude sécurisée
+                <ArrowRight className="w-4 h-4" />
+              </a>
+
+              {/* 🆕 LIEN VERS PAGE GARANTIES DÉTAILLÉE */}
+              <Link
+                to="/garanties"
+                className="inline-flex items-center gap-2 bg-white border-2 border-orange-300 text-orange-700 px-6 py-3 rounded-xl font-semibold hover:bg-orange-50 transition-all text-sm"
+              >
+                En savoir plus sur nos garanties
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
 
             <p className="text-xs text-gray-500 mt-4 font-light">
-              💡 Vous souhaitez en savoir plus sur nos garanties détaillées ? 
-              Elles seront expliquées lors de votre étude personnalisée.
+              💡 Découvrez le détail complet de nos certifications, assurances et aides d'État
             </p>
           </div>
         </div>

@@ -1,4 +1,5 @@
-import { ClipboardList, Search, PhoneCall, ArrowRight, Zap } from "lucide-react";
+import { ClipboardList, Search, PhoneCall, ArrowRight, Zap, ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function HowItWorks() {
   const steps = [
@@ -102,8 +103,25 @@ export default function HowItWorks() {
           </div>
         </div>
 
+        {/* 🆕 BOUTON VERS PAGE PROCESSUS DÉTAILLÉE */}
+        <div className="mt-16 text-center">
+          <div className="inline-block bg-gradient-to-r from-orange-50 to-yellow-50 border-2 border-orange-200 rounded-2xl p-6 max-w-2xl">
+            <p className="text-gray-700 mb-4 font-light">
+              Vous voulez en savoir plus sur le processus complet d'installation ?
+            </p>
+            <Link
+              to="/processus"
+              className="inline-flex items-center gap-2 bg-white border-2 border-orange-300 text-orange-700 px-6 py-3 rounded-xl font-semibold hover:bg-orange-50 transition-all hover:scale-105"
+            >
+              <ExternalLink className="w-5 h-5" />
+              Découvrir les 6 étapes détaillées
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+
         {/* CTA Footer */}
-        <div className="mt-20 text-center">
+        <div className="mt-12 text-center">
           <div className="inline-block bg-gradient-to-r from-gray-50 to-orange-50 border border-orange-100 rounded-2xl p-8 max-w-2xl">
             <p className="text-gray-700 mb-6 font-light">
               <strong className="font-semibold">Important :</strong> Les informations générales sur le photovoltaïque sont disponibles 

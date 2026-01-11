@@ -1,13 +1,14 @@
 import Hero from "../sections/Hero";
 import Avantages from "../sections/Avantages";
-import InteractiveMap from "../sections/InteractiveMap";        // ← NOUVEAU
-import ProjectGallery from "../sections/ProjectGallery";        // ← NOUVEAU
+import InteractiveMap from "../sections/InteractiveMap";
+import ProjectGallery from "../sections/ProjectGallery";
 import PreFilter from "../sections/PreFilter";
+import GarantiesMini from "../sections/GarantiesMini";       // 🆕 NOUVEAU (ÉTAPE 2)
 import HowItWorks from "../sections/HowItWorks";
 import WhatYouGet from "../sections/WhatYouGet";
-import SavingsCalculator from "../sections/SavingsCalculator";  // ← NOUVEAU
+import SavingsCalculator from "../sections/SavingsCalculator";
 import FAQ from "../sections/FAQ";
-import Testimonials from "../sections/Testimonials";            // ← NOUVEAU
+import Testimonials from "../sections/Testimonials";
 import LeadForm from "../sections/LeadForm";
 import Reassurance from "../sections/Reassurance";
 import FooterLegal from "../sections/FooterLegal";
@@ -18,14 +19,17 @@ export default function HomePage() {
     <>
       <Hero />
       <Avantages />
-      <InteractiveMap />          {/* ← NOUVEAU - Après Avantages */}
+      <InteractiveMap />
       <PreFilter />
+      
+      <GarantiesMini />              {/* 🆕 NOUVEAU (ÉTAPE 2) - Section Garanties */}
+      
       <HowItWorks />
       <WhatYouGet />
-      <ProjectGallery />          {/* ← NOUVEAU - Après WhatYouGet */}
-      <SavingsCalculator />       {/* ← NOUVEAU - Avant FAQ */}
+      <ProjectGallery />
+      <SavingsCalculator />
       <FAQ />
-      <Testimonials />            {/* ← NOUVEAU - Après FAQ */}
+      <Testimonials />
       <LeadForm />
       <Reassurance />
       <FooterLegal />

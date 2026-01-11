@@ -10,6 +10,8 @@ import LeadForm from "../sections/LeadForm";
 import Reassurance from "../sections/Reassurance";
 import FooterLegal from "../sections/FooterLegal";
 import StickyCta from "../sections/StickyCta";
+import SEO from "../components/SEO";  // 🆕 LIGNE 1
+import { seoConfig } from "../utils/seoConfig";  // 🆕 LIGNE 2
 import Header from "../components/Header";
 
 // 🗑️ SECTIONS RETIRÉES (à utiliser dans pages satellites futures)
@@ -21,6 +23,7 @@ export default function HomePage() {
   return (
     <>
       {/* ✅ SECTIONS ESSENTIELLES (10 sections optimisées) */}
+      <SEO {...seoConfig.home} />
       <Header />
       <Hero />                    {/* 1. Accroche + CTA principal */}
       <Avantages />               {/* 2. Bénéfices du solaire */}

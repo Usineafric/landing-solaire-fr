@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+Allow: /garanties
+Allow: /processus
+Allow: /realisations
+Allow: /simulateur
+
+Disallow: /admin
+Disallow: /admin/
+
+Sitemap: https://lepanneausolaire.com/sitemap.xml

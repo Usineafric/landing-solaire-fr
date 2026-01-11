@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ScrollToHash from "./components/ScrollToHash";  // 🆕 AJOUTER
+import ScrollToHash from "./components/ScrollToHash"; 
 import HomePage from "./pages/HomePage";
 import MentionsLegales from "./pages/MentionsLegales";
 import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";

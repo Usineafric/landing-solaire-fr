@@ -34,7 +34,7 @@ export default function Header() {
               <Zap className="w-6 h-6 text-white" />
             </div>
             <div className="font-bold text-xl text-gray-900">
-              SolairePro
+              Le Panneau Solaire
             </div>
           </Link>
 

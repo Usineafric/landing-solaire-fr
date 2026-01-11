@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Calculator, TrendingDown, Sun, Home, Zap, Euro, ArrowRight, AlertCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function SavingsCalculator() {
   const [monthlyBill, setMonthlyBill] = useState(150);
@@ -291,12 +292,12 @@ export default function SavingsCalculator() {
                   </div>
 
                   {/* CTA */}
-                  <a
-                    href="#form"
+                  <Link
+                    to="/#form"
                     className="block w-full py-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-black rounded-xl font-semibold text-center shadow-lg hover:shadow-xl transition-all hover:scale-105"
-                  >
+                    >
                     Obtenir mon étude personnalisée gratuite →
-                  </a>
+                    </Link>
                 </div>
               ) : (
                 <div className="h-full flex items-center justify-center bg-gray-50 rounded-3xl border-2 border-dashed border-gray-300 p-12">

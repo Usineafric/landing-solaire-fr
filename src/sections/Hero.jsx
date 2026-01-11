@@ -44,7 +44,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Titre principal - OPTIMISÉ */}
+          {/* Titre principal */}
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.1] mb-8 tracking-tight">
             Divisez votre facture EDF
             <span className="block mt-3 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-500">
@@ -52,13 +52,56 @@ export default function Hero() {
             </span>
           </h1>
 
-          {/* Sous-titre - OPTIMISÉ */}
+          {/* 🆕 LOGOS CERTIFICATIONS OFFICIELS */}
+          <div className="mb-10 flex flex-wrap items-center gap-6">
+            {/* Logo QualiPV */}
+            <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-3 hover:bg-white/15 transition-all">
+              <img
+                src="/logos/qualipv.jpg"
+                alt="QualiPV - Certification installation photovoltaïque"
+                className="h-10 w-auto object-contain"
+                loading="eager"
+              />
+            </div>
+
+            {/* Logo Qualibat RGE */}
+            <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-3 hover:bg-white/15 transition-all">
+              <img
+                src="/logos/qualibat-rge.webp"
+                alt="Qualibat RGE - Reconnu Garant Environnement"
+                className="h-12 w-auto object-contain"
+                loading="eager"
+              />
+            </div>
+
+            {/* Logo CEE */}
+            <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-3 hover:bg-white/15 transition-all">
+              <img
+                src="/logos/cee.jpg"
+                alt="CEE - Certificats Économies Énergie"
+                className="h-10 w-auto object-contain"
+                loading="eager"
+              />
+            </div>
+
+            {/* Note 4.9/5 */}
+            <div className="flex items-center gap-2 backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl px-4 py-2.5">
+              <div className="flex items-center gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <span className="text-white font-semibold text-sm">4.9/5</span>
+            </div>
+          </div>
+
+          {/* Sous-titre */}
           <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed max-w-2xl font-light">
             Étude de faisabilité gratuite en 2 minutes.
             <strong className="block mt-2 text-white font-semibold">Réponse sous 48h · Sans engagement</strong>
           </p>
 
-          {/* CTA - SIMPLIFIÉ (1 seul bouton) */}
+          {/* CTA */}
           <div className="mb-16">
             <button
               onClick={goForm}
@@ -71,7 +114,7 @@ export default function Hero() {
             </button>
           </div>
 
-          {/* Stats cards - OPTIMISÉES (orientées résultats) */}
+          {/* Stats cards */}
           <div className="grid grid-cols-3 gap-6">
             {[
               { value: "2 847", label: "installations réalisées", icon: CheckCircle },

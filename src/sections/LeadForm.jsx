@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ArrowRight, CheckCircle2, AlertTriangle, Zap, Lock, Shield, Home, MapPin, Clock, User, Mail, Phone } from "lucide-react";
+import { ArrowRight, CheckCircle2, AlertTriangle, Zap, Lock, Shield, Home, MapPin, Clock, User, Mail, Phone, Calendar, FileText } from "lucide-react";
 import { saveLead } from "../lib/supabase";
 import { sendConfirmationEmail, sendAdminNotification } from "../lib/resend";
 
@@ -15,7 +15,8 @@ export default function LeadForm() {
     housingType: "",
     postalCode: "",
     requestType: "Étude de faisabilité gratuite",
-    timeframe: "3-6 mois",
+    projectDeadline: "",  // 🆕 Question unique fusionnée
+    description: "",      // 🆕 Description optionnelle
     firstName: "",
     lastName: "",
     phone: "",
@@ -25,7 +26,7 @@ export default function LeadForm() {
 
   const progress = useMemo(() => (step / 3) * 100, [step]);
   const isStep1Valid = useMemo(() => form.isOwner && form.housingType && form.postalCode.trim().length >= 4, [form]);
-  const isStep2Valid = useMemo(() => Boolean(form.requestType) && Boolean(form.timeframe), [form]);
+  const isStep2Valid = useMemo(() => Boolean(form.requestType) && Boolean(form.projectDeadline), [form]); // 🔥 Simplifié : seulement 2 champs requis
   const isStep3Valid = useMemo(() => {
     const emailOk = /\S+@\S+\.\S+/.test(form.email);
     const phoneOk = form.phone.trim().replace(/\s/g, "").length >= 8;
@@ -34,45 +35,42 @@ export default function LeadForm() {
   const isEligible = useMemo(() => form.isOwner === "yes" && form.housingType === "house", [form.isOwner, form.housingType]);
 
   const back = () => {
-  setError("");
-  setBlocked(false);
-  setStep((s) => Math.max(1, s - 1));
-  // Scroll vers le formulaire (pas la section entière)
-  setTimeout(() => {
-    document.getElementById('lead-form-card')?.scrollIntoView({ 
-      behavior: 'smooth', 
-      block: 'center' 
-    });
-  }, 100);
-};
+    setError("");
+    setBlocked(false);
+    setStep((s) => Math.max(1, s - 1));
+    setTimeout(() => {
+      document.getElementById('lead-form-card')?.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center' 
+      });
+    }, 100);
+  };
 
   const next = () => {
-  setError("");
-  if (step === 1) {
-    if (!isStep1Valid) return;
-    if (!isEligible) {
-      setBlocked(true);
-      return;
+    setError("");
+    if (step === 1) {
+      if (!isStep1Valid) return;
+      if (!isEligible) {
+        setBlocked(true);
+        return;
+      }
+      
+      const firstTwo = form.postalCode.substring(0, 2);
+      const invalidCodes = ['97', '98', '00', '20'];
+      if (invalidCodes.includes(firstTwo)) {
+        setError("Service disponible en France métropolitaine uniquement");
+        return;
+      }
     }
-    
-    // Validation code postal France métropolitaine
-    const firstTwo = form.postalCode.substring(0, 2);
-    const invalidCodes = ['97', '98', '00', '20'];
-    if (invalidCodes.includes(firstTwo)) {
-      setError("Service disponible en France métropolitaine uniquement");
-      return;
-    }
-  }
-  if (step === 2 && !isStep2Valid) return;
-  setStep((s) => Math.min(3, s + 1));
-  // Scroll vers le formulaire (pas la section entière)
-  setTimeout(() => {
-    document.getElementById('lead-form-card')?.scrollIntoView({ 
-      behavior: 'smooth', 
-      block: 'center' 
-    });
-  }, 100);
-};
+    if (step === 2 && !isStep2Valid) return;
+    setStep((s) => Math.min(3, s + 1));
+    setTimeout(() => {
+      document.getElementById('lead-form-card')?.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center' 
+      });
+    }, 100);
+  };
 
   const submit = async (e) => {
     e.preventDefault();
@@ -82,173 +80,109 @@ export default function LeadForm() {
       return;
     }
     
-    // Validation téléphone français
-    const phoneRegex = /^(?:(?:\+|00)33|0)[1-9](?:\d{8})$/;
-    const cleanPhone = form.phone.replace(/\s/g, '');
+    const phoneRegex = /^(?:(?:\+|00)33|0)[1-9](?:[0-9]{2}){4}$/;
+    const cleanPhone = form.phone.replace(/\s/g, "");
     if (!phoneRegex.test(cleanPhone)) {
-      setError("Format de téléphone invalide (ex: 06 12 34 56 78)");
+      setError("Numéro de téléphone français invalide");
       return;
     }
-    
+
     setSubmitting(true);
+    
     try {
-      // 1. Sauvegarder dans Supabase
-      console.log("💾 Sauvegarde dans Supabase...");
-      await saveLead(form);
-      console.log("✅ Lead sauvegardé dans Supabase");
-
-      // 2. Envoyer email de confirmation au prospect
-      console.log("📧 Envoi email confirmation...");
-      try {
-        await sendConfirmationEmail(form);
-        console.log("✅ Email confirmation envoyé");
-      } catch (emailError) {
-        console.warn("⚠️ Échec email confirmation (lead sauvegardé quand même):", emailError);
-        // On continue même si l'email échoue
-      }
-
-      // 3. Envoyer notification admin
-      console.log("🔔 Envoi notification admin...");
-      try {
-        await sendAdminNotification(form);
-        console.log("✅ Notification admin envoyée");
-      } catch (notifError) {
-        console.warn("⚠️ Échec notification admin (lead sauvegardé quand même):", notifError);
-        // On continue même si la notification échoue
-      }
-
-      // 4. Afficher succès
+      // 🔥 Mapping pour compatibilité base de données
+      const leadData = {
+        ...form,
+        phone: cleanPhone,
+        timeframe: form.projectDeadline, // Mapping : projectDeadline → timeframe (colonne existante)
+      };
+      
+      await saveLead(leadData);
+      await sendConfirmationEmail(leadData);
+      await sendAdminNotification(leadData);
+      
       setSent(true);
+      setSubmitting(false);
     } catch (err) {
-      console.error("❌ Erreur submission:", err);
+      console.error(err);
       setError("Une erreur est survenue. Veuillez réessayer.");
-    } finally {
       setSubmitting(false);
     }
   };
 
   return (
-    <section id="form" className="relative py-32 overflow-hidden bg-gradient-to-b from-gray-50 to-white">
+    <section id="form" className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-yellow-50/30 to-orange-50/30 pointer-events-none" />
+      
       <div className="container-page relative z-10">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-6 py-3 rounded-full font-semibold mb-6 shadow-lg">
-            <Zap className="w-5 h-5" />
-            Étude gratuite · Sans engagement
-          </div>
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
-            Votre étude solaire
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-orange-600 mt-2">
-              personnalisée
-            </span>
-          </h2>
-          <p className="text-xl text-gray-600 font-light">
-            Réponse sous 48h · Données 100% sécurisées
-          </p>
-        </div>
+        <div className="grid lg:grid-cols-5 gap-12 items-start">
+          {/* Left info */}
+          <div className="lg:col-span-2 lg:sticky lg:top-24">
+            <div className="inline-block bg-gradient-to-r from-yellow-100 to-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              <Zap className="inline w-4 h-4 mr-1" />
+              Étape {step}/3
+            </div>
 
-        <div className="grid lg:grid-cols-5 gap-10 max-w-7xl mx-auto">
-          {/* Sidebar Progress */}
-          <div className="lg:col-span-2">
-            <div className="lg:sticky lg:top-8 space-y-6">
-              {/* Progress Card */}
-              <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="font-bold text-gray-900 text-lg">Votre progression</h3>
-                  <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-4 py-2 rounded-full font-bold text-sm">
-                    Étape {step}/3
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+              Recevez votre
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-orange-600 mt-2">
+                étude personnalisée
+              </span>
+            </h2>
+
+            <p className="text-lg text-gray-600 mb-10 font-light leading-relaxed">
+              Complétez ce formulaire en <strong className="font-semibold">moins de 2 minutes</strong> pour recevoir 
+              une analyse technique détaillée de votre projet solaire.
+            </p>
+
+            <div className="space-y-4 mb-8">
+              {[
+                { icon: Shield, text: "Sans engagement" },
+                { icon: Lock, text: "100% gratuit" },
+                { icon: CheckCircle2, text: "Conforme RGPD" },
+                { icon: Zap, text: "1 seul professionnel contacté" }
+              ].map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-br from-green-400 to-emerald-500 flex-shrink-0">
+                      <Icon className="w-5 h-5 text-white" />
+                    </div>
+                    <span className="text-gray-700 font-medium">{item.text}</span>
                   </div>
-                </div>
+                );
+              })}
+            </div>
 
-                {/* Progress Bar */}
-                <div className="relative h-2 bg-gray-100 rounded-full overflow-hidden mb-8">
-                  <div
-                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-yellow-400 to-orange-500 transition-all duration-700 ease-out rounded-full"
-                    style={{ width: `${progress}%` }}
-                  />
-                </div>
-
-                {/* Steps */}
-                <div className="space-y-4">
-                  {[
-                    { num: 1, label: "Informations logement", icon: Home },
-                    { num: 2, label: "Détails du projet", icon: Clock },
-                    { num: 3, label: "Coordonnées", icon: User }
-                  ].map((s) => {
-                    const Icon = s.icon;
-                    const isActive = step === s.num;
-                    const isComplete = step > s.num;
-                    
-                    return (
-                      <div
-                        key={s.num}
-                        className={`flex items-center gap-4 p-4 rounded-2xl transition-all ${
-                          isActive ? "bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-orange-200" :
-                          isComplete ? "bg-gray-50" : "bg-white border border-gray-200"
-                        }`}
-                      >
-                        <div
-                          className={`flex items-center justify-center w-12 h-12 rounded-xl transition-all ${
-                            isComplete ? "bg-gradient-to-br from-green-400 to-emerald-500 text-white" :
-                            isActive ? "bg-gradient-to-br from-yellow-400 to-orange-500 text-white" :
-                            "bg-gray-100 text-gray-400"
-                          }`}
-                        >
-                          {isComplete ? <CheckCircle2 className="w-6 h-6" /> : <Icon className="w-6 h-6" />}
-                        </div>
-                        <div className={`font-semibold ${isActive || isComplete ? "text-gray-900" : "text-gray-400"}`}>
-                          {s.label}
-                        </div>
-                      </div>
-                    );
-                  })}
+            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200 rounded-2xl p-6">
+              <div className="flex items-start gap-4">
+                <Shield className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
+                <div>
+                  <div className="font-bold text-blue-900 mb-2">
+                    Engagement de confidentialité
+                  </div>
+                  <p className="text-sm text-blue-800 leading-relaxed font-light">
+                    Vos données ne sont jamais revendues. Un seul professionnel certifié RGE vous contacte pour une étude personnalisée.
+                  </p>
                 </div>
               </div>
-
-              {/* Trust badges */}
-              {!blocked && (
-                <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-3xl p-6 border border-emerald-200">
-                  <div className="flex items-start gap-3">
-                    <Shield className="w-7 h-7 text-emerald-600 flex-shrink-0" />
-                    <div>
-                      <div className="font-bold text-emerald-900 mb-3">Garanties</div>
-                      <ul className="space-y-2.5 text-sm text-emerald-800">
-                        <li className="flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                          100% gratuit, aucun frais
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                          Données cryptées SSL
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                          Aucun spam garanti
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                          Réponse sous 48h ouvrées
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {blocked && (
-                <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-3xl p-6 border border-red-200">
-                  <div className="flex items-start gap-3">
-                    <AlertTriangle className="w-7 h-7 text-red-600 flex-shrink-0" />
-                    <div>
-                      <div className="font-bold text-red-900 mb-2">Profil non éligible</div>
-                      <p className="text-sm text-red-800 leading-relaxed">
-                        Cette étude est exclusivement réservée aux propriétaires de maison individuelle en France métropolitaine.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
+
+            {blocked && (
+              <div className="mt-8 bg-gradient-to-br from-red-50 to-pink-50 border-2 border-red-200 rounded-2xl p-6">
+                <div className="flex items-start gap-4">
+                  <AlertTriangle className="w-6 h-6 text-red-600 flex-shrink-0 mt-1" />
+                  <div>
+                    <div className="font-bold text-red-900 mb-2">
+                      Projet non éligible
+                    </div>
+                    <p className="text-sm text-red-800 leading-relaxed font-light">
+                      Cette étude est réservée aux propriétaires de maison individuelle en France métropolitaine.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Form */}
@@ -276,7 +210,8 @@ export default function LeadForm() {
                       setBlocked(false);
                       setForm({
                         isOwner: "", housingType: "", postalCode: "",
-                        requestType: "Étude de faisabilité gratuite", timeframe: "3-6 mois",
+                        requestType: "Étude de faisabilité gratuite",
+                        projectDeadline: "", description: "",
                         firstName: "", lastName: "", phone: "", email: "",
                         consent: false,
                       });
@@ -289,8 +224,21 @@ export default function LeadForm() {
                 </div>
               ) : (
                 <form 
-                id="lead-form-card"
-                onSubmit={submit} className="p-10 md:p-12">
+                  id="lead-form-card"
+                  onSubmit={submit} 
+                  className="p-10 md:p-12"
+                >
+                  {/* Progress bar */}
+                  <div className="mb-10">
+                    <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-gradient-to-r from-yellow-400 to-orange-500 transition-all duration-500 ease-out"
+                        style={{ width: `${progress}%` }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* STEP 1 - INCHANGÉ */}
                   {step === 1 && (
                     <div className="space-y-8">
                       <div>
@@ -303,25 +251,25 @@ export default function LeadForm() {
                             <label className="block text-sm font-semibold text-gray-900 mb-4">
                               Êtes-vous propriétaire de votre logement ?
                             </label>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid sm:grid-cols-2 gap-4">
                               {[
-                                { v: "yes", label: "Oui, je suis propriétaire", icon: CheckCircle2 },
-                                { v: "no", label: "Non", icon: Home }
-                              ].map((o) => {
-                                const Icon = o.icon;
+                                { value: "yes", label: "Oui", icon: CheckCircle2 },
+                                { value: "no", label: "Non", icon: AlertTriangle }
+                              ].map((opt) => {
+                                const Icon = opt.icon;
                                 return (
                                   <button
-                                    key={o.v}
+                                    key={opt.value}
                                     type="button"
-                                    onClick={() => setForm((f) => ({ ...f, isOwner: o.v }))}
-                                    className={`group relative p-6 rounded-2xl border-2 transition-all ${
-                                      form.isOwner === o.v
-                                        ? "border-orange-500 bg-gradient-to-br from-yellow-50 to-orange-50 shadow-lg"
-                                        : "border-gray-200 hover:border-gray-300 hover:shadow-md"
+                                    onClick={() => setForm((f) => ({ ...f, isOwner: opt.value }))}
+                                    className={`flex items-center gap-3 p-5 rounded-xl border-2 font-semibold transition-all ${
+                                      form.isOwner === opt.value
+                                        ? "border-orange-500 bg-gradient-to-br from-yellow-50 to-orange-50 text-orange-700"
+                                        : "border-gray-200 bg-white text-gray-700 hover:border-gray-300"
                                     }`}
                                   >
-                                    <Icon className={`w-8 h-8 mb-3 ${form.isOwner === o.v ? "text-orange-600" : "text-gray-400"}`} />
-                                    <div className="font-semibold text-gray-900">{o.label}</div>
+                                    <Icon className="w-5 h-5" />
+                                    {opt.label}
                                   </button>
                                 );
                               })}
@@ -332,25 +280,25 @@ export default function LeadForm() {
                             <label className="block text-sm font-semibold text-gray-900 mb-4">
                               Type de bien
                             </label>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid sm:grid-cols-2 gap-4">
                               {[
-                                { v: "house", label: "Maison individuelle", icon: Home },
-                                { v: "other", label: "Autre (appartement...)", icon: MapPin }
-                              ].map((o) => {
-                                const Icon = o.icon;
+                                { value: "house", label: "Maison", icon: Home },
+                                { value: "apartment", label: "Appartement", icon: Home }
+                              ].map((opt) => {
+                                const Icon = opt.icon;
                                 return (
                                   <button
-                                    key={o.v}
+                                    key={opt.value}
                                     type="button"
-                                    onClick={() => setForm((f) => ({ ...f, housingType: o.v }))}
-                                    className={`group relative p-6 rounded-2xl border-2 transition-all ${
-                                      form.housingType === o.v
-                                        ? "border-orange-500 bg-gradient-to-br from-yellow-50 to-orange-50 shadow-lg"
-                                        : "border-gray-200 hover:border-gray-300 hover:shadow-md"
+                                    onClick={() => setForm((f) => ({ ...f, housingType: opt.value }))}
+                                    className={`flex items-center gap-3 p-5 rounded-xl border-2 font-semibold transition-all ${
+                                      form.housingType === opt.value
+                                        ? "border-orange-500 bg-gradient-to-br from-yellow-50 to-orange-50 text-orange-700"
+                                        : "border-gray-200 bg-white text-gray-700 hover:border-gray-300"
                                     }`}
                                   >
-                                    <Icon className={`w-8 h-8 mb-3 ${form.housingType === o.v ? "text-orange-600" : "text-gray-400"}`} />
-                                    <div className="font-semibold text-gray-900">{o.label}</div>
+                                    <Icon className="w-5 h-5" />
+                                    {opt.label}
                                   </button>
                                 );
                               })}
@@ -358,17 +306,17 @@ export default function LeadForm() {
                           </div>
 
                           <div>
-                            <label className="block text-sm font-semibold text-gray-900 mb-4">
+                            <label className="block text-sm font-semibold text-gray-900 mb-3">
                               Code postal
                             </label>
                             <div className="relative">
-                              <MapPin className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                              <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                               <input
+                                type="text"
                                 value={form.postalCode}
                                 onChange={(e) => setForm((f) => ({ ...f, postalCode: e.target.value }))}
+                                className="w-full border-2 border-gray-200 rounded-xl pl-12 pr-5 py-4 font-medium focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-100 transition-all"
                                 placeholder="75001"
-                                className="w-full border-2 border-gray-200 rounded-2xl pl-14 pr-6 py-5 text-lg font-medium focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-100 transition-all"
-                                inputMode="numeric"
                                 maxLength="5"
                               />
                             </div>
@@ -377,62 +325,135 @@ export default function LeadForm() {
                       </div>
 
                       {error && (
-                        <div className="rounded-2xl border-2 border-red-200 bg-red-50 p-5 text-red-800 font-medium">
+                        <div className="bg-red-50 border-2 border-red-200 rounded-xl p-4 text-red-800 text-sm">
                           {error}
                         </div>
                       )}
 
-                      <button
-                        type="button"
-                        onClick={next}
-                        disabled={!isStep1Valid}
-                        className={`w-full py-5 rounded-2xl font-semibold text-lg shadow-lg transition-all duration-300 flex items-center justify-center gap-3 ${
-                          isStep1Valid
-                            ? "bg-gradient-to-r from-yellow-400 to-orange-500 text-black hover:shadow-xl hover:scale-[1.02]"
-                            : "bg-gray-200 text-gray-400 cursor-not-allowed"
-                        }`}
-                      >
-                        Continuer
-                        <ArrowRight className="w-5 h-5" />
-                      </button>
+                      <div className="flex justify-end pt-4">
+                        <button
+                          type="button"
+                          onClick={next}
+                          disabled={!isStep1Valid}
+                          className={`px-8 py-4 rounded-xl font-semibold shadow-lg transition-all inline-flex items-center gap-2 ${
+                            isStep1Valid
+                              ? "bg-gradient-to-r from-yellow-400 to-orange-500 text-black hover:shadow-xl hover:scale-[1.02]"
+                              : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                          }`}
+                        >
+                          Continuer
+                          <ArrowRight className="w-5 h-5" />
+                        </button>
+                      </div>
                     </div>
                   )}
 
+                  {/* STEP 2 - 🔥 OPTIMISÉ (plus court, sans doublon) */}
                   {step === 2 && (
                     <div className="space-y-8">
                       <h3 className="text-2xl font-bold text-gray-900 mb-8">
                         Détails de votre projet
                       </h3>
 
-                      <div className="space-y-6">
+                      <div className="space-y-8">
+                        {/* Type de demande */}
                         <div>
                           <label className="block text-sm font-semibold text-gray-900 mb-4">
-                            Nature de la demande
+                            Type de demande
                           </label>
-                          <select
-                            value={form.requestType}
-                            onChange={(e) => setForm((f) => ({ ...f, requestType: e.target.value }))}
-                            className="w-full border-2 border-gray-200 rounded-2xl px-6 py-5 text-lg font-medium focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-100 transition-all bg-white appearance-none cursor-pointer"
-                          >
-                            <option>Étude de faisabilité gratuite</option>
-                            <option>Demande de devis personnalisé</option>
-                          </select>
+                          <div className="grid gap-4">
+                            {[
+                              "Étude de faisabilité gratuite",
+                              "Devis détaillé avec visite",
+                              "Informations générales"
+                            ].map((opt) => (
+                              <button
+                                key={opt}
+                                type="button"
+                                onClick={() => setForm((f) => ({ ...f, requestType: opt }))}
+                                className={`text-left p-5 rounded-xl border-2 font-semibold transition-all ${
+                                  form.requestType === opt
+                                    ? "border-orange-500 bg-gradient-to-br from-yellow-50 to-orange-50 text-orange-700"
+                                    : "border-gray-200 bg-white text-gray-700 hover:border-gray-300"
+                                }`}
+                              >
+                                {opt}
+                              </button>
+                            ))}
+                          </div>
                         </div>
 
+                        {/* 🔥 QUESTION UNIQUE FUSIONNÉE (sans doublon) */}
                         <div>
                           <label className="block text-sm font-semibold text-gray-900 mb-4">
-                            Quand souhaitez-vous installer ?
+                            <Calendar className="inline w-5 h-5 mr-2 text-orange-600" />
+                            Quand souhaitez-vous réaliser ce projet ?
                           </label>
-                          <select
-                            value={form.timeframe}
-                            onChange={(e) => setForm((f) => ({ ...f, timeframe: e.target.value }))}
-                            className="w-full border-2 border-gray-200 rounded-2xl px-6 py-5 text-lg font-medium focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-100 transition-all bg-white appearance-none cursor-pointer"
-                          >
-                            <option>Dans les 3 mois</option>
-                            <option>3-6 mois</option>
-                            <option>6-12 mois</option>
-                            <option>Plus d'1 an (je me renseigne)</option>
-                          </select>
+                          <div className="grid gap-4">
+                            {[
+                              { value: "urgent", label: "Urgent (< 3 mois)", badge: "🔥 Prioritaire" },
+                              { value: "3-6", label: "3 à 6 mois", badge: "" },
+                              { value: "6-12", label: "6 à 12 mois", badge: "" },
+                              { value: "+12", label: "Plus de 12 mois", badge: "" },
+                              { value: "thinking", label: "Encore en réflexion", badge: "" }
+                            ].map((opt) => (
+                              <button
+                                key={opt.value}
+                                type="button"
+                                onClick={() => setForm((f) => ({ ...f, projectDeadline: opt.value }))}
+                                className={`text-left p-5 rounded-xl border-2 font-semibold transition-all relative ${
+                                  form.projectDeadline === opt.value
+                                    ? "border-orange-500 bg-gradient-to-br from-yellow-50 to-orange-50 text-orange-700"
+                                    : "border-gray-200 bg-white text-gray-700 hover:border-gray-300"
+                                }`}
+                              >
+                                <div className="flex items-center justify-between">
+                                  <span>{opt.label}</span>
+                                  {opt.badge && (
+                                    <span className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full font-bold">
+                                      {opt.badge}
+                                    </span>
+                                  )}
+                                </div>
+                              </button>
+                            ))}
+                          </div>
+                          <p className="text-xs text-gray-500 mt-2 ml-1">
+                            💡 Cette information nous aide à prioriser votre demande
+                          </p>
+                        </div>
+
+                        {/* Description optionnelle */}
+                        <div>
+                          <label className="block text-sm font-semibold text-gray-900 mb-3">
+                            <FileText className="inline w-5 h-5 mr-2 text-orange-600" />
+                            Informations complémentaires <span className="text-gray-400 font-normal">(optionnel)</span>
+                          </label>
+                          <textarea
+                            value={form.description}
+                            onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
+                            className="w-full border-2 border-gray-200 rounded-xl px-5 py-4 font-medium focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-100 transition-all resize-none"
+                            placeholder="Ex : toiture en ardoise, présence d'arbres à proximité, projet de rénovation en cours..."
+                            rows="3"
+                          />
+                          <p className="text-xs text-gray-500 mt-2 ml-1">
+                            💡 Partagez tout détail utile pour affiner votre étude
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Réassurance */}
+                      <div className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-2xl p-6">
+                        <div className="flex items-start gap-4">
+                          <Shield className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
+                          <div>
+                            <div className="font-bold text-green-900 mb-2">
+                              ✓ Sans engagement ✓ 100% gratuit ✓ Conforme RGPD
+                            </div>
+                            <p className="text-sm text-green-800 leading-relaxed font-light">
+                              Un seul professionnel certifié vous contacte. Aucune revente de données.
+                            </p>
+                          </div>
                         </div>
                       </div>
 
@@ -440,7 +461,7 @@ export default function LeadForm() {
                         <button
                           type="button"
                           onClick={back}
-                          className="flex-1 border-2 border-gray-300 text-gray-700 py-5 rounded-2xl font-semibold text-lg hover:bg-gray-50 transition-all"
+                          className="px-8 py-4 rounded-xl font-semibold border-2 border-gray-300 text-gray-700 hover:bg-gray-50 transition-all"
                         >
                           Retour
                         </button>
@@ -448,7 +469,7 @@ export default function LeadForm() {
                           type="button"
                           onClick={next}
                           disabled={!isStep2Valid}
-                          className={`flex-1 py-5 rounded-2xl font-semibold text-lg shadow-lg transition-all duration-300 flex items-center justify-center gap-3 ${
+                          className={`flex-1 px-8 py-4 rounded-xl font-semibold shadow-lg transition-all inline-flex items-center justify-center gap-2 ${
                             isStep2Valid
                               ? "bg-gradient-to-r from-yellow-400 to-orange-500 text-black hover:shadow-xl hover:scale-[1.02]"
                               : "bg-gray-200 text-gray-400 cursor-not-allowed"
@@ -461,6 +482,7 @@ export default function LeadForm() {
                     </div>
                   )}
 
+                  {/* STEP 3 - INCHANGÉ */}
                   {step === 3 && (
                     <div className="space-y-8">
                       <h3 className="text-2xl font-bold text-gray-900 mb-8">
@@ -533,14 +555,16 @@ export default function LeadForm() {
                             required
                           />
                           <span className="text-sm text-gray-700 leading-relaxed font-light">
-                            J'accepte que mes données soient utilisées pour traiter ma demande. 
-                            Contact : <a href="mailto:privacy@leadspodium.com" className="underline font-medium text-orange-600">privacy@leadspodium.com</a>
+                            J'accepte que mes données soient utilisées pour traiter ma demande.
+                            <a href="/politique-confidentialite" target="_blank" className="text-orange-600 hover:underline ml-1">
+                              En savoir plus
+                            </a>
                           </span>
                         </label>
                       </div>
 
                       {error && (
-                        <div className="rounded-2xl border-2 border-red-200 bg-red-50 p-5 text-red-800 font-medium">
+                        <div className="bg-red-50 border-2 border-red-200 rounded-xl p-4 text-red-800 text-sm">
                           {error}
                         </div>
                       )}
@@ -549,36 +573,22 @@ export default function LeadForm() {
                         <button
                           type="button"
                           onClick={back}
-                          className="flex-1 border-2 border-gray-300 text-gray-700 py-5 rounded-2xl font-semibold text-lg hover:bg-gray-50 transition-all"
+                          className="px-8 py-4 rounded-xl font-semibold border-2 border-gray-300 text-gray-700 hover:bg-gray-50 transition-all"
                         >
                           Retour
                         </button>
                         <button
                           type="submit"
                           disabled={!isStep3Valid || submitting}
-                          className={`flex-1 py-5 rounded-2xl font-semibold text-lg shadow-lg transition-all duration-300 flex items-center justify-center gap-3 ${
-                            !isStep3Valid || submitting
-                              ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                              : "bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:shadow-xl hover:scale-[1.02]"
+                          className={`flex-1 px-8 py-4 rounded-xl font-semibold shadow-lg transition-all inline-flex items-center justify-center gap-2 ${
+                            isStep3Valid && !submitting
+                              ? "bg-gradient-to-r from-yellow-400 to-orange-500 text-black hover:shadow-xl hover:scale-[1.02]"
+                              : "bg-gray-200 text-gray-400 cursor-not-allowed"
                           }`}
                         >
-                          {submitting ? (
-                            <>
-                              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                              Envoi en cours...
-                            </>
-                          ) : (
-                            <>
-                              <CheckCircle2 className="w-5 h-5" />
-                              Envoyer ma demande
-                            </>
-                          )}
+                          {submitting ? "Envoi en cours..." : "Recevoir mon étude"}
+                          {!submitting && <ArrowRight className="w-5 h-5" />}
                         </button>
-                      </div>
-
-                      <div className="text-center text-sm text-gray-500 flex items-center justify-center gap-2 pt-2">
-                        <Lock className="w-4 h-4" />
-                        <span className="font-light">Connexion sécurisée SSL · Données cryptées</span>
                       </div>
                     </div>
                   )}

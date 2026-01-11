@@ -263,14 +263,14 @@ export default function Garanties() {
       <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
         <div className="container-page">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-block bg-gradient-to-r from-green-100 to-emerald-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            <div className="inline-block bg-gradient-to-r from-yellow-100 to-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
               <Euro className="inline w-4 h-4 mr-1" />
               Aides Financières
             </div>
 
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
               Les aides de l'État
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mt-2">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-orange-600 mt-2">
                 pour votre projet solaire
               </span>
             </h2>
@@ -288,7 +288,7 @@ export default function Garanties() {
               return (
                 <div
                   key={index}
-                  className="bg-white rounded-2xl border-2 border-gray-100 p-8 hover:border-green-200 hover:shadow-xl transition-all"
+                  className="bg-white rounded-2xl border-2 border-gray-100 p-8 hover:border-orange-200 hover:shadow-xl transition-all"
                 >
                   <div className="flex items-start gap-4 mb-6">
                     {aide.logo ? (
@@ -296,7 +296,7 @@ export default function Garanties() {
                         <img src={aide.logo} alt={aide.title} className="h-8 w-auto object-contain" />
                       </div>
                     ) : (
-                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-green-400 to-emerald-500 flex-shrink-0">
+                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-400 to-orange-500 flex-shrink-0">
                         <Icon className="w-6 h-6 text-white" />
                       </div>
                     )}
@@ -305,7 +305,7 @@ export default function Garanties() {
                       <h3 className="text-xl font-bold text-gray-900 mb-2">
                         {aide.title}
                       </h3>
-                      <div className="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">
+                      <div className="inline-block bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-bold">
                         {aide.montant}
                       </div>
                     </div>
@@ -321,7 +321,7 @@ export default function Garanties() {
                     </div>
                     {aide.conditions.map((condition, i) => (
                       <div key={i} className="flex items-start gap-2">
-                        <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                        <CheckCircle className="w-4 h-4 text-orange-600 flex-shrink-0 mt-0.5" />
                         <span className="text-sm text-gray-700">{condition}</span>
                       </div>
                     ))}
@@ -331,9 +331,9 @@ export default function Garanties() {
             })}
           </div>
 
-          <div className="mt-12 max-w-4xl mx-auto bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-2xl p-8">
+          <div className="mt-12 max-w-4xl mx-auto bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-orange-200 rounded-2xl p-8">
             <div className="flex items-start gap-4">
-              <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
+              <CheckCircle className="w-6 h-6 text-orange-600 flex-shrink-0 mt-1" />
               <div>
                 <h4 className="font-bold text-gray-900 mb-2 text-lg">
                   Cumul des aides possible

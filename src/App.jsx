@@ -5,11 +5,18 @@ import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
 import Cookies from "./pages/Cookies";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
-import Garanties from "./pages/Garanties";  // 🆕 NOUVELLE PAGE
+import Garanties from "./pages/Garanties";
+import Processus from "./pages/Processus";
+import Realisations from "./pages/Realisations";
+import Simulateur from "./pages/Simulateur";
+import ScrollToHash from "./components/ScrollToHash";
 
 export default function App() {
   return (
     <BrowserRouter>
+      {/* ✅ OBLIGATOIRE : gestion du scroll vers #form */}
+      <ScrollToHash />
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/mentions-legales" element={<MentionsLegales />} />
@@ -17,7 +24,12 @@ export default function App() {
         <Route path="/cookies" element={<Cookies />} />
         <Route path="/admin" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
-        <Route path="/garanties" element={<Garanties />} />  {/* 🆕 NOUVELLE ROUTE */}
+
+        {/* Pages satellites */}
+        <Route path="/garanties" element={<Garanties />} />
+        <Route path="/processus" element={<Processus />} />
+        <Route path="/realisations" element={<Realisations />} />
+        <Route path="/simulateur" element={<Simulateur />} />
       </Routes>
     </BrowserRouter>
   );

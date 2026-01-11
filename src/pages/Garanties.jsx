@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { ArrowLeft, Shield, Award, CheckCircle, Zap, FileText, Euro, Home, Clock, Users, ArrowRight, Star } from "lucide-react";
 import { Link } from "react-router-dom";
+import Header from "../components/Header";
 
 export default function Garanties() {
   // Scroll to top on mount
@@ -140,6 +141,8 @@ export default function Garanties() {
   ];
 
   return (
+    <>
+    <Header />  
     <div className="min-h-screen bg-white">
       {/* Header avec retour */}
       <div className="bg-gray-900 py-4 border-b border-gray-800">
@@ -432,5 +435,6 @@ export default function Garanties() {
         </div>
       </section>
     </div>
-  );
+  </>
+);
 }

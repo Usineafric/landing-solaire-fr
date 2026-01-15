@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Zap, Phone } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,15 +28,31 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <nav className="container-page py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-              <Zap className="w-6 h-6 text-white" />
-            </div>
-            <div className="font-bold text-xl text-gray-900">
-              Le Panneau Solaire
-            </div>
-          </Link>
+          
+          {/* Logo + Texte */}
+<Link to="/" className="flex items-center gap-3 group">
+  <img 
+    src="/logo.png" 
+    alt="Le Panneau Solaire" 
+    className="h-24 w-auto group-hover:scale-105 transition-transform duration-200"
+  />
+  
+  {/* Texte 2 lignes sur mobile */}
+  <div className="flex flex-col sm:hidden">
+    <span className="text-base font-bold text-gray-900 leading-tight">
+      Le Panneau
+    </span>
+    <span className="text-base font-bold leading-tight" style={{ color: '#e64905' }}>
+      Solaire
+    </span>
+  </div>
+  
+  {/* Texte 1 ligne sur desktop */}
+  <div className="hidden sm:block">
+    <span className="text-xl font-bold text-gray-900">Le Panneau </span>
+    <span className="text-xl font-bold" style={{ color: '#e64905' }}>Solaire</span>
+  </div>
+</Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">

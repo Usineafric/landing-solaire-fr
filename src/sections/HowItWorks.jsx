@@ -103,7 +103,6 @@ export default function HowItWorks() {
           </div>
         </div>
 
-        {/* 🆕 BOUTON VERS PAGE PROCESSUS DÉTAILLÉE */}
         <div className="mt-16 text-center">
           <div className="inline-block bg-gradient-to-r from-orange-50 to-yellow-50 border-2 border-orange-200 rounded-2xl p-6 max-w-2xl">
             <p className="text-gray-700 mb-4 font-light">

@@ -9,8 +9,8 @@ if (!supabaseUrl || !supabaseAnonKey) {
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
-    autoRefreshToken: false,
-    persistSession: false,
+    autoRefreshToken: true,
+    persistSession: true,
     detectSessionInUrl: false
   }
 });
@@ -21,11 +21,8 @@ export async function saveLead(leadData) {
     const { data: authData, error: authError } = await supabase.auth.signInAnonymously();
     
     if (authError) {
-      console.error('Erreur auth:', authError);
       throw new Error('Erreur d\'authentification');
     }
-
-    console.log('✅ Authentifié anonymement:', authData.user.id);
 
     // 2. ENSUITE : Insérer le lead
     const payload = {
@@ -48,15 +45,12 @@ export async function saveLead(leadData) {
       .single();
 
     if (error) {
-      console.error('❌ Erreur insertion:', error);
       throw new Error('Erreur lors de l\'enregistrement');
     }
 
-    console.log('✅ Lead enregistré:', data);
     return data;
 
   } catch (err) {
-    console.error('💥 Erreur générale:', err);
     throw err;
   }
 }
@@ -73,7 +67,6 @@ export async function checkDuplicateEmail(email) {
     .limit(1);
 
   if (error) {
-    console.error('Erreur vérification email:', error);
     return false;
   }
 

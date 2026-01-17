@@ -52,7 +52,6 @@ export default function Hero() {
             </span>
           </h1>
 
-          {/* 🆕 LOGOS CERTIFICATIONS OFFICIELS */}
           <div className="mb-10 flex flex-wrap items-center gap-6">
             {/* Logo QualiPV */}
             <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-3 hover:bg-white/15 transition-all">

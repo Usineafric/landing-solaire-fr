@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Lock, Mail, Eye, EyeOff, Shield } from "lucide-react";
+import { supabase } from "../lib/supabase";
 
 export default function AdminLogin() {
   const navigate = useNavigate();
@@ -10,25 +11,39 @@ export default function AdminLogin() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // Vérifier si déjà connecté
+  useEffect(() => {
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        navigate("/admin/dashboard");
+      }
+    };
+    checkSession();
+  }, [navigate]);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
     setLoading(true);
 
-    // ✅ Identifiants depuis variables d'environnement
-    const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL;
-    const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
-
     try {
-      // Simulation délai serveur
-      await new Promise(resolve => setTimeout(resolve, 800));
+      const { data, error: authError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-      if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-        // Stocker session
-        sessionStorage.setItem("admin_authenticated", "true");
+      if (authError) {
+        if (authError.message.includes("Invalid login credentials")) {
+          setError("Email ou mot de passe incorrect");
+        } else {
+          setError("Erreur de connexion. Veuillez réessayer.");
+        }
+        return;
+      }
+
+      if (data.session) {
         navigate("/admin/dashboard");
-      } else {
-        setError("Email ou mot de passe incorrect");
       }
     } catch (err) {
       setError("Erreur de connexion");
@@ -40,7 +55,7 @@ export default function AdminLogin() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center p-6">
       <div className="w-full max-w-md">
-        
+
         {/* Logo/Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl mb-4 shadow-2xl">
@@ -57,7 +72,7 @@ export default function AdminLogin() {
         {/* Form Card */}
         <div className="bg-white rounded-2xl shadow-2xl p-8">
           <form onSubmit={handleLogin} className="space-y-6">
-            
+
             {/* Email */}
             <div>
               <label className="block text-sm font-semibold text-gray-900 mb-2">
@@ -122,7 +137,7 @@ export default function AdminLogin() {
           {/* Info Security */}
           <div className="mt-6 pt-6 border-t border-gray-200">
             <p className="text-xs text-center text-gray-500 font-light">
-              🔒 Connexion sécurisée · Session expirée automatiquement
+              Connexion sécurisée via Supabase Auth
             </p>
           </div>
         </div>

@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
-import { ArrowRight, CheckCircle2, AlertTriangle, Zap, Lock, Shield, Home, MapPin, Clock, User, Mail, Phone, Calendar, FileText } from "lucide-react";
-import { saveLead } from "../lib/supabase";
+import { ArrowRight, CheckCircle2, AlertTriangle, Zap, Lock, Shield, Home, MapPin, User, Mail, Phone, Calendar, FileText } from "lucide-react";
+import { saveLead, checkDuplicateEmail } from "../lib/supabase";
 import { sendConfirmationEmail, sendAdminNotification } from "../lib/resend";
+import { step1Schema, step2Schema, step3Schema, validateStep, checkEligibility } from "../lib/validation";
 
 export default function LeadForm() {
   const [step, setStep] = useState(1);
@@ -15,8 +16,8 @@ export default function LeadForm() {
     housingType: "",
     postalCode: "",
     requestType: "Étude de faisabilité gratuite",
-    projectDeadline: "",  // 🆕 Question unique fusionnée
-    description: "",      // 🆕 Description optionnelle
+    projectDeadline: "",
+    description: "",
     firstName: "",
     lastName: "",
     phone: "",
@@ -25,14 +26,16 @@ export default function LeadForm() {
   });
 
   const progress = useMemo(() => (step / 3) * 100, [step]);
-  const isStep1Valid = useMemo(() => form.isOwner && form.housingType && form.postalCode.trim().length >= 4, [form]);
-  const isStep2Valid = useMemo(() => Boolean(form.requestType) && Boolean(form.projectDeadline), [form]); // 🔥 Simplifié : seulement 2 champs requis
-  const isStep3Valid = useMemo(() => {
-    const emailOk = /\S+@\S+\.\S+/.test(form.email);
-    const phoneOk = form.phone.trim().replace(/\s/g, "").length >= 8;
-    return form.firstName.trim() && form.lastName.trim() && phoneOk && emailOk && form.consent;
-  }, [form]);
-  const isEligible = useMemo(() => form.isOwner === "yes" && form.housingType === "house", [form.isOwner, form.housingType]);
+
+  // Validation avec Zod
+  const step1Validation = useMemo(() => validateStep(step1Schema, form), [form]);
+  const step2Validation = useMemo(() => validateStep(step2Schema, form), [form]);
+  const step3Validation = useMemo(() => validateStep(step3Schema, form), [form]);
+
+  const isStep1Valid = step1Validation.success;
+  const isStep2Valid = step2Validation.success;
+  const isStep3Valid = step3Validation.success;
+  const isEligible = useMemo(() => checkEligibility(form), [form.isOwner, form.housingType]);
 
   const back = () => {
     setError("");
@@ -49,25 +52,26 @@ export default function LeadForm() {
   const next = () => {
     setError("");
     if (step === 1) {
-      if (!isStep1Valid) return;
+      if (!isStep1Valid) {
+        const firstError = step1Validation.errors ? Object.values(step1Validation.errors)[0] : null;
+        if (firstError) setError(firstError);
+        return;
+      }
       if (!isEligible) {
         setBlocked(true);
         return;
       }
-      
-      const firstTwo = form.postalCode.substring(0, 2);
-      const invalidCodes = ['97', '98', '00', '20'];
-      if (invalidCodes.includes(firstTwo)) {
-        setError("Service disponible en France métropolitaine uniquement");
-        return;
-      }
     }
-    if (step === 2 && !isStep2Valid) return;
+    if (step === 2 && !isStep2Valid) {
+      const firstError = step2Validation.errors ? Object.values(step2Validation.errors)[0] : null;
+      if (firstError) setError(firstError);
+      return;
+    }
     setStep((s) => Math.min(3, s + 1));
     setTimeout(() => {
-      document.getElementById('lead-form-card')?.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'center' 
+      document.getElementById('lead-form-card')?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
       });
     }, 100);
   };
@@ -75,36 +79,42 @@ export default function LeadForm() {
   const submit = async (e) => {
     e.preventDefault();
     setError("");
-    if (!isStep3Valid || !isEligible) {
-      setBlocked(true);
+
+    if (!isStep3Valid) {
+      const firstError = step3Validation.errors ? Object.values(step3Validation.errors)[0] : null;
+      if (firstError) setError(firstError);
       return;
     }
-    
-    const phoneRegex = /^(?:(?:\+|00)33|0)[1-9](?:[0-9]{2}){4}$/;
-    const cleanPhone = form.phone.replace(/\s/g, "");
-    if (!phoneRegex.test(cleanPhone)) {
-      setError("Numéro de téléphone français invalide");
+
+    if (!isEligible) {
+      setBlocked(true);
       return;
     }
 
     setSubmitting(true);
-    
+    const cleanPhone = form.phone.replace(/\s/g, "");
+
     try {
-      // 🔥 Mapping pour compatibilité base de données
+      const isDuplicate = await checkDuplicateEmail(form.email);
+      if (isDuplicate) {
+        setError("Une demande avec cet email a déjà été envoyée récemment.");
+        setSubmitting(false);
+        return;
+      }
+
       const leadData = {
         ...form,
         phone: cleanPhone,
-        timeframe: form.projectDeadline, // Mapping : projectDeadline → timeframe (colonne existante)
+        timeframe: form.projectDeadline,
       };
-      
+
       await saveLead(leadData);
       await sendConfirmationEmail(leadData);
       await sendAdminNotification(leadData);
-      
+
       setSent(true);
       setSubmitting(false);
     } catch (err) {
-      console.error(err);
       setError("Une erreur est survenue. Veuillez réessayer.");
       setSubmitting(false);
     }
@@ -238,7 +248,7 @@ export default function LeadForm() {
                     </div>
                   </div>
 
-                  {/* STEP 1 - INCHANGÉ */}
+                  {/* STEP 1 */}
                   {step === 1 && (
                     <div className="space-y-8">
                       <div>
@@ -348,7 +358,7 @@ export default function LeadForm() {
                     </div>
                   )}
 
-                  {/* STEP 2 - 🔥 OPTIMISÉ (plus court, sans doublon) */}
+                  {/* STEP 2 */}
                   {step === 2 && (
                     <div className="space-y-8">
                       <h3 className="text-2xl font-bold text-gray-900 mb-8">
@@ -383,7 +393,6 @@ export default function LeadForm() {
                           </div>
                         </div>
 
-                        {/* 🔥 QUESTION UNIQUE FUSIONNÉE (sans doublon) */}
                         <div>
                           <label className="block text-sm font-semibold text-gray-900 mb-4">
                             <Calendar className="inline w-5 h-5 mr-2 text-orange-600" />
@@ -482,7 +491,7 @@ export default function LeadForm() {
                     </div>
                   )}
 
-                  {/* STEP 3 - INCHANGÉ */}
+                  {/* STEP 3 */}
                   {step === 3 && (
                     <div className="space-y-8">
                       <h3 className="text-2xl font-bold text-gray-900 mb-8">

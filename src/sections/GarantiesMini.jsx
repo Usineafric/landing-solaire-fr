@@ -148,7 +148,6 @@ export default function GarantiesMini() {
                 <ArrowRight className="w-4 h-4" />
               </a>
 
-              {/* 🆕 LIEN VERS PAGE GARANTIES DÉTAILLÉE */}
               <Link
                 to="/garanties"
                 className="inline-flex items-center gap-2 bg-white border-2 border-orange-300 text-orange-700 px-6 py-3 rounded-xl font-semibold hover:bg-orange-50 transition-all text-sm"

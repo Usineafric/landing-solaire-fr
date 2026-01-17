@@ -10,34 +10,28 @@ import LeadForm from "../sections/LeadForm";
 import Reassurance from "../sections/Reassurance";
 import FooterLegal from "../sections/FooterLegal";
 import StickyCta from "../sections/StickyCta";
-import SEO from "../components/SEO";  // 🆕 LIGNE 1
-import { seoConfig } from "../utils/seoConfig";  // 🆕 LIGNE 2
+import SEO from "../components/SEO";
+import { seoConfig } from "../utils/seoConfig";
 import Header from "../components/Header";
-
-// 🗑️ SECTIONS RETIRÉES (à utiliser dans pages satellites futures)
-// import InteractiveMap from "../sections/InteractiveMap";        // → /realisations
-// import ProjectGallery from "../sections/ProjectGallery";        // → /realisations
-// import SavingsCalculator from "../sections/SavingsCalculator";  // → /simulateur
 
 export default function HomePage() {
   return (
     <>
-      {/* ✅ SECTIONS ESSENTIELLES (10 sections optimisées) */}
       <SEO {...seoConfig.home} />
       <Header />
-      <Hero />                    {/* 1. Accroche + CTA principal */}
-      <Avantages />               {/* 2. Bénéfices du solaire */}
-      <PreFilter />               {/* 3. Qualification rapide */}
-      <GarantiesMini />           {/* 4. Réassurance certifications */}
-      <HowItWorks />              {/* 5. Processus en 3 étapes */}
-      <WhatYouGet />              {/* 6. Valeur de l'étude */}
-      <FAQ />                     {/* 7. Réponses aux objections */}
-      <Testimonials />            {/* 8. Social proof */}
-      <LeadForm />                {/* 9. CONVERSION (formulaire) */}
-      <Reassurance />             {/* 10. Confiance finale */}
+      <Hero />
+      <Avantages />
+      <PreFilter />
+      <GarantiesMini />
+      <HowItWorks />
+      <WhatYouGet />
+      <FAQ />
+      <Testimonials />
+      <LeadForm />
+      <Reassurance />
       
-      <FooterLegal />             {/* Footer légal */}
-      <StickyCta />               {/* CTA flottant */}
+      <FooterLegal />
+      <StickyCta />
     </>
   );
 }

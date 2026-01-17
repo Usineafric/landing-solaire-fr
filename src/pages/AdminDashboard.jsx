@@ -25,18 +25,27 @@ export default function AdminDashboard() {
     week: 0
   });
 
-  // Check auth
+  // Check auth avec Supabase
   useEffect(() => {
-    const isAuth = sessionStorage.getItem("admin_authenticated");
-    if (!isAuth) {
-      navigate("/admin");
-    }
-  }, [navigate]);
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        navigate("/admin");
+        return;
+      }
+      loadLeads();
+    };
+    checkAuth();
 
-  // Load leads
-  useEffect(() => {
-    loadLeads();
-  }, []);
+    // Écouter les changements de session
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_OUT' || !session) {
+        navigate("/admin");
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [navigate]);
 
   // Apply filters
   useEffect(() => {
@@ -56,7 +65,7 @@ export default function AdminDashboard() {
       setLeads(data || []);
       calculateStats(data || []);
     } catch (err) {
-      console.error('Erreur chargement leads:', err);
+      // Erreur silencieuse en production
     } finally {
       setLoading(false);
     }
@@ -159,8 +168,8 @@ export default function AdminDashboard() {
     link.click();
   };
 
-  const logout = () => {
-    sessionStorage.removeItem("admin_authenticated");
+  const logout = async () => {
+    await supabase.auth.signOut();
     navigate("/admin");
   };
 
@@ -227,18 +236,18 @@ export default function AdminDashboard() {
         {/* Stats Cards */}
         <div className="grid md:grid-cols-4 gap-6 mb-8">
           {[
-            { label: "Total Leads", value: stats.total, icon: Users, color: "blue" },
-            { label: "Éligibles", value: stats.eligible, icon: CheckCircle, color: "green" },
-            { label: "Aujourd'hui", value: stats.today, icon: Calendar, color: "orange" },
-            { label: "Cette semaine", value: stats.week, icon: TrendingUp, color: "purple" }
+            { label: "Total Leads", value: stats.total, icon: Users, bgClass: "bg-blue-100", textClass: "text-blue-600" },
+            { label: "Éligibles", value: stats.eligible, icon: CheckCircle, bgClass: "bg-green-100", textClass: "text-green-600" },
+            { label: "Aujourd'hui", value: stats.today, icon: Calendar, bgClass: "bg-orange-100", textClass: "text-orange-600" },
+            { label: "Cette semaine", value: stats.week, icon: TrendingUp, bgClass: "bg-purple-100", textClass: "text-purple-600" }
           ].map((stat, i) => {
             const Icon = stat.icon;
             return (
               <div key={i} className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex items-center justify-between mb-4">
                   <p className="text-sm font-medium text-gray-600">{stat.label}</p>
-                  <div className={`w-10 h-10 rounded-xl bg-${stat.color}-100 flex items-center justify-center`}>
-                    <Icon className={`w-5 h-5 text-${stat.color}-600`} />
+                  <div className={`w-10 h-10 rounded-xl ${stat.bgClass} flex items-center justify-center`}>
+                    <Icon className={`w-5 h-5 ${stat.textClass}`} />
                   </div>
                 </div>
                 <p className="text-3xl font-bold text-gray-900">{stat.value}</p>

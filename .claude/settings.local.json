@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run test:run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nrefactor: Amélioration qualité code et sécurité \\(8.5 → 9.5/10\\)\n\n- Sécurité: Auth admin via Supabase Auth \\(remplace sessionStorage\\)\n- Performance: Code-splitting avec React.lazy\\(\\) \\(-11% bundle\\)\n- Robustesse: Error Boundary React pour capturer les erreurs\n- Validation: Schémas Zod pour le formulaire LeadForm\n- Tests: Vitest + Testing Library \\(17 tests\\)\n- RLS: Fichier SQL policies pour sécuriser table leads\n- Cleanup: Suppression console.log, commentaires debug, deps inutiles\n- Fix: Classes Tailwind dynamiques, checkDuplicateEmail appelée\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+    ]
+  }
+}

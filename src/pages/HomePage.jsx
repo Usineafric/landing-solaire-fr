@@ -14,6 +14,7 @@ import SEO from "../components/SEO";
 import { LocalBusinessSchema, ServiceSchema, WebSiteSchema } from "../components/SchemaOrg";
 import { seoConfig } from "../utils/seoConfig";
 import Header from "../components/Header";
+import ExitIntentPopup from "../components/ExitIntentPopup";
 
 export default function HomePage() {
   return (
@@ -36,6 +37,7 @@ export default function HomePage() {
       
       <FooterLegal />
       <StickyCta />
+      <ExitIntentPopup />
     </>
   );
 }

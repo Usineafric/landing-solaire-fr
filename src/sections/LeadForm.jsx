@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2, AlertTriangle, Zap, Lock, Shield, Home, MapPi
 import { saveLead, checkDuplicateEmail } from "../lib/supabase";
 import { sendConfirmationEmail, sendAdminNotification } from "../lib/resend";
 import { step1Schema, step2Schema, step3Schema, validateStep, checkEligibility } from "../lib/validation";
+import { trackLeadConversion, trackFormStart, trackFormStep } from "../utils/tracking";
 
 export default function LeadForm() {
   const [step, setStep] = useState(1);
@@ -67,7 +68,13 @@ export default function LeadForm() {
       if (firstError) setError(firstError);
       return;
     }
-    setStep((s) => Math.min(3, s + 1));
+    const nextStep = Math.min(3, step + 1);
+    setStep(nextStep);
+
+    // Tracking des etapes du formulaire
+    if (step === 1) trackFormStart();
+    trackFormStep(nextStep);
+
     setTimeout(() => {
       document.getElementById('lead-form-card')?.scrollIntoView({
         behavior: 'smooth',
@@ -111,6 +118,12 @@ export default function LeadForm() {
       await saveLead(leadData);
       await sendConfirmationEmail(leadData);
       await sendAdminNotification(leadData);
+
+      // Tracking de la conversion
+      trackLeadConversion({
+        postal_code: form.postalCode,
+        timeframe: form.projectDeadline
+      });
 
       setSent(true);
       setSubmitting(false);

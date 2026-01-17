@@ -14,6 +14,8 @@ const Garanties = lazy(() => import("./pages/Garanties"));
 const Processus = lazy(() => import("./pages/Processus"));
 const Realisations = lazy(() => import("./pages/Realisations"));
 const Simulateur = lazy(() => import("./pages/Simulateur"));
+const BlogIndex = lazy(() => import("./pages/BlogIndex"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
 
 function PageLoader() {
   return (
@@ -43,6 +45,8 @@ export default function App() {
           <Route path="/processus" element={<Processus />} />
           <Route path="/realisations" element={<Realisations />} />
           <Route path="/simulateur" element={<Simulateur />} />
+          <Route path="/blog" element={<BlogIndex />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

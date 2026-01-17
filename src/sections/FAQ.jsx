@@ -71,10 +71,10 @@ export default function FAQ() {
                     <p className="text-sm text-gray-700 font-light">
                       Contactez-nous à{" "}
                       <a
-                        href="mailto:privacy@leadspodium.com"
+                        href="mailto:contact@lepanneausolaire.com"
                         className="underline font-medium text-orange-600 hover:text-orange-700"
                       >
-                        privacy@leadspodium.com
+                        contact@lepanneausolaire.com
                       </a>
                     </p>
                   </div>

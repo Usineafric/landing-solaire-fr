@@ -78,10 +78,10 @@ export default function PolitiqueConfidentialite() {
                   <p className="pt-2">
                     Email :{" "}
                     <a
-                      href="mailto:privacy@leadspodium.com"
+                      href="mailto:contact@lepanneausolaire.com"
                       className="text-orange-600 hover:text-orange-700 underline font-medium"
                     >
-                      privacy@leadspodium.com
+                      contact@lepanneausolaire.com
                     </a>
                   </p>
                 </div>
@@ -220,7 +220,7 @@ export default function PolitiqueConfidentialite() {
                   <div>
                     <span className="font-semibold text-gray-900">Nos prestataires techniques</span>
                     <p className="text-sm text-gray-600 mt-1">
-                      Hébergement (Netlify, Supabase) - Serveurs situés en Europe
+                      Hébergement (Cloudflare, Supabase) - Serveurs situés en Europe
                     </p>
                   </div>
                 </li>
@@ -372,11 +372,11 @@ export default function PolitiqueConfidentialite() {
                 votre nom, prénom et l'adresse email utilisée lors de votre demande :
               </p>
               <a
-                href="mailto:privacy@leadspodium.com"
+                href="mailto:contact@lepanneausolaire.com"
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105"
               >
                 <Mail className="w-5 h-5" />
-                privacy@leadspodium.com
+                contact@lepanneausolaire.com
               </a>
               <p className="text-sm text-gray-600 mt-4 font-light">
                 Nous nous engageons à répondre sous <strong>30 jours maximum</strong>.
@@ -500,7 +500,7 @@ export default function PolitiqueConfidentialite() {
             n'hésitez pas à nous contacter.
           </p>
           <a
-            href="mailto:privacy@leadspodium.com"
+            href="mailto:contact@lepanneausolaire.com"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-green-400 to-emerald-500 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105"
           >
             <Mail className="w-5 h-5" />
@@ -513,7 +513,7 @@ export default function PolitiqueConfidentialite() {
       <footer className="border-t border-gray-200 py-8 mt-16">
         <div className="container-page text-center">
           <p className="text-sm text-gray-500 font-light">
-            © {new Date().getFullYear()} NECLID LTD · Tous droits réservés
+            © {new Date().getFullYear()} Le Panneau Solaire · Tous droits réservés
           </p>
         </div>
       </footer>

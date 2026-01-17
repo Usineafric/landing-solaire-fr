@@ -40,7 +40,7 @@ export default function Hero() {
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
               ))}
-              <span className="ml-1 text-white/70 text-sm">4.9/5</span>
+              <span className="ml-1 text-white/70 text-sm">4.8/5</span>
             </div>
           </div>
 
@@ -83,14 +83,14 @@ export default function Hero() {
               />
             </div>
 
-            {/* Note 4.9/5 */}
+            {/* Note 4.8/5 */}
             <div className="flex items-center gap-2 backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl px-4 py-2.5">
               <div className="flex items-center gap-0.5">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
-              <span className="text-white font-semibold text-sm">4.9/5</span>
+              <span className="text-white font-semibold text-sm">4.8/5</span>
             </div>
           </div>
 

@@ -14,7 +14,7 @@ export default function Realisations() {
   const stats = [
     { icon: Zap, value: "2 847", label: "Installations réalisées" },
     { icon: MapPin, value: "13", label: "Régions couvertes" },
-    { icon: Star, value: "4.9/5", label: "Satisfaction client" },
+    { icon: Star, value: "4.8/5", label: "Satisfaction client" },
     { icon: TrendingDown, value: "-70%", label: "Économies moyennes" }
   ];
 

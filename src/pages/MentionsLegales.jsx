@@ -62,11 +62,11 @@ export default function MentionsLegales() {
               <div className="pt-4">
                 <div className="font-semibold text-gray-900 mb-2">Contact</div>
                 <a
-                  href="mailto:privacy@leadspodium.com"
+                  href="mailto:contact@lepanneausolaire.com"
                   className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-700 font-medium"
                 >
                   <Mail className="w-4 h-4" />
-                  privacy@leadspodium.com
+                  contact@lepanneausolaire.com
                 </a>
               </div>
             </div>
@@ -90,9 +90,9 @@ export default function MentionsLegales() {
 
             <div className="space-y-4 text-gray-700">
               <div className="border-l-4 border-blue-400 pl-4">
-                <div className="font-semibold text-gray-900 mb-2">Netlify, Inc.</div>
+                <div className="font-semibold text-gray-900 mb-2">Cloudflare, Inc.</div>
                 <div className="space-y-1 text-sm font-light">
-                  <p>2325 3rd Street, Suite 296</p>
+                  <p>101 Townsend St</p>
                   <p>San Francisco, CA 94107</p>
                   <p>États-Unis</p>
                 </div>
@@ -102,7 +102,7 @@ export default function MentionsLegales() {
                 <div className="font-semibold text-gray-900 mb-2">Base de données</div>
                 <div className="space-y-1 text-sm font-light">
                   <p>Supabase, Inc.</p>
-                  <p>Serveurs situés en Europe (Frankfurt, Allemagne)</p>
+                  <p>Serveurs situés en Europe (Francfort, Allemagne)</p>
                 </div>
               </div>
             </div>
@@ -144,11 +144,11 @@ export default function MentionsLegales() {
                 de vos données, contactez-nous à :
               </p>
               <a
-                href="mailto:privacy@leadspodium.com"
+                href="mailto:contact@lepanneausolaire.com"
                 className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-700 font-semibold"
               >
                 <Mail className="w-4 h-4" />
-                privacy@leadspodium.com
+                contact@lepanneausolaire.com
               </a>
               <p className="text-gray-700 leading-relaxed font-light mt-4">
                 Pour en savoir plus sur la collecte et le traitement de vos données, 
@@ -209,9 +209,9 @@ export default function MentionsLegales() {
             </h2>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed font-light">
-                Les présentes mentions légales sont régies par le droit d'Israel. 
-                En cas de litige, et à défaut d'accord amiable, les tribunaux compétents 
-                d'Israêl seront seuls compétents.
+                Les présentes mentions légales sont régies par le droit d'Israël.
+                En cas de litige, et à défaut d'accord amiable, les tribunaux compétents
+                d'Israël seront seuls compétents.
               </p>
             </div>
           </section>
@@ -227,7 +227,7 @@ export default function MentionsLegales() {
             aux mentions légales ou à vos données personnelles.
           </p>
           <a
-            href="mailto:privacy@leadspodium.com"
+            href="mailto:contact@lepanneausolaire.com"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105"
           >
             <Mail className="w-5 h-5" />
@@ -240,7 +240,7 @@ export default function MentionsLegales() {
       <footer className="border-t border-gray-200 py-8 mt-16">
         <div className="container-page text-center">
           <p className="text-sm text-gray-500 font-light">
-            © {new Date().getFullYear()} NECLID LTD · Tous droits réservés
+            © {new Date().getFullYear()} Le Panneau Solaire · Tous droits réservés
           </p>
         </div>
       </footer>

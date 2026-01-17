@@ -22,7 +22,7 @@ export const seoConfig = {
 
   realisations: {
     title: "Nos 2 847 Installations Solaires en France",
-    description: "Plus de 2 800 installations photovoltaïques réalisées dans toute la France depuis 2019. Découvrez nos projets et témoignages clients. Note moyenne 4.9/5.",
+    description: "Plus de 2 847 installations photovoltaïques réalisées dans toute la France depuis 2019. Découvrez nos projets et témoignages clients. Note moyenne 4.8/5.",
     keywords: "réalisations solaires, installations photovoltaïques France, projets solaires, témoignages clients, avis panneaux solaires",
     canonical: "/realisations"
   },

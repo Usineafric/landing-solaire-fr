@@ -186,7 +186,7 @@ export default function Garanties() {
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                 ))}
-                <span className="ml-2 font-semibold text-gray-900">4.9/5</span>
+                <span className="ml-2 font-semibold text-gray-900">4.8/5</span>
               </div>
             </div>
           </div>

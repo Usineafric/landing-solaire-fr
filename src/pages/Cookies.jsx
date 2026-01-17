@@ -243,11 +243,11 @@ export default function Cookies() {
                 exercer vos droits, vous pouvez nous contacter :
               </p>
               <a
-                href="mailto:privacy@leadspodium.com"
+                href="mailto:contact@lepanneausolaire.com"
                 className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-700 font-semibold"
               >
                 <Check className="w-4 h-4" />
-                privacy@leadspodium.com
+                contact@lepanneausolaire.com
               </a>
             </div>
           </section>
@@ -263,7 +263,7 @@ export default function Cookies() {
             concernant l'utilisation des cookies sur notre site.
           </p>
           <a
-            href="mailto:privacy@leadspodium.com"
+            href="mailto:contact@lepanneausolaire.com"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105"
           >
             <Check className="w-5 h-5" />
@@ -276,7 +276,7 @@ export default function Cookies() {
       <footer className="border-t border-gray-200 py-8 mt-16">
         <div className="container-page text-center">
           <p className="text-sm text-gray-500 font-light">
-            © {new Date().getFullYear()} NECLID LTD · Tous droits réservés
+            © {new Date().getFullYear()} Le Panneau Solaire · Tous droits réservés
           </p>
         </div>
       </footer>

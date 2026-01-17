@@ -28,18 +28,18 @@ export default function FooterEnrichi() {
                 <Zap className="w-6 h-6 text-white" />
               </div>
               <div className="font-bold text-xl text-white">
-                SolairePro
+                Le Panneau Solaire
               </div>
             </div>
             <p className="text-gray-400 text-sm font-light leading-relaxed mb-6">
-              Votre partenaire de confiance pour l'installation de panneaux solaires. 
-              Plus de 2 800 projets réalisés depuis 2019.
+              Votre partenaire de confiance pour l'installation de panneaux solaires.
+              Plus de 2 847 projets réalisés depuis 2019.
             </p>
             <div className="flex items-center gap-1 mb-4">
               {[...Array(5)].map((_, i) => (
                 <Award key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
               ))}
-              <span className="ml-2 text-yellow-400 font-semibold text-sm">4.9/5</span>
+              <span className="ml-2 text-yellow-400 font-semibold text-sm">4.8/5</span>
             </div>
           </div>
 
@@ -108,10 +108,10 @@ export default function FooterEnrichi() {
                 <div>
                   <div className="font-semibold text-gray-300 mb-1">Email</div>
                   <a
-                    href="mailto:privacy@leadspodium.com"
+                    href="mailto:contact@lepanneausolaire.com"
                     className="text-yellow-400 hover:text-yellow-300 transition-colors"
                   >
-                    privacy@leadspodium.com
+                    contact@lepanneausolaire.com
                   </a>
                 </div>
               </div>
@@ -123,7 +123,7 @@ export default function FooterEnrichi() {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-gray-500 text-sm font-light">
-              © {currentYear} SolairePro. Tous droits réservés.
+              © {currentYear} Le Panneau Solaire. Tous droits réservés.
             </div>
 
             <div className="text-xs text-gray-600 font-light text-center md:text-right">

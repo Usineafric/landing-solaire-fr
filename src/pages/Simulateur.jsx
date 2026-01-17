@@ -97,7 +97,7 @@ export default function Simulateur() {
             </h2>
 
             <p className="text-lg text-gray-600 font-light">
-              Les avantages d'une installation photovoltaïque en 2025
+              Les avantages d'une installation photovoltaïque en 2026
             </p>
           </div>
 

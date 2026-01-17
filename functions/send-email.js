@@ -34,8 +34,6 @@ export async function onRequest(context) {
   try {
     const { type, leadData } = await request.json();
 
-    console.log('📧 Envoi email type:', type);
-
     // Préparer les données de l'email selon le type
     let emailData;
 
@@ -70,11 +68,8 @@ export async function onRequest(context) {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error('❌ Erreur Resend:', data);
       throw new Error(data.message || 'Erreur envoi email');
     }
-
-    console.log('✅ Email envoyé:', data.id);
 
     return new Response(JSON.stringify({ success: true, id: data.id }), {
       status: 200,
@@ -82,7 +77,6 @@ export async function onRequest(context) {
     });
 
   } catch (error) {
-    console.error('❌ Erreur fonction:', error);
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers: corsHeaders,
@@ -201,7 +195,7 @@ function generateConfirmationEmailHTML(lead) {
                 </p>
                 <p style="margin: 0; color: #0f766e; font-size: 13px; line-height: 1.6;">
                   Vos données sont utilisées uniquement pour votre demande.<br>
-                  Contact : <a href="mailto:privacy@leadspodium.com" style="color: #0d9488;">privacy@leadspodium.com</a>
+                  Contact : <a href="mailto:contact@lepanneausolaire.com" style="color: #0d9488;">contact@lepanneausolaire.com</a>
                 </p>
               </div>
 
@@ -216,7 +210,7 @@ function generateConfirmationEmailHTML(lead) {
           <tr>
             <td style="background-color: #111827; padding: 30px; text-align: center;">
               <p style="margin: 0; color: #9ca3af; font-size: 13px;">
-                LeadsPodium - Panneaux Solaire
+                Le Panneau Solaire
               </p>
             </td>
           </tr>
@@ -333,7 +327,7 @@ function generateAdminNotificationHTML(lead) {
           <tr>
             <td style="background-color: #111827; padding: 20px; text-align: center;">
               <p style="margin: 0; color: #6b7280; font-size: 12px;">
-                Neclid LTD · Service clientèle France
+                Le Panneau Solaire
               </p>
             </td>
           </tr>

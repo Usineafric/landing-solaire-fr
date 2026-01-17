@@ -57,7 +57,7 @@ export default function SavingsCalculator() {
   const autoconsumedKwh = annualProduction * autoconsoRate;
   const annualSavings = Math.min(autoconsumedKwh * 0.20, annualConsumption);
   
-  // 6. Coût installation (prix réalistes 2025)
+  // 6. Coût installation (prix réalistes 2026)
   let pricePerKwc;
   if (recommendedPower <= 3) pricePerKwc = 2800;
   else if (recommendedPower <= 6) pricePerKwc = 2300;

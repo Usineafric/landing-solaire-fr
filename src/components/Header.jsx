@@ -10,7 +10,8 @@ export default function Header() {
     { name: "Garanties", href: "/garanties" },
     { name: "Processus", href: "/processus" },
     { name: "Réalisations", href: "/realisations" },
-    { name: "Simulateur", href: "/simulateur" }
+    { name: "Simulateur", href: "/simulateur" },
+    { name: "Blog", href: "/blog" }
   ];
 
   const isActive = (href) => location.pathname === href;

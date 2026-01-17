@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, MapPin, FileText, Shield, Cookie, Zap, Award, Map, Calculator } from "lucide-react";
+import { Mail, MapPin, FileText, Shield, Cookie, Zap, Award, Map, Calculator, BookOpen } from "lucide-react";
 
 export default function FooterEnrichi() {
   const currentYear = new Date().getFullYear();
@@ -8,7 +8,8 @@ export default function FooterEnrichi() {
     { icon: Shield, label: "Garanties", href: "/garanties" },
     { icon: Map, label: "Processus", href: "/processus" },
     { icon: Zap, label: "Réalisations", href: "/realisations" },
-    { icon: Calculator, label: "Simulateur", href: "/simulateur" }
+    { icon: Calculator, label: "Simulateur", href: "/simulateur" },
+    { icon: BookOpen, label: "Blog", href: "/blog" }
   ];
 
   const liensLegaux = [

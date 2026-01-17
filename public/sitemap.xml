@@ -43,30 +43,34 @@
     <loc>https://lepanneausolaire.com/blog</loc>
     <lastmod>2026-01-17</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
 
+  <!-- Articles de blog - Prix et Financement -->
   <url>
     <loc>https://lepanneausolaire.com/blog/combien-coute-installation-panneaux-solaires-2026</loc>
     <lastmod>2026-01-15</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
+  <!-- Articles de blog - Aides et Subventions -->
   <url>
     <loc>https://lepanneausolaire.com/blog/aides-etat-panneaux-solaires-guide-complet</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
+  <!-- Articles de blog - Rentabilite -->
   <url>
     <loc>https://lepanneausolaire.com/blog/panneaux-solaires-rentabilite-region-france</loc>
     <lastmod>2026-01-05</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
+  <!-- Articles de blog - Guide Pratique -->
   <url>
     <loc>https://lepanneausolaire.com/blog/autoconsommation-vs-revente-surplus</loc>
     <lastmod>2026-01-02</lastmod>
@@ -81,7 +85,58 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Pages légales -->
+  <url>
+    <loc>https://lepanneausolaire.com/blog/combien-panneaux-solaires-maison-100m2</loc>
+    <lastmod>2025-12-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://lepanneausolaire.com/blog/etapes-installation-panneaux-solaires</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Articles de blog - Technique -->
+  <url>
+    <loc>https://lepanneausolaire.com/blog/monocristallin-vs-polycristallin</loc>
+    <lastmod>2025-12-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://lepanneausolaire.com/blog/batterie-stockage-solaire-rentable</loc>
+    <lastmod>2025-12-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://lepanneausolaire.com/blog/duree-vie-panneaux-solaires</loc>
+    <lastmod>2025-12-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Articles de blog - Regional -->
+  <url>
+    <loc>https://lepanneausolaire.com/blog/installation-panneaux-solaires-ile-de-france</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://lepanneausolaire.com/blog/installation-panneaux-solaires-paca</loc>
+    <lastmod>2025-12-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Pages legales -->
   <url>
     <loc>https://lepanneausolaire.com/mentions-legales</loc>
     <lastmod>2026-01-17</lastmod>

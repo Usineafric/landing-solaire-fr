@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="sunGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#facc15"/>
+      <stop offset="100%" style="stop-color:#f97316"/>
+    </linearGradient>
+  </defs>
+  <!-- Panneau solaire stylisé -->
+  <rect x="15" y="25" width="70" height="50" rx="8" fill="url(#sunGradient)"/>
+  <!-- Lignes du panneau -->
+  <line x1="15" y1="42" x2="85" y2="42" stroke="white" stroke-width="2" opacity="0.6"/>
+  <line x1="15" y1="58" x2="85" y2="58" stroke="white" stroke-width="2" opacity="0.6"/>
+  <line x1="38" y1="25" x2="38" y2="75" stroke="white" stroke-width="2" opacity="0.6"/>
+  <line x1="62" y1="25" x2="62" y2="75" stroke="white" stroke-width="2" opacity="0.6"/>
+  <!-- Rayons de soleil -->
+  <circle cx="50" cy="12" r="3" fill="#facc15"/>
+  <circle cx="25" cy="12" r="2" fill="#facc15"/>
+  <circle cx="75" cy="12" r="2" fill="#facc15"/>
+</svg>

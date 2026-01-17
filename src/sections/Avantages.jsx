@@ -154,7 +154,7 @@ export default function Avantages() {
         <div className="mt-24 relative overflow-hidden rounded-3xl shadow-2xl">
           <img
             src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2000&q=90"
-            alt="Installation solaire"
+            alt="Installation de panneaux solaires photovoltaïques sur maison individuelle"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/50" />

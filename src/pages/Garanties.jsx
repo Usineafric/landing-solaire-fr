@@ -179,9 +179,9 @@ export default function Garanties() {
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
-              <img src="/logos/qualibat-rge.webp" alt="RGE" className="h-12 opacity-80" />
-              <img src="/logos/qualipv.jpg" alt="QualiPV" className="h-12 opacity-80" />
-              <img src="/logos/cee.jpg" alt="CEE" className="h-12 opacity-80" />
+              <img src="/logos/qualibat-rge.webp" alt="Qualibat RGE - Reconnu Garant de l'Environnement" className="h-12 opacity-80" />
+              <img src="/logos/qualipv.jpg" alt="QualiPV - Certification installation photovoltaïque" className="h-12 opacity-80" />
+              <img src="/logos/cee.jpg" alt="CEE - Certificats d'Économies d'Énergie" className="h-12 opacity-80" />
               <div className="flex items-center gap-1 bg-gray-100 px-3 py-2 rounded-lg">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />

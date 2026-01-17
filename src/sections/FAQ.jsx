@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { ChevronDown, HelpCircle } from "lucide-react";
+import { FAQSchema } from "../components/SchemaOrg";
 
 export default function FAQ() {
-  // -1 = tout fermé au chargement (plus propre pour un accordéon)
   const [openIndex, setOpenIndex] = useState(-1);
 
   const faqs = [
@@ -39,7 +39,9 @@ export default function FAQ() {
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <>
+      <FAQSchema faqs={faqs} />
+      <section className="py-24 bg-white">
       <div className="container-page">
         <div className="grid lg:grid-cols-5 gap-16 max-w-7xl mx-auto">
           {/* Colonne gauche - Intro */}
@@ -133,5 +135,6 @@ export default function FAQ() {
         </div>
       </div>
     </section>
+    </>
   );
 }

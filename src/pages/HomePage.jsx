@@ -11,6 +11,7 @@ import Reassurance from "../sections/Reassurance";
 import FooterLegal from "../sections/FooterLegal";
 import StickyCta from "../sections/StickyCta";
 import SEO from "../components/SEO";
+import { LocalBusinessSchema, ServiceSchema, WebSiteSchema } from "../components/SchemaOrg";
 import { seoConfig } from "../utils/seoConfig";
 import Header from "../components/Header";
 
@@ -18,6 +19,9 @@ export default function HomePage() {
   return (
     <>
       <SEO {...seoConfig.home} />
+      <LocalBusinessSchema />
+      <ServiceSchema />
+      <WebSiteSchema />
       <Header />
       <Hero />
       <Avantages />

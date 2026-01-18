@@ -5,3 +5,6 @@ export { default as ImageGallery } from './ImageGallery';
 export { default as InfoBox } from './InfoBox';
 export { default as PriceTable } from './PriceTable';
 export { default as Checklist } from './Checklist';
+export { default as LeadCaptureForm } from './LeadCaptureForm';
+export { default as CTAMidArticle } from './CTAMidArticle';
+export { default as RelatedArticlesInline } from './RelatedArticlesInline';

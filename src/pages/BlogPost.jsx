@@ -3,7 +3,7 @@ import { Link, useParams, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { ArrowLeft, ArrowRight, Calendar, Clock, Tag, User, Share2, ChevronUp, List } from "lucide-react";
 import { getBlogPost, getRelatedPosts, getCategoryName, getArticleImages } from "../data/blogData";
-import { SolarCalculator, RegionComparator, SolarQuiz, ImageGallery } from "../components/blog";
+import { SolarCalculator, RegionComparator, SolarQuiz, ImageGallery, LeadCaptureForm, CTAMidArticle, RelatedArticlesInline } from "../components/blog";
 import Header from "../components/Header";
 
 export default function BlogPost() {
@@ -95,6 +95,11 @@ export default function BlogPost() {
   // Position where to insert interactive module (after which H2 index)
   const moduleInsertPosition = 2; // After 3rd H2
 
+  // Positions for CTA, lead magnet and related articles
+  const ctaInsertPosition = 3; // After 4th H2
+  const relatedInsertPosition = 4; // After 5th H2
+  const leadMagnetInsertPosition = 5; // After 6th H2
+
   // Parse tables properly
   const parseTable = (lines, startIndex) => {
     const tableLines = [];
@@ -174,6 +179,21 @@ export default function BlogPost() {
           if (post.hasRegionComparator) {
             elements.push(<RegionComparator key="region-mid" />);
           }
+        }
+
+        // Insert CTA mid-article after 4th H2
+        if (headingIndex === ctaInsertPosition) {
+          elements.push(<CTAMidArticle key="cta-mid" />);
+        }
+
+        // Insert related articles after 5th H2
+        if (headingIndex === relatedInsertPosition && relatedPosts.length > 0) {
+          elements.push(<RelatedArticlesInline key="related-mid" articles={relatedPosts} />);
+        }
+
+        // Insert lead magnet form after 6th H2
+        if (headingIndex === leadMagnetInsertPosition) {
+          elements.push(<LeadCaptureForm key="lead-magnet-mid" variant="inline" />);
         }
 
         headingIndex++;

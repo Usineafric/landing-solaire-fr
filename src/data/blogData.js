@@ -13,53 +13,52 @@ export const categories = [
 // Images pour les articles
 export const articleImages = {
   "prix-2026": [
-    { url: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=80", alt: "Installation panneaux solaires sur toiture", caption: "Une installation photovoltaïque moderne sur une maison individuelle" },
-    { url: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1200&q=80", alt: "Panneaux solaires gros plan", caption: "Panneaux monocristallins haute performance" },
-    { url: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?auto=format&fit=crop&w=1200&q=80", alt: "Technicien installation solaire", caption: "Installation par un professionnel RGE certifié" }
+    { url: "/images/blog/prix-1.jpg", alt: "Économies et rentabilité solaire", caption: "Suivez vos économies en temps réel" },
+    { url: "/images/blog/prix-2.jpg", alt: "Installation par un professionnel RGE", caption: "Installation par un professionnel RGE certifié" }
   ],
   "aides-2026": [
-    { url: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80", alt: "Calcul économies solaires", caption: "Les aides peuvent réduire votre investissement de 3 000 à 5 000€" },
-    { url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80", alt: "Documents administratifs", caption: "Les démarches pour obtenir les aides" }
+    { url: "/images/blog/aides-1.jpg", alt: "Documents et formulaires d'aides", caption: "Les aides peuvent réduire votre investissement de 3 000 à 5 000€" },
+    { url: "/images/blog/aides-2.jpg", alt: "Économies grâce aux subventions", caption: "Les démarches pour obtenir les aides" }
   ],
   "rentabilite": [
-    { url: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=80", alt: "Carte ensoleillement France", caption: "L'ensoleillement varie du simple au double en France" },
-    { url: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80", alt: "Soleil et panneaux", caption: "Le Sud bénéficie de 2800h de soleil par an" }
+    { url: "/images/blog/rentabilite-1.jpg", alt: "Carte ensoleillement France", caption: "L'ensoleillement varie du simple au double en France" },
+    { url: "/images/blog/rentabilite-2.jpg", alt: "Rentabilité panneaux solaires", caption: "Le Sud bénéficie de 2800h de soleil par an" }
   ],
   "autoconsommation": [
-    { url: "https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&w=1200&q=80", alt: "Compteur électrique intelligent", caption: "Le compteur Linky mesure production et consommation en temps réel" },
-    { url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80", alt: "Graphique économies", caption: "L'autoconsommation maximise vos économies sur le long terme" }
+    { url: "/images/blog/autoconso-1.jpg", alt: "Monitoring énergie solaire", caption: "Suivez votre production et consommation en temps réel" },
+    { url: "/images/blog/autoconso-2.jp.png", alt: "Famille utilisant l'énergie solaire", caption: "L'autoconsommation maximise vos économies au quotidien" }
   ],
   "technologie": [
-    { url: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=80", alt: "Panneaux monocristallins", caption: "Les panneaux monocristallins offrent le meilleur rendement" },
-    { url: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1200&q=80", alt: "Cellules photovoltaïques", caption: "Structure cristalline visible sur un panneau polycristallin" }
+    { url: "/images/blog/techno-1.jpg", alt: "Cellules monocristallines", caption: "Les panneaux monocristallins offrent le meilleur rendement" },
+    { url: "/images/blog/techno-2.jpg", alt: "Cellules polycristallines", caption: "Structure cristalline visible sur un panneau polycristallin" }
   ],
   "idf": [
-    { url: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=80", alt: "Paris Tour Eiffel", caption: "Le solaire est rentable même en Île-de-France" },
-    { url: "https://images.unsplash.com/photo-1549877452-9c387954fbc2?auto=format&fit=crop&w=1200&q=80", alt: "Maison banlieue parisienne", caption: "Les pavillons franciliens sont idéaux pour le photovoltaïque" }
+    { url: "/images/blog/idf-1.jpg", alt: "Toits parisiens avec panneaux solaires", caption: "Le solaire est rentable même en Île-de-France" },
+    { url: "/images/blog/idf-2.jpg", alt: "Pavillon francilien équipé", caption: "Les pavillons franciliens sont idéaux pour le photovoltaïque" }
   ],
   "paca": [
-    { url: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1200&q=80", alt: "Provence lavande", caption: "La PACA bénéficie de 2800 heures de soleil par an" },
-    { url: "https://images.unsplash.com/photo-1496568816309-51d7c20e3b21?auto=format&fit=crop&w=1200&q=80", alt: "Maison provençale solaire", caption: "Une installation solaire sur une villa provençale" }
+    { url: "/images/blog/paca-1.jpg", alt: "Installation solaire en PACA", caption: "La PACA bénéficie de 2800 heures de soleil par an" },
+    { url: "/images/blog/paca-2.jpg", alt: "Panneaux solaires région méditerranéenne", caption: "Une installation solaire optimale grâce à l'ensoleillement méditerranéen" }
   ],
   "installateur": [
-    { url: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80", alt: "Technicien solaire", caption: "Choisir un installateur RGE est essentiel pour bénéficier des aides" },
-    { url: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?auto=format&fit=crop&w=1200&q=80", alt: "Installation en cours", caption: "Une pose professionnelle garantit performance et durabilité" }
+    { url: "/images/blog/installateur-1.jpg", alt: "Technicien solaire", caption: "Choisir un installateur RGE est essentiel pour bénéficier des aides" },
+    { url: "/images/blog/installateur-2.jpg", alt: "Installation en cours", caption: "Une pose professionnelle garantit performance et durabilité" }
   ],
   "entretien": [
-    { url: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?auto=format&fit=crop&w=1200&q=80", alt: "Entretien panneaux", caption: "Un nettoyage régulier maintient les performances" },
-    { url: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=80", alt: "Panneaux propres", caption: "Des panneaux bien entretenus pour 30 ans de production" }
+    { url: "/images/blog/entretien-1.jpg", alt: "Entretien panneaux", caption: "Un nettoyage régulier maintient les performances" },
+    { url: "/images/blog/entretien-2.jpg", alt: "Panneaux propres", caption: "Des panneaux bien entretenus pour 30 ans de production" }
   ],
   "batteries": [
-    { url: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=1200&q=80", alt: "Batterie domestique", caption: "Les batteries permettent de stocker l'énergie pour le soir" },
-    { url: "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&w=1200&q=80", alt: "Système de stockage", caption: "Un système de stockage moderne dans un garage" }
+    { url: "/images/blog/batteries-1.jpg", alt: "Batterie domestique", caption: "Les batteries permettent de stocker l'énergie pour le soir" },
+    { url: "/images/blog/batteries-2.jpg", alt: "Système de stockage", caption: "Un système de stockage moderne dans un garage" }
   ],
   "copropriete": [
-    { url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80", alt: "Immeuble résidentiel", caption: "Les copropriétés offrent un potentiel solaire important" },
-    { url: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80", alt: "Toiture immeuble", caption: "Les grandes toitures d'immeubles sont idéales pour le solaire collectif" }
+    { url: "/images/blog/copropriete-1.jpg", alt: "Immeuble résidentiel", caption: "Les copropriétés offrent un potentiel solaire important" },
+    { url: "/images/blog/copropriete-2.jpg", alt: "Toiture immeuble", caption: "Les grandes toitures d'immeubles sont idéales pour le solaire collectif" }
   ],
   "assurance": [
-    { url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80", alt: "Documents assurance", caption: "Une bonne assurance protège votre investissement solaire" },
-    { url: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80", alt: "Contrat garantie", caption: "Vérifiez les garanties avant de signer" }
+    { url: "/images/blog/assurance-1.jpg", alt: "Documents assurance", caption: "Une bonne assurance protège votre investissement solaire" },
+    { url: "/images/blog/assurance-2.jpg", alt: "Contrat garantie", caption: "Vérifiez les garanties avant de signer" }
   ]
 };
 
@@ -71,7 +70,7 @@ export const blogPosts = [
     id: "combien-coute-installation-panneaux-solaires-2026",
     title: "Combien coûte une installation de panneaux solaires en 2026 ? Guide complet des prix",
     excerpt: "Prix réels d'une installation photovoltaïque en 2026 : de 7 500€ à 25 000€ selon la puissance. Découvrez les tarifs détaillés par puissance, les aides disponibles et comment optimiser votre investissement solaire.",
-    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=800&q=80",
+    image: "/images/blog/prix-hero.jpg",
     category: "prix-financement",
     readTime: "18 min",
     date: "2026-01-15",
@@ -434,7 +433,7 @@ Avec des prix en baisse de 80% en 10 ans, des aides substantielles et un prix de
     id: "aides-etat-panneaux-solaires-guide-complet",
     title: "Toutes les aides pour panneaux solaires en 2026 : le guide complet des subventions",
     excerpt: "Prime autoconsommation, TVA réduite, CEE, aides régionales... Découvrez toutes les aides disponibles en 2026 pour financer vos panneaux solaires et économiser jusqu'à 5 000€ sur votre installation.",
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80",
+    image: "/images/blog/aides-hero.jpg",
     category: "aides-subventions",
     readTime: "16 min",
     date: "2026-01-10",
@@ -826,7 +825,7 @@ Utilisez notre calculateur pour estimer le montant exact des aides pour votre pr
     id: "panneaux-solaires-rentabilite-region-france",
     title: "Rentabilité des panneaux solaires selon votre région : analyse complète",
     excerpt: "L'ensoleillement varie du simple au double en France. Découvrez le potentiel solaire de votre région, la production attendue et le temps de retour sur investissement réel.",
-    image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=800&q=80",
+    image: "/images/blog/rentabilite-hero.jpg",
     category: "rentabilite",
     readTime: "15 min",
     date: "2026-01-05",
@@ -1133,7 +1132,7 @@ Utilisez notre comparateur de régions ci-dessous pour visualiser le potentiel d
     id: "autoconsommation-vs-revente-surplus",
     title: "Autoconsommation ou revente totale : quel choix pour vos panneaux solaires ?",
     excerpt: "Autoconsommation avec vente du surplus ou revente totale ? Découvrez quelle option est la plus rentable selon votre profil de consommation et comment maximiser vos économies.",
-    image: "https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&w=800&q=80",
+    image: "/images/blog/autoconso-hero.jpg",
     category: "rentabilite",
     readTime: "16 min",
     date: "2026-01-12",
@@ -1404,7 +1403,7 @@ Utilisez notre calculateur ci-dessous pour simuler les deux options selon votre 
     id: "monocristallin-vs-polycristallin",
     title: "Panneaux solaires monocristallins vs polycristallins : le guide comparatif",
     excerpt: "Monocristallin ou polycristallin ? Découvrez les différences techniques, les avantages de chaque technologie et comment choisir les panneaux adaptés à votre projet solaire.",
-    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=800&q=80",
+    image: "/images/blog/techno-hero.jpg",
     category: "technique",
     readTime: "14 min",
     date: "2026-01-08",
@@ -1692,7 +1691,7 @@ Faites notre quiz ci-dessous pour déterminer la technologie idéale pour votre 
     id: "installation-panneaux-solaires-ile-de-france",
     title: "Panneaux solaires en Île-de-France : rentabilité et guide pratique",
     excerpt: "Le solaire est-il rentable en région parisienne ? Oui ! Découvrez le potentiel solaire de l'Île-de-France, les aides spécifiques et comment optimiser votre installation.",
-    image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80",
+    image: "/images/blog/idf-hero.jpg",
     category: "regional",
     readTime: "15 min",
     date: "2026-01-06",
@@ -2004,7 +2003,7 @@ Utilisez notre calculateur et comparateur régional pour estimer précisément v
     id: "installation-panneaux-solaires-paca",
     title: "Panneaux solaires en PACA : le guide de la région la plus ensoleillée",
     excerpt: "La région PACA offre le meilleur potentiel solaire de France. Découvrez pourquoi c'est la région idéale pour le photovoltaïque et comment maximiser votre rentabilité.",
-    image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=80",
+    image: "/images/blog/paca-hero.jpg",
     category: "regional",
     readTime: "14 min",
     date: "2026-01-04",
@@ -2294,7 +2293,7 @@ Utilisez notre calculateur pour estimer votre production exceptionnelle, puis de
     id: "choisir-installateur-panneaux-solaires-rge",
     title: "Comment choisir son installateur de panneaux solaires RGE ?",
     excerpt: "Le choix de l'installateur est crucial pour la réussite de votre projet solaire. Certification RGE, garanties, prix : tous les critères pour faire le bon choix.",
-    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80",
+    image: "/images/blog/installateur-hero.jpg",
     category: "guide-pratique",
     readTime: "15 min",
     date: "2026-01-03",
@@ -2610,7 +2609,7 @@ Faites notre quiz ci-dessous pour évaluer les devis que vous avez reçus, puis 
     id: "entretien-panneaux-solaires-guide",
     title: "Entretien des panneaux solaires : le guide complet pour 30 ans de performance",
     excerpt: "Comment entretenir vos panneaux solaires pour garantir leur performance sur 30 ans ? Nettoyage, surveillance, maintenance : tout ce qu'il faut savoir.",
-    image: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?auto=format&fit=crop&w=800&q=80",
+    image: "/images/blog/entretien-hero.jpg",
     category: "guide-pratique",
     readTime: "13 min",
     date: "2026-01-02",
@@ -2921,7 +2920,7 @@ Les panneaux solaires sont des équipements **fiables et peu exigeants**. Avec u
     id: "batteries-stockage-solaire-guide",
     title: "Batteries de stockage solaire : faut-il investir en 2026 ?",
     excerpt: "Les batteries domestiques permettent de stocker votre production solaire. Mais sont-elles rentables en 2026 ? Prix, technologies, rentabilité : notre analyse complète.",
-    image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=800&q=80",
+    image: "/images/blog/batteries-hero.jpg",
     category: "technique",
     readTime: "16 min",
     date: "2025-12-28",
@@ -3255,7 +3254,7 @@ Utilisez notre calculateur pour simuler la rentabilité d'une batterie selon vot
     id: "panneaux-solaires-copropriete-guide",
     title: "Panneaux solaires en copropriété : le guide complet 2026",
     excerpt: "Installer des panneaux solaires en copropriété, c'est possible ! Démarches, vote en AG, répartition des coûts et bénéfices : tout ce qu'il faut savoir.",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
+    image: "/images/blog/copropriete-hero.jpg",
     category: "guide-pratique",
     readTime: "15 min",
     date: "2025-12-25",
@@ -3586,7 +3585,7 @@ Vous souhaitez lancer le projet dans votre copropriété ? Demandez une étude d
     id: "panneaux-solaires-assurance-garanties-guide",
     title: "Assurance et garanties des panneaux solaires : ce qu'il faut savoir",
     excerpt: "Garanties constructeur, assurance habitation, responsabilité civile : comment bien protéger votre installation solaire ? Guide complet des protections indispensables.",
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80",
+    image: "/images/blog/assurance-hero.jpg",
     category: "guide-pratique",
     readTime: "14 min",
     date: "2025-12-20",

@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { ArrowLeft, ArrowRight, Calendar, Clock, Tag, User, Share2, ChevronUp, List } from "lucide-react";
-import { getBlogPost, getRelatedPosts, getCategoryName } from "../data/blogData";
+import { getBlogPost, getRelatedPosts, getCategoryName, getArticleImages } from "../data/blogData";
+import { SolarCalculator, RegionComparator, SolarQuiz, ImageGallery } from "../components/blog";
 import Header from "../components/Header";
 
 export default function BlogPost() {
@@ -341,6 +342,24 @@ export default function BlogPost() {
                   <div className="prose prose-lg max-w-none">
                     {renderContent(post.content)}
                   </div>
+
+                  {/* Interactive Components */}
+                  {post.hasCalculator && (
+                    <SolarCalculator />
+                  )}
+
+                  {post.hasRegionComparator && (
+                    <RegionComparator />
+                  )}
+
+                  {post.hasQuiz && (
+                    <SolarQuiz />
+                  )}
+
+                  {/* Article Images Gallery */}
+                  {post.images && getArticleImages(post.images).length > 0 && (
+                    <ImageGallery images={getArticleImages(post.images)} />
+                  )}
 
                   {/* FAQ Section */}
                   {post.faq && post.faq.length > 0 && (

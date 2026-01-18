@@ -6,23 +6,23 @@ export default function RelatedArticlesInline({ articles = [] }) {
   if (!articles || articles.length === 0) return null;
 
   return (
-    <div className="my-10 bg-gray-50 border border-gray-200 rounded-2xl p-6">
-      <div className="flex items-center gap-2 mb-4">
+    <div className="my-6 md:my-10 bg-gray-50 border border-gray-200 rounded-xl md:rounded-2xl p-4 md:p-6">
+      <div className="flex items-center gap-2 mb-3 md:mb-4">
         <BookOpen className="w-5 h-5 text-orange-500" />
-        <h4 className="font-bold text-gray-900">A lire aussi</h4>
+        <h4 className="font-bold text-gray-900 text-sm md:text-base">A lire aussi</h4>
       </div>
 
-      <div className="grid gap-3">
+      <div className="grid gap-2 md:gap-3">
         {articles.slice(0, 3).map((article) => (
           <Link
             key={article.id}
             to={`/blog/${article.id}`}
-            className="flex items-center gap-4 p-3 bg-white rounded-xl hover:bg-orange-50 transition-colors group border border-gray-100"
+            className="flex items-center gap-3 md:gap-4 p-2 md:p-3 bg-white rounded-lg md:rounded-xl hover:bg-orange-50 transition-colors group border border-gray-100"
           >
             <img
               src={article.image}
               alt={article.title}
-              className="w-16 h-16 object-cover rounded-lg flex-shrink-0"
+              className="w-12 h-12 md:w-16 md:h-16 object-cover rounded-lg flex-shrink-0"
             />
             <div className="flex-1 min-w-0">
               <span className="text-xs text-orange-600 font-semibold">

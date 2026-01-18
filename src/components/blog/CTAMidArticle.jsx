@@ -15,10 +15,10 @@ export default function CTAMidArticle() {
   };
 
   return (
-    <div className="my-10 bg-gradient-to-br from-orange-500 to-yellow-400 rounded-2xl p-8 shadow-xl relative overflow-hidden">
+    <div className="my-6 md:my-10 bg-gradient-to-br from-orange-500 to-yellow-400 rounded-xl md:rounded-2xl p-5 md:p-8 shadow-xl relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2" />
+      <div className="absolute top-0 right-0 w-32 md:w-64 h-32 md:h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-24 md:w-48 h-24 md:h-48 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2" />
 
       <div className="relative z-10">
         <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
@@ -49,10 +49,10 @@ export default function CTAMidArticle() {
         <Link
           to="/#form"
           onClick={handleClick}
-          className="inline-flex items-center gap-2 bg-white text-orange-600 px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105"
+          className="inline-flex items-center justify-center gap-2 bg-white text-orange-600 px-5 md:px-8 py-3 md:py-4 rounded-lg md:rounded-xl font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105 text-sm md:text-base w-full md:w-auto"
         >
           Calculer mes economies gratuitement
-          <ArrowRight className="w-5 h-5" />
+          <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
         </Link>
 
         <p className="text-white/80 text-sm mt-4">

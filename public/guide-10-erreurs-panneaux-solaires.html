@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10 Erreurs à Éviter Avant d'Installer des Panneaux Solaires - Guide Gratuit</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #1f2937;
+      background: #fff;
+    }
+
+    .page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+
+    /* Cover Page */
+    .cover {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 50%, #fdba74 100%);
+      padding: 60px 40px;
+      page-break-after: always;
+    }
+
+    .cover-icon {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, #f59e0b, #ea580c);
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 40px;
+      box-shadow: 0 20px 40px rgba(234, 88, 12, 0.3);
+    }
+
+    .cover-icon svg {
+      width: 60px;
+      height: 60px;
+      fill: white;
+    }
+
+    .cover h1 {
+      font-size: 42px;
+      font-weight: 800;
+      color: #1f2937;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .cover h1 span {
+      color: #ea580c;
+    }
+
+    .cover .subtitle {
+      font-size: 20px;
+      color: #4b5563;
+      margin-bottom: 40px;
+      max-width: 500px;
+    }
+
+    .cover .brand {
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 2px solid rgba(0,0,0,0.1);
+    }
+
+    .cover .brand-name {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    .cover .brand-tagline {
+      font-size: 14px;
+      color: #6b7280;
+      margin-top: 5px;
+    }
+
+    /* Content Pages */
+    .content {
+      padding: 40px;
+    }
+
+    .intro {
+      background: #f9fafb;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 40px;
+      border-left: 4px solid #f59e0b;
+    }
+
+    .intro h2 {
+      font-size: 24px;
+      color: #1f2937;
+      margin-bottom: 15px;
+    }
+
+    .intro p {
+      color: #4b5563;
+      font-size: 16px;
+    }
+
+    .error-card {
+      background: #fff;
+      border: 2px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
+      page-break-inside: avoid;
+    }
+
+    .error-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .error-number {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 800;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .error-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1f2937;
+      line-height: 1.3;
+    }
+
+    .error-content {
+      color: #4b5563;
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .error-content p {
+      margin-bottom: 12px;
+    }
+
+    .solution-box {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border-radius: 12px;
+      padding: 20px;
+      border-left: 4px solid #10b981;
+    }
+
+    .solution-box h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #065f46;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .solution-box p {
+      color: #047857;
+      font-size: 14px;
+    }
+
+    .checklist {
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      border-radius: 16px;
+      padding: 30px;
+      margin: 40px 0;
+      page-break-inside: avoid;
+    }
+
+    .checklist h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .checklist ul {
+      list-style: none;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      font-size: 15px;
+      color: #374151;
+    }
+
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+
+    .checkbox {
+      width: 22px;
+      height: 22px;
+      border: 2px solid #d97706;
+      border-radius: 6px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* CTA Page */
+    .cta-page {
+      background: linear-gradient(135deg, #1f2937, #111827);
+      color: white;
+      padding: 60px 40px;
+      text-align: center;
+      border-radius: 20px;
+      margin-top: 40px;
+      page-break-before: always;
+    }
+
+    .cta-page h2 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .cta-page p {
+      font-size: 18px;
+      color: #9ca3af;
+      margin-bottom: 30px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #f59e0b, #ea580c);
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 18px 40px;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(234, 88, 12, 0.4);
+    }
+
+    .cta-benefits {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .cta-benefit {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #9ca3af;
+      font-size: 14px;
+    }
+
+    .cta-benefit-icon {
+      width: 24px;
+      height: 24px;
+      background: #10b981;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 40px;
+      color: #9ca3af;
+      font-size: 14px;
+      border-top: 1px solid #e5e7eb;
+      margin-top: 40px;
+    }
+
+    .footer a {
+      color: #f59e0b;
+      text-decoration: none;
+    }
+
+    @media print {
+      .page {
+        padding: 20px;
+      }
+
+      .cover {
+        min-height: auto;
+        padding: 40px;
+      }
+
+      .error-card {
+        break-inside: avoid;
+      }
+
+      .cta-page {
+        break-before: page;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Cover Page -->
+  <div class="cover">
+    <div class="cover-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+    </div>
+    <h1><span>10 Erreurs</span> à Éviter<br>Avant d'Installer des<br>Panneaux Solaires</h1>
+    <p class="subtitle">Le guide complet pour réussir votre projet solaire et éviter les pièges les plus courants</p>
+    <div class="brand">
+      <div class="brand-name">☀️ Le Panneau Solaire</div>
+      <div class="brand-tagline">Votre expert en énergie solaire</div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="page content">
+    <div class="intro">
+      <h2>Pourquoi ce guide ?</h2>
+      <p>Chaque année, des milliers de Français se lancent dans l'installation de panneaux solaires. Malheureusement, beaucoup commettent des erreurs qui leur coûtent cher : surcoûts, mauvaise rentabilité, problèmes techniques... Ce guide vous révèle les 10 erreurs les plus fréquentes et comment les éviter pour réussir votre projet.</p>
+    </div>
+
+    <!-- Error 1 -->
+    <div class="error-card">
+      <div class="error-header">
+        <div class="error-number">1</div>
+        <h3 class="error-title">Ne pas vérifier la certification RGE de l'installateur</h3>
+      </div>
+      <div class="error-content">
+        <p>La certification RGE (Reconnu Garant de l'Environnement) n'est pas qu'un simple label. Sans elle, vous perdez l'accès à toutes les aides de l'État : prime à l'autoconsommation, TVA réduite, certificats d'économies d'énergie...</p>
+        <p>Certains installateurs peu scrupuleux prétendent être RGE sans l'être vraiment, ou leur certification est expirée.</p>
+      </div>
+      <div class="solution-box">
+        <h4>✓ La solution</h4>
+        <p>Vérifiez systématiquement la certification sur le site officiel france-renov.gouv.fr. Demandez le numéro de certification et sa date de validité. Un installateur sérieux vous fournira ces informations sans hésiter.</p>
+      </div>
+    </div>
+
+    <!-- Error 2 -->
+    <div class="error-card">
+      <div class="error-header">
+        <div class="error-number">2</div>
+        <h3 class="error-title">Sous-dimensionner ou surdimensionner l'installation</h3>
+      </div>
+      <div class="error-content">
+        <p>Une installation trop petite ne couvrira pas vos besoins et vous continuerez à payer une facture élevée. Une installation trop grande représente un investissement inutile avec un retour sur investissement allongé.</p>
+        <p>L'erreur classique : se baser uniquement sur la surface de toit disponible sans analyser sa consommation réelle.</p>
+      </div>
+      <div class="solution-box">
+        <h4>✓ La solution</h4>
+        <p>Analysez vos 12 dernières factures d'électricité pour connaître votre consommation annuelle. Une installation de 3 kWc couvre environ 3 000 kWh/an. Faites réaliser une étude personnalisée par un professionnel.</p>
+      </div>
+    </div>
+
+    <!-- Error 3 -->
+    <div class="error-card">
+      <div class="error-header">
+        <div class="error-number">3</div>
+        <h3 class="error-title">Ignorer l'orientation et l'inclinaison du toit</h3>
+      </div>
+      <div class="error-content">
+        <p>Tous les toits ne se valent pas pour le solaire. Un toit orienté nord produira 40% de moins qu'un toit sud. Une inclinaison inadaptée peut également réduire significativement la production.</p>
+        <p>Certains installateurs peu scrupuleux vous vendront une installation sur un toit mal orienté sans vous prévenir.</p>
+      </div>
+      <div class="solution-box">
+        <h4>✓ La solution</h4>
+        <p>L'orientation idéale est plein sud, avec une inclinaison de 30° à 35°. Est et ouest restent acceptables (-15% de production). Fuyez les propositions sur toit nord. Demandez une simulation de production précise.</p>
+      </div>
+    </div>
+
+    <!-- Error 4 -->
+    <div class="error-card">
+      <div class="error-header">
+        <div class="error-number">4</div>
+        <h3 class="error-title">Négliger les ombrages</h3>
+      </div>
+      <div class="error-content">
+        <p>Un arbre, une cheminée, un bâtiment voisin... Les ombrages peuvent réduire drastiquement la production de vos panneaux. Un seul panneau ombragé peut affecter toute la chaîne de production.</p>
+        <p>L'ombrage en hiver (soleil bas) est souvent sous-estimé lors des visites en été.</p>
+      </div>
+      <div class="solution-box">
+        <h4>✓ La solution</h4>
+        <p>Exigez une analyse d'ombrage sur l'année complète. Les bons installateurs utilisent des outils comme le "Sun Eye" ou des simulations 3D. Prévoyez d'élaguer les arbres si nécessaire.</p>
+      </div>
+    </div>
+
+    <!-- Error 5 -->
+    <div class="error-card">
+      <div class="error-header">
+        <div class="error-number">5</div>
+        <h3 class="error-title">Accepter le premier devis sans comparer</h3>
+      </div>
+      <div class="error-content">
+        <p>Les écarts de prix entre installateurs peuvent atteindre 30% à 50% pour une même installation ! Certains commerciaux utilisent des techniques de vente agressives pour vous faire signer immédiatement.</p>
+        <p>Attention aux "offres exceptionnelles valables aujourd'hui seulement" : c'est un signal d'alarme.</p>
+      </div>
+      <div class="solution-box">
+        <h4>✓ La solution</h4>
+        <p>Demandez minimum 3 devis détaillés. Comparez les marques de panneaux, la puissance, les garanties, et pas seulement le prix. Prenez le temps de réfléchir : un bon installateur ne vous pressera jamais.</p>
+      </div>
+    </div>
+
+    <!-- Error 6 -->
+    <div class="error-card">
+      <div class="error-header">
+        <div class="error-number">6</div>
+        <h3 class="error-title">Choisir des panneaux bas de gamme pour économiser</h3>
+      </div>
+      <div class="error-content">
+        <p>Des panneaux à bas prix peuvent sembler attractifs, mais leur rendement diminue plus vite et leurs garanties sont souvent insuffisantes. Sur 25 ans, la différence de production peut représenter des milliers d'euros.</p>
+        <p>Méfiez-vous des marques inconnues sans historique ni SAV en France.</p>
+      </div>
+      <div class="solution-box">
+        <h4>✓ La solution</h4>
+        <p>Privilégiez les marques reconnues (SunPower, LG, Longi, Trina, JA Solar). Vérifiez les garanties : 25 ans sur la production, 10-12 ans sur le produit minimum. Le coût légèrement supérieur sera rentabilisé.</p>
+      </div>
+    </div>
+
+    <!-- Error 7 -->
+    <div class="error-card">
+      <div class="error-header">
+        <div class="error-number">7</div>
+        <h3 class="error-title">Oublier de déclarer l'installation</h3>
+      </div>
+      <div class="error-content">
+        <p>L'installation de panneaux solaires nécessite une déclaration préalable de travaux en mairie. Sans cette autorisation, vous êtes en infraction et risquez de devoir tout démonter.</p>
+        <p>De plus, vous devez déclarer votre installation à Enedis et souscrire un contrat de rachat si vous vendez le surplus.</p>
+      </div>
+      <div class="solution-box">
+        <h4>✓ La solution</h4>
+        <p>Votre installateur RGE doit normalement s'occuper des démarches administratives. Vérifiez que c'est bien inclus dans le devis. Conservez tous les documents : déclaration mairie, attestation Consuel, contrat EDF OA.</p>
+      </div>
+    </div>
+
+    <!-- Error 8 -->
+    <div class="error-card">
+      <div class="error-header">
+        <div class="error-number">8</div>
+        <h3 class="error-title">Ne pas prévoir le monitoring de production</h3>
+      </div>
+      <div class="error-content">
+        <p>Sans système de suivi, vous ne saurez pas si vos panneaux produisent correctement. Une panne peut passer inaperçue pendant des mois, vous faisant perdre des centaines d'euros.</p>
+        <p>Le monitoring permet aussi d'optimiser votre autoconsommation en adaptant vos habitudes.</p>
+      </div>
+      <div class="solution-box">
+        <h4>✓ La solution</h4>
+        <p>Exigez un système de monitoring inclus dans votre installation. Les applications comme Enphase, SolarEdge ou Huawei vous permettent de suivre votre production en temps réel depuis votre smartphone.</p>
+      </div>
+    </div>
+
+    <!-- Error 9 -->
+    <div class="error-card">
+      <div class="error-header">
+        <div class="error-number">9</div>
+        <h3 class="error-title">Mal évaluer la rentabilité réelle</h3>
+      </div>
+      <div class="error-content">
+        <p>Certains commerciaux présentent des projections de rentabilité irréalistes : production surestimée, prix de l'électricité multiplié par 3, aides gonflées... Au final, le retour sur investissement est bien plus long que prévu.</p>
+      </div>
+      <div class="solution-box">
+        <h4>✓ La solution</h4>
+        <p>Faites vos propres calculs avec des hypothèses réalistes : hausse de l'électricité de 4-5%/an, production basée sur votre région (PVGIS), toutes les aides vérifiées sur les sites officiels. Un ROI de 8-12 ans est réaliste.</p>
+      </div>
+    </div>
+
+    <!-- Error 10 -->
+    <div class="error-card">
+      <div class="error-header">
+        <div class="error-number">10</div>
+        <h3 class="error-title">Ne pas adapter son contrat d'électricité</h3>
+      </div>
+      <div class="error-content">
+        <p>Après installation, beaucoup gardent leur ancien contrat d'électricité inadapté. Or, avec l'autoconsommation, vos besoins changent : vous consommez moins sur le réseau, surtout en journée.</p>
+        <p>Un contrat heures pleines/heures creuses peut devenir contre-productif.</p>
+      </div>
+      <div class="solution-box">
+        <h4>✓ La solution</h4>
+        <p>Après quelques mois de production, analysez votre nouvelle consommation. Un contrat base peut devenir plus avantageux. Comparez les offres et n'hésitez pas à changer de fournisseur pour optimiser vos économies.</p>
+      </div>
+    </div>
+
+    <!-- Checklist -->
+    <div class="checklist">
+      <h3>📋 Checklist avant de signer</h3>
+      <ul>
+        <li><span class="checkbox"></span> Certification RGE vérifiée sur france-renov.gouv.fr</li>
+        <li><span class="checkbox"></span> Minimum 3 devis comparés</li>
+        <li><span class="checkbox"></span> Analyse d'ombrage réalisée</li>
+        <li><span class="checkbox"></span> Orientation et inclinaison du toit validées</li>
+        <li><span class="checkbox"></span> Marques de panneaux et onduleur reconnues</li>
+        <li><span class="checkbox"></span> Garanties vérifiées (25 ans production, 10+ ans produit)</li>
+        <li><span class="checkbox"></span> Démarches administratives incluses</li>
+        <li><span class="checkbox"></span> Système de monitoring prévu</li>
+        <li><span class="checkbox"></span> Simulation de production réaliste</li>
+        <li><span class="checkbox"></span> Calcul de rentabilité vérifié</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-page">
+      <h2>Prêt à passer au solaire ?</h2>
+      <p>Obtenez une étude personnalisée gratuite et sans engagement pour votre projet</p>
+      <a href="https://lepanneausolaire.com/#form" class="cta-button">Demander mon étude gratuite →</a>
+      <div class="cta-benefits">
+        <div class="cta-benefit">
+          <div class="cta-benefit-icon">✓</div>
+          <span>100% gratuit</span>
+        </div>
+        <div class="cta-benefit">
+          <div class="cta-benefit-icon">✓</div>
+          <span>Sans engagement</span>
+        </div>
+        <div class="cta-benefit">
+          <div class="cta-benefit-icon">✓</div>
+          <span>Réponse en 24h</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>© 2026 Le Panneau Solaire - Tous droits réservés</p>
+      <p><a href="https://lepanneausolaire.com">lepanneausolaire.com</a></p>
+    </div>
+  </div>
+</body>
+</html>

@@ -38,28 +38,36 @@ export default function LeadCaptureForm({ variant = "inline" }) {
           Merci !
         </h3>
         <p className="text-gray-700 mb-4">
-          Votre guide a ete envoye a <strong>{email}</strong>
+          Cliquez ci-dessous pour telecharger votre guide :
         </p>
-        <p className="text-sm text-gray-500">
-          Verifiez votre boite mail (et les spams) dans les prochaines minutes.
+        <a
+          href="/guide-10-erreurs-panneaux-solaires.pdf"
+          download
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all hover:scale-105"
+        >
+          <FileText className="w-5 h-5" />
+          Telecharger le guide PDF
+        </a>
+        <p className="text-sm text-gray-500 mt-4">
+          Une copie a aussi ete envoyee a <strong>{email}</strong>
         </p>
       </div>
     );
   }
 
   return (
-    <div className={`${variant === "inline" ? "my-10" : ""} bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-8`}>
-      <div className="flex flex-col md:flex-row gap-6 items-center">
+    <div className={`${variant === "inline" ? "my-6 md:my-10" : ""} bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl md:rounded-2xl p-5 md:p-8`}>
+      <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-center">
         {/* Icon */}
         <div className="flex-shrink-0">
-          <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
-            <FileText className="w-10 h-10 text-white" />
+          <div className="w-14 h-14 md:w-20 md:h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg">
+            <FileText className="w-7 h-7 md:w-10 md:h-10 text-white" />
           </div>
         </div>
 
         {/* Content */}
         <div className="flex-1 text-center md:text-left">
-          <h3 className="text-xl font-bold text-gray-900 mb-2">
+          <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">
             Guide gratuit : 10 erreurs a eviter avant d'installer des panneaux solaires
           </h3>
           <p className="text-gray-600 text-sm mb-4">

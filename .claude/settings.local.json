@@ -7,7 +7,20 @@
       "Bash(git add:*)",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nrefactor: Amélioration qualité code et sécurité \\(8.5 → 9.5/10\\)\n\n- Sécurité: Auth admin via Supabase Auth \\(remplace sessionStorage\\)\n- Performance: Code-splitting avec React.lazy\\(\\) \\(-11% bundle\\)\n- Robustesse: Error Boundary React pour capturer les erreurs\n- Validation: Schémas Zod pour le formulaire LeadForm\n- Tests: Vitest + Testing Library \\(17 tests\\)\n- RLS: Fichier SQL policies pour sécuriser table leads\n- Cleanup: Suppression console.log, commentaires debug, deps inutiles\n- Fix: Classes Tailwind dynamiques, checkDuplicateEmail appelée\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git push)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(curl -s \"https://api.telegram.org/bot8400249363:AAHr3GG8mIgPeVJ5xzEi7-elmprERP63O6Q/getUpdates\")",
+      "Bash(curl -s -X POST \"https://api.telegram.org/bot8400249363:AAHr3GG8mIgPeVJ5xzEi7-elmprERP63O6Q/sendMessage\" -d \"chat_id=5711316423\" -d \"text=Test de connexion Claude Code - Ca fonctionne!\")",
+      "Bash(curl -s \"https://api.telegram.org/bot8400249363:AAHr3GG8mIgPeVJ5xzEi7-elmprERP63O6Q/getUpdates?offset=496020788\")",
+      "Bash(curl:*)",
+      "Bash(node -e:*)",
+      "Bash(git push:*)",
+      "Bash(grep:*)",
+      "Bash(git checkout:*)",
+      "Bash(start http://localhost:5173/blog/combien-coute-installation-panneaux-solaires-2026)",
+      "Bash(start http://localhost:5173/blog/aides-etat-panneaux-solaires-guide-complet)",
+      "Bash(start http://localhost:5173/blog/panneaux-solaires-rentabilite-region-france)",
+      "Bash(start http://localhost:5173/blog/autoconsommation-vs-revente-surplus)",
+      "Bash(start:*)"
     ]
   }
 }

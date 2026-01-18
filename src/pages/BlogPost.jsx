@@ -146,7 +146,7 @@ export default function BlogPost() {
       if (line.startsWith('## ')) {
         const id = `heading-${headingIndex}`;
         elements.push(
-          <h2 key={`h2-${i}`} id={id} className="text-2xl font-bold text-gray-900 mt-10 mb-6 scroll-mt-24">
+          <h2 key={`h2-${i}`} id={id} className="text-xl md:text-2xl font-bold text-gray-900 mt-8 md:mt-10 mb-4 md:mb-6 scroll-mt-24">
             {line.replace('## ', '')}
           </h2>
         );
@@ -155,11 +155,11 @@ export default function BlogPost() {
         if (imageInsertPositions.includes(headingIndex) && articleImgs[imageIndex]) {
           const img = articleImgs[imageIndex];
           elements.push(
-            <figure key={`img-${imageIndex}`} className="my-8">
+            <figure key={`img-${imageIndex}`} className="my-6 md:my-8">
               <img
                 src={img.url}
                 alt={img.alt}
-                className="w-full h-[300px] object-cover rounded-xl shadow-lg"
+                className="w-full h-[200px] md:h-[300px] object-cover rounded-lg md:rounded-xl shadow-lg"
               />
               {img.caption && (
                 <figcaption className="text-center text-sm text-gray-500 mt-3 italic">
@@ -217,8 +217,8 @@ export default function BlogPost() {
         const table = parseTable(lines, i);
         if (table) {
           elements.push(
-            <div key={`table-${i}`} className="overflow-x-auto my-8 flex justify-center">
-              <table className="border-collapse bg-white rounded-lg overflow-hidden shadow-sm">
+            <div key={`table-${i}`} className="overflow-x-auto my-8 w-full">
+              <table className="border-collapse bg-white rounded-lg overflow-hidden shadow-sm mx-auto">
                 <thead>
                   <tr className="bg-gradient-to-r from-orange-50 to-yellow-50">
                     {table.header.map((cell, j) => (
@@ -400,9 +400,9 @@ export default function BlogPost() {
         </div>
 
         {/* Article Header */}
-        <section className="py-12 bg-gradient-to-b from-gray-50 to-white">
+        <section className="py-8 md:py-12 bg-gradient-to-b from-gray-50 to-white">
           <div className="container-page">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-4xl mx-auto px-0">
               {/* Category */}
               <div className="flex items-center gap-3 mb-6">
                 <span className="inline-flex items-center gap-1 px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm font-semibold">
@@ -440,17 +440,17 @@ export default function BlogPost() {
               <img
                 src={post.image}
                 alt={post.title}
-                className="w-full h-[400px] object-cover rounded-2xl shadow-lg"
+                className="w-full h-[250px] md:h-[400px] object-cover rounded-xl md:rounded-2xl shadow-lg"
               />
             </div>
           </div>
         </section>
 
         {/* Article Content */}
-        <section className="py-12">
+        <section className="py-8 md:py-12">
           <div className="container-page">
-            <div className="max-w-4xl mx-auto">
-              <div className="grid lg:grid-cols-4 gap-12">
+            <div className="max-w-4xl mx-auto px-0">
+              <div className="grid lg:grid-cols-4 gap-8 lg:gap-12">
                 {/* Main Content */}
                 <div className="lg:col-span-3">
                   {/* Table of Contents */}
@@ -515,19 +515,19 @@ export default function BlogPost() {
                   )}
 
                   {/* CTA Box */}
-                  <div className="mt-12 bg-gradient-to-br from-yellow-50 to-orange-50 border-2 border-orange-200 rounded-2xl p-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  <div className="mt-8 md:mt-12 bg-gradient-to-br from-yellow-50 to-orange-50 border-2 border-orange-200 rounded-xl md:rounded-2xl p-5 md:p-8">
+                    <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">
                       Vous souhaitez passer au solaire ?
                     </h3>
-                    <p className="text-gray-700 font-light mb-6">
+                    <p className="text-gray-700 font-light mb-4 md:mb-6 text-sm md:text-base">
                       Obtenez une etude personnalisee gratuite et sans engagement pour votre projet.
                     </p>
                     <Link
                       to="/#form"
-                      className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                      className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-5 md:px-8 py-3 md:py-4 rounded-lg md:rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105 text-sm md:text-base w-full md:w-auto"
                     >
                       Demander mon etude gratuite
-                      <ArrowRight className="w-5 h-5" />
+                      <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
                     </Link>
                   </div>
 

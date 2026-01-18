@@ -222,7 +222,7 @@ export default function BlogPost() {
                 <thead>
                   <tr className="bg-gradient-to-r from-orange-50 to-yellow-50">
                     {table.header.map((cell, j) => (
-                      <th key={j} className="border border-gray-200 px-4 py-3 text-left font-semibold text-gray-900 whitespace-nowrap">
+                      <th key={j} className="border border-gray-200 px-2 md:px-4 py-2 md:py-3 text-left font-semibold text-gray-900 text-xs md:text-sm">
                         {renderCellContent(cell)}
                       </th>
                     ))}
@@ -232,7 +232,7 @@ export default function BlogPost() {
                   {table.rows.map((row, rowIdx) => (
                     <tr key={rowIdx} className={rowIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                       {row.map((cell, cellIdx) => (
-                        <td key={cellIdx} className="border border-gray-200 px-4 py-3 text-gray-700">
+                        <td key={cellIdx} className="border border-gray-200 px-2 md:px-4 py-2 md:py-3 text-gray-700 text-xs md:text-sm">
                           {renderCellContent(cell)}
                         </td>
                       ))}

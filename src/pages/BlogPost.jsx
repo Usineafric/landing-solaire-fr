@@ -86,123 +86,247 @@ export default function BlogPost() {
     }))
   } : null;
 
-  // Render markdown content with heading IDs
+  // Get images for this article
+  const articleImgs = post.images ? getArticleImages(post.images) : [];
+
+  // Positions where to insert images (after which H2 index, 0-based)
+  const imageInsertPositions = [1, 3, 5]; // After 2nd, 4th, 6th H2
+
+  // Position where to insert interactive module (after which H2 index)
+  const moduleInsertPosition = 2; // After 3rd H2
+
+  // Parse tables properly
+  const parseTable = (lines, startIndex) => {
+    const tableLines = [];
+    let i = startIndex;
+    while (i < lines.length && lines[i].startsWith('|')) {
+      tableLines.push(lines[i]);
+      i++;
+    }
+    if (tableLines.length < 2) return null;
+
+    const headerCells = tableLines[0].split('|').filter(c => c.trim());
+    const bodyLines = tableLines.slice(2); // Skip header and separator
+
+    return {
+      header: headerCells.map(c => c.trim()),
+      rows: bodyLines.map(line => line.split('|').filter(c => c.trim()).map(c => c.trim())),
+      endIndex: i - 1
+    };
+  };
+
+  // Render bold text in cells
+  const renderCellContent = (text) => {
+    const parts = text.split(/\*\*(.+?)\*\*/g);
+    return parts.map((part, i) => {
+      if (i % 2 === 1) {
+        return <strong key={i} className="font-semibold text-gray-900">{part}</strong>;
+      }
+      return part;
+    });
+  };
+
+  // Render markdown content with heading IDs, images and interactive modules
   const renderContent = (content) => {
     let headingIndex = 0;
-    return content
-      .split('\n')
-      .map((line, i) => {
-        // H2 Headers with ID for TOC
-        if (line.startsWith('## ')) {
-          const id = `heading-${headingIndex}`;
-          headingIndex++;
-          return (
-            <h2 key={i} id={id} className="text-2xl font-bold text-gray-900 mt-10 mb-6 scroll-mt-24">
-              {line.replace('## ', '')}
-            </h2>
+    const lines = content.split('\n');
+    const elements = [];
+    let i = 0;
+    let imageIndex = 0;
+
+    while (i < lines.length) {
+      const line = lines[i];
+
+      // H2 Headers with ID for TOC
+      if (line.startsWith('## ')) {
+        const id = `heading-${headingIndex}`;
+        elements.push(
+          <h2 key={`h2-${i}`} id={id} className="text-2xl font-bold text-gray-900 mt-10 mb-6 scroll-mt-24">
+            {line.replace('## ', '')}
+          </h2>
+        );
+
+        // Insert image after specific H2s
+        if (imageInsertPositions.includes(headingIndex) && articleImgs[imageIndex]) {
+          const img = articleImgs[imageIndex];
+          elements.push(
+            <figure key={`img-${imageIndex}`} className="my-8">
+              <img
+                src={img.url}
+                alt={img.alt}
+                className="w-full h-[300px] object-cover rounded-xl shadow-lg"
+              />
+              {img.caption && (
+                <figcaption className="text-center text-sm text-gray-500 mt-3 italic">
+                  {img.caption}
+                </figcaption>
+              )}
+            </figure>
           );
+          imageIndex++;
         }
-        // H3 Headers
-        if (line.startsWith('### ')) {
-          return <h3 key={i} className="text-xl font-bold text-gray-900 mt-8 mb-4">{line.replace('### ', '')}</h3>;
+
+        // Insert interactive module after specific H2
+        if (headingIndex === moduleInsertPosition) {
+          if (post.hasCalculator) {
+            elements.push(<SolarCalculator key="calculator-mid" />);
+          }
+          if (post.hasRegionComparator) {
+            elements.push(<RegionComparator key="region-mid" />);
+          }
         }
-        // Tables
-        if (line.startsWith('|')) {
-          // Check if it's the header separator
-          if (line.includes('---')) return null;
 
-          const cells = line.split('|').filter(cell => cell.trim());
-          const isHeader = i > 0 && content.split('\n')[i + 1]?.includes('---');
+        headingIndex++;
+        i++;
+        continue;
+      }
 
-          if (isHeader) {
-            return (
-              <div key={i} className="overflow-x-auto my-6">
-                <table className="min-w-full border-collapse">
-                  <thead>
-                    <tr className="bg-gray-100">
-                      {cells.map((cell, j) => (
-                        <th key={j} className="border border-gray-300 px-4 py-2 text-left font-semibold text-gray-900">
-                          {cell.trim()}
-                        </th>
+      // H3 Headers
+      if (line.startsWith('### ')) {
+        elements.push(
+          <h3 key={`h3-${i}`} className="text-xl font-bold text-gray-900 mt-8 mb-4">
+            {line.replace('### ', '')}
+          </h3>
+        );
+        i++;
+        continue;
+      }
+
+      // Tables - parse entire table block
+      if (line.startsWith('|')) {
+        const table = parseTable(lines, i);
+        if (table) {
+          elements.push(
+            <div key={`table-${i}`} className="overflow-x-auto my-8 flex justify-center">
+              <table className="border-collapse bg-white rounded-lg overflow-hidden shadow-sm">
+                <thead>
+                  <tr className="bg-gradient-to-r from-orange-50 to-yellow-50">
+                    {table.header.map((cell, j) => (
+                      <th key={j} className="border border-gray-200 px-4 py-3 text-left font-semibold text-gray-900 whitespace-nowrap">
+                        {renderCellContent(cell)}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {table.rows.map((row, rowIdx) => (
+                    <tr key={rowIdx} className={rowIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                      {row.map((cell, cellIdx) => (
+                        <td key={cellIdx} className="border border-gray-200 px-4 py-3 text-gray-700">
+                          {renderCellContent(cell)}
+                        </td>
                       ))}
                     </tr>
-                  </thead>
-                </table>
-              </div>
-            );
-          }
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+          i = table.endIndex + 1;
+          continue;
+        }
+      }
 
-          return (
-            <tr key={i} className="border-b border-gray-200 hover:bg-gray-50">
-              {cells.map((cell, j) => (
-                <td key={j} className="border border-gray-300 px-4 py-2 text-gray-700">
-                  {cell.trim().replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').split('<strong>').map((part, k) => {
-                    if (part.includes('</strong>')) {
-                      const [bold, rest] = part.split('</strong>');
-                      return <span key={k}><strong>{bold}</strong>{rest}</span>;
-                    }
-                    return part;
-                  })}
-                </td>
-              ))}
-            </tr>
-          );
-        }
-        // Lists with bold
-        if (line.startsWith('- **')) {
-          const match = line.match(/- \*\*(.+?)\*\*\s*:?\s*(.*)/);
-          if (match) {
-            return (
-              <li key={i} className="mb-2 text-gray-700 font-light flex items-start">
-                <span className="text-orange-500 mr-2">•</span>
-                <span><strong className="font-semibold text-gray-900">{match[1]}</strong>{match[2] && `: ${match[2]}`}</span>
-              </li>
-            );
-          }
-        }
-        // Regular lists
-        if (line.startsWith('- ')) {
-          return (
-            <li key={i} className="mb-2 text-gray-700 font-light flex items-start">
+      // Blockquote
+      if (line.startsWith('> ')) {
+        elements.push(
+          <blockquote key={`quote-${i}`} className="border-l-4 border-orange-400 bg-orange-50 pl-4 py-3 my-6 italic text-gray-700 rounded-r-lg">
+            {line.replace('> ', '')}
+          </blockquote>
+        );
+        i++;
+        continue;
+      }
+
+      // Horizontal rule
+      if (line.trim() === '---') {
+        elements.push(<hr key={`hr-${i}`} className="my-8 border-gray-200" />);
+        i++;
+        continue;
+      }
+
+      // Lists with bold
+      if (line.startsWith('- **')) {
+        const match = line.match(/- \*\*(.+?)\*\*\s*:?\s*(.*)/);
+        if (match) {
+          elements.push(
+            <li key={`li-${i}`} className="mb-2 text-gray-700 font-light flex items-start">
               <span className="text-orange-500 mr-2">•</span>
-              <span>{line.replace('- ', '')}</span>
+              <span><strong className="font-semibold text-gray-900">{match[1]}</strong>{match[2] && `: ${match[2]}`}</span>
             </li>
           );
+          i++;
+          continue;
         }
-        // Numbered lists
-        if (/^\d+\.\s/.test(line)) {
-          const match = line.match(/^(\d+)\.\s(.+)/);
-          if (match) {
-            return (
-              <li key={i} className="mb-2 text-gray-700 font-light flex items-start">
-                <span className="text-orange-500 font-semibold mr-3 min-w-[20px]">{match[1]}.</span>
-                <span>{match[2]}</span>
-              </li>
-            );
-          }
-        }
-        // Checkboxes
-        if (line.startsWith('- [ ]')) {
-          return (
-            <li key={i} className="mb-2 text-gray-700 font-light flex items-center">
-              <input type="checkbox" disabled className="mr-3 h-4 w-4" />
-              <span>{line.replace('- [ ] ', '')}</span>
+      }
+
+      // Regular lists
+      if (line.startsWith('- ')) {
+        elements.push(
+          <li key={`li-${i}`} className="mb-2 text-gray-700 font-light flex items-start">
+            <span className="text-orange-500 mr-2">•</span>
+            <span>{line.replace('- ', '')}</span>
+          </li>
+        );
+        i++;
+        continue;
+      }
+
+      // Numbered lists
+      if (/^\d+\.\s/.test(line)) {
+        const match = line.match(/^(\d+)\.\s(.+)/);
+        if (match) {
+          elements.push(
+            <li key={`li-${i}`} className="mb-2 text-gray-700 font-light flex items-start">
+              <span className="text-orange-500 font-semibold mr-3 min-w-[20px]">{match[1]}.</span>
+              <span>{match[2]}</span>
             </li>
           );
+          i++;
+          continue;
         }
-        // Bold standalone
-        if (line.startsWith('**') && line.endsWith('**')) {
-          return <p key={i} className="font-semibold text-gray-900 mt-4">{line.replace(/\*\*/g, '')}</p>;
-        }
-        // Paragraphs with inline formatting
-        if (line.trim()) {
-          const formatted = line
-            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.+?)\*/g, '<em>$1</em>');
-          return <p key={i} className="text-gray-700 font-light leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: formatted }} />;
-        }
-        return null;
-      });
+      }
+
+      // Checkboxes
+      if (line.startsWith('- [ ]') || line.startsWith('- [x]')) {
+        const isChecked = line.startsWith('- [x]');
+        elements.push(
+          <li key={`check-${i}`} className="mb-2 text-gray-700 font-light flex items-center">
+            <span className={`mr-3 w-5 h-5 rounded border-2 flex items-center justify-center ${isChecked ? 'bg-green-500 border-green-500 text-white' : 'border-gray-300'}`}>
+              {isChecked && '✓'}
+            </span>
+            <span>{line.replace(/- \[.\] /, '')}</span>
+          </li>
+        );
+        i++;
+        continue;
+      }
+
+      // Bold standalone
+      if (line.startsWith('**') && line.endsWith('**')) {
+        elements.push(
+          <p key={`bold-${i}`} className="font-semibold text-gray-900 mt-4">
+            {line.replace(/\*\*/g, '')}
+          </p>
+        );
+        i++;
+        continue;
+      }
+
+      // Paragraphs with inline formatting
+      if (line.trim()) {
+        const formatted = line
+          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.+?)\*/g, '<em>$1</em>');
+        elements.push(
+          <p key={`p-${i}`} className="text-gray-700 font-light leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: formatted }} />
+        );
+      }
+
+      i++;
+    }
+
+    return elements;
   };
 
   const scrollToTop = () => {
@@ -343,22 +467,9 @@ export default function BlogPost() {
                     {renderContent(post.content)}
                   </div>
 
-                  {/* Interactive Components */}
-                  {post.hasCalculator && (
-                    <SolarCalculator />
-                  )}
-
-                  {post.hasRegionComparator && (
-                    <RegionComparator />
-                  )}
-
+                  {/* Quiz at the end if available */}
                   {post.hasQuiz && (
                     <SolarQuiz />
-                  )}
-
-                  {/* Article Images Gallery */}
-                  {post.images && getArticleImages(post.images).length > 0 && (
-                    <ImageGallery images={getArticleImages(post.images)} />
                   )}
 
                   {/* FAQ Section */}

@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToHash from "./components/ScrollToHash";
 import ErrorBoundary from "./components/ErrorBoundary";
+import CookieConsent from "./components/CookieConsent";
 import HomePage from "./pages/HomePage";
 
 // Code-splitting : chargement différé des pages secondaires
@@ -33,6 +34,7 @@ export default function App() {
     <ErrorBoundary>
       <BrowserRouter>
         <ScrollToHash />
+        <CookieConsent />
         <Suspense fallback={<PageLoader />}>
           <Routes>
           <Route path="/" element={<HomePage />} />

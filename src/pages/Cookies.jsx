@@ -102,19 +102,43 @@ export default function Cookies() {
               </div>
 
               {/* Cookies analytiques */}
-              <div className="border-l-4 border-gray-400 pl-4 bg-gray-50 p-4 rounded-lg">
-                <h3 className="font-bold text-gray-900 mb-3">Cookies Analytiques (Facultatifs)</h3>
-                <p className="text-gray-700 text-sm font-light mb-2">
-                  Ces cookies nous aident à comprendre comment vous utilisez le site 
-                  pour améliorer votre expérience.
+              <div className="border-l-4 border-blue-400 pl-4 bg-blue-50 p-4 rounded-lg">
+                <h3 className="font-bold text-gray-900 mb-3">Cookies Analytiques (Soumis à consentement)</h3>
+                <p className="text-gray-700 text-sm font-light mb-3">
+                  Ces cookies nous aident à comprendre comment vous utilisez le site
+                  pour améliorer votre expérience. Ils ne sont activés qu'après votre consentement.
                 </p>
-                <div className="bg-white p-3 rounded border border-gray-200">
-                  <p className="text-sm text-gray-600 font-semibold">
-                    ⚙️ Actuellement désactivé
-                  </p>
-                  <p className="text-sm text-gray-500 font-light mt-1">
-                    Aucun cookie analytique n'est actuellement utilisé sur ce site.
-                  </p>
+                <div className="space-y-2 text-sm font-light">
+                  <div className="bg-white p-3 rounded border border-blue-200">
+                    <div className="font-semibold text-blue-900 mb-1">Google Analytics 4</div>
+                    <p className="text-blue-700">
+                      <strong>Finalité :</strong> Mesure d'audience, analyse du trafic et comportement utilisateur
+                    </p>
+                    <p className="text-blue-700">
+                      <strong>Durée :</strong> 2 ans maximum
+                    </p>
+                    <p className="text-blue-700">
+                      <strong>Plus d'infos :</strong>{" "}
+                      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-900">
+                        Politique Google
+                      </a>
+                    </p>
+                  </div>
+                  <div className="bg-white p-3 rounded border border-blue-200">
+                    <div className="font-semibold text-blue-900 mb-1">Meta Pixel (Facebook)</div>
+                    <p className="text-blue-700">
+                      <strong>Finalité :</strong> Mesure de l'efficacité publicitaire et remarketing
+                    </p>
+                    <p className="text-blue-700">
+                      <strong>Durée :</strong> 90 jours maximum
+                    </p>
+                    <p className="text-blue-700">
+                      <strong>Plus d'infos :</strong>{" "}
+                      <a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-900">
+                        Politique Meta
+                      </a>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -188,12 +212,13 @@ export default function Cookies() {
 
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed font-light mb-4">
-                Ce site n'utilise <strong>aucun cookie publicitaire ou de tracking 
-                tiers</strong> sans votre consentement explicite.
+                Ce site utilise des cookies tiers (Google Analytics, Meta Pixel)
+                <strong> uniquement après votre consentement explicite</strong>.
+                Un bandeau de consentement vous est présenté lors de votre première visite.
               </p>
               <p className="text-gray-700 leading-relaxed font-light">
-                Nous ne partageons aucune donnée avec des régies publicitaires, 
-                réseaux sociaux ou plateformes d'analyse marketing tierces.
+                Si vous refusez les cookies analytiques, aucune donnée n'est partagée
+                avec ces services tiers.
               </p>
             </div>
           </section>

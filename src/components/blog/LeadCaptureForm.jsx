@@ -12,22 +12,41 @@ export default function LeadCaptureForm({ variant = "inline" }) {
 
     setLoading(true);
 
-    // Track conversion
-    if (window.gtag) {
-      window.gtag('event', 'lead_magnet_download', {
-        event_category: 'Lead',
-        event_label: 'Guide PDF Download'
+    try {
+      // Ajouter à Brevo
+      const response = await fetch('/add-to-brevo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          listId: import.meta.env.VITE_BREVO_LIST_ID || '3',
+          source: 'Lead Magnet PDF - Blog'
+        }),
       });
-    }
-    if (window.fbq) {
-      window.fbq('track', 'Lead', { content_name: 'Guide PDF' });
-    }
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 800));
+      if (!response.ok) {
+        console.error('Erreur Brevo:', await response.text());
+      }
 
-    setSubmitted(true);
-    setLoading(false);
+      // Track conversion
+      if (window.gtag) {
+        window.gtag('event', 'lead_magnet_download', {
+          event_category: 'Lead',
+          event_label: 'Guide PDF Download'
+        });
+      }
+      if (window.fbq) {
+        window.fbq('track', 'Lead', { content_name: 'Guide PDF' });
+      }
+
+      setSubmitted(true);
+    } catch (error) {
+      console.error('Erreur:', error);
+      // On affiche quand même le PDF en cas d'erreur Brevo
+      setSubmitted(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {

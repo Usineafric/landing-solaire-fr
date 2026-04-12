@@ -49,6 +49,80 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Articles de blog -->
+  <url>
+    <loc>https://lepanneausolaire.com/blog/combien-coute-installation-panneaux-solaires-2026</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/aides-etat-panneaux-solaires-guide-complet</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/panneaux-solaires-rentabilite-region-france</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/autoconsommation-vs-revente-surplus</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/monocristallin-vs-polycristallin</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/installation-panneaux-solaires-ile-de-france</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/installation-panneaux-solaires-paca</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/choisir-installateur-panneaux-solaires-rge</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/entretien-panneaux-solaires-guide</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/batteries-stockage-solaire-guide</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/panneaux-solaires-copropriete-guide</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/panneaux-solaires-assurance-garanties-guide</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Mentions legales -->
   <url>
     <loc>https://lepanneausolaire.com/mentions-legales</loc>

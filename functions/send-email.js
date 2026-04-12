@@ -55,28 +55,109 @@ export async function onRequest(context) {
       throw new Error('Type invalide');
     }
 
-    // Envoyer via Resend API
-    const response = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${env.VITE_RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(emailData),
-    });
+    // Tentative 1 : Envoyer via Resend API
+    let resendError = null;
+    try {
+      console.log('[send-email] Tentative envoi via Resend...', {
+        type,
+        to: emailData.to,
+        from: emailData.from,
+        hasApiKey: !!env.VITE_RESEND_API_KEY,
+        apiKeyPrefix: env.VITE_RESEND_API_KEY ? env.VITE_RESEND_API_KEY.substring(0, 8) + '...' : 'MISSING',
+      });
 
-    const data = await response.json();
+      const response = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${env.VITE_RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailData),
+      });
 
-    if (!response.ok) {
-      throw new Error(data.message || 'Erreur envoi email');
+      const data = await response.json();
+
+      console.log('[send-email] Réponse Resend:', {
+        status: response.status,
+        statusText: response.statusText,
+        data: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        resendError = data.message || `Resend HTTP ${response.status}`;
+        console.error('[send-email] Erreur Resend:', resendError);
+      } else {
+        console.log('[send-email] Email envoyé via Resend, id:', data.id);
+        return new Response(JSON.stringify({ success: true, id: data.id, provider: 'resend' }), {
+          status: 200,
+          headers: corsHeaders,
+        });
+      }
+    } catch (err) {
+      resendError = err.message;
+      console.error('[send-email] Exception Resend:', err.message);
     }
 
-    return new Response(JSON.stringify({ success: true, id: data.id }), {
-      status: 200,
-      headers: corsHeaders,
-    });
+    // Tentative 2 : Fallback via Brevo (API transactionnelle SMTP)
+    try {
+      console.log('[send-email] Fallback Brevo...', {
+        hasBrevoKey: !!env.BREVO_API_KEY,
+        to: emailData.to,
+      });
+
+      const brevoPayload = {
+        sender: { name: 'Le Panneau Solaire', email: 'contact@lepanneausolaire.com' },
+        to: [{ email: emailData.to }],
+        subject: emailData.subject,
+        htmlContent: emailData.html,
+      };
+
+      const brevoResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
+        method: 'POST',
+        headers: {
+          'accept': 'application/json',
+          'api-key': env.BREVO_API_KEY,
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(brevoPayload),
+      });
+
+      const brevoData = await brevoResponse.json();
+
+      console.log('[send-email] Réponse Brevo:', {
+        status: brevoResponse.status,
+        data: JSON.stringify(brevoData),
+      });
+
+      if (!brevoResponse.ok) {
+        throw new Error(brevoData.message || `Brevo HTTP ${brevoResponse.status}`);
+      }
+
+      console.log('[send-email] Email envoyé via Brevo (fallback), messageId:', brevoData.messageId);
+      return new Response(JSON.stringify({
+        success: true,
+        id: brevoData.messageId,
+        provider: 'brevo',
+        resendError: resendError,
+      }), {
+        status: 200,
+        headers: corsHeaders,
+      });
+
+    } catch (brevoErr) {
+      console.error('[send-email] Erreur Brevo fallback:', brevoErr.message);
+      // Les deux providers ont échoué
+      return new Response(JSON.stringify({
+        error: `Resend: ${resendError} | Brevo: ${brevoErr.message}`,
+        providers_tried: ['resend', 'brevo'],
+      }), {
+        status: 500,
+        headers: corsHeaders,
+      });
+    }
 
   } catch (error) {
+    console.error('[send-email] Erreur générale:', error.message);
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers: corsHeaders,

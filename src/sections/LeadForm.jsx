@@ -116,8 +116,19 @@ export default function LeadForm() {
       };
 
       await saveLead(leadData);
-      await sendConfirmationEmail(leadData);
-      await sendAdminNotification(leadData);
+
+      // Envoi des emails - ne bloque pas la soumission si échec
+      try {
+        await sendConfirmationEmail(leadData);
+      } catch (emailErr) {
+        console.error('[LeadForm] Échec email confirmation:', emailErr.message);
+      }
+
+      try {
+        await sendAdminNotification(leadData);
+      } catch (emailErr) {
+        console.error('[LeadForm] Échec notification admin:', emailErr.message);
+      }
 
       // Tracking de la conversion
       trackLeadConversion({
@@ -128,6 +139,7 @@ export default function LeadForm() {
       setSent(true);
       setSubmitting(false);
     } catch (err) {
+      console.error('[LeadForm] Erreur soumission:', err.message);
       setError("Une erreur est survenue. Veuillez réessayer.");
       setSubmitting(false);
     }

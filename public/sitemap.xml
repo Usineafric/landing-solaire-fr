@@ -4,91 +4,146 @@
   <!-- Page d'accueil -->
   <url>
     <loc>https://lepanneausolaire.com/</loc>
-    <lastmod>2026-01-18</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Pages principales -->
-  <url>
-    <loc>https://lepanneausolaire.com/garanties</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://lepanneausolaire.com/processus</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://lepanneausolaire.com/realisations</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
+  <!-- Simulateur -->
   <url>
     <loc>https://lepanneausolaire.com/simulateur</loc>
-    <lastmod>2026-01-18</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+
+  <!-- Processus -->
+  <url>
+    <loc>https://lepanneausolaire.com/processus</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Realisations -->
+  <url>
+    <loc>https://lepanneausolaire.com/realisations</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Garanties -->
+  <url>
+    <loc>https://lepanneausolaire.com/garanties</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <!-- Blog -->
   <url>
     <loc>https://lepanneausolaire.com/blog</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
 
-  <!-- Articles de blog - Prix et Financement -->
+  <!-- Articles de blog -->
   <url>
     <loc>https://lepanneausolaire.com/blog/combien-coute-installation-panneaux-solaires-2026</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
-
-  <!-- Articles de blog - Aides et Subventions -->
   <url>
     <loc>https://lepanneausolaire.com/blog/aides-etat-panneaux-solaires-guide-complet</loc>
-    <lastmod>2026-01-10</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
-
-  <!-- Articles de blog - Rentabilite -->
   <url>
     <loc>https://lepanneausolaire.com/blog/panneaux-solaires-rentabilite-region-france</loc>
-    <lastmod>2026-01-05</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/autoconsommation-vs-revente-surplus</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/monocristallin-vs-polycristallin</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/installation-panneaux-solaires-ile-de-france</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/installation-panneaux-solaires-paca</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/choisir-installateur-panneaux-solaires-rge</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/entretien-panneaux-solaires-guide</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/batteries-stockage-solaire-guide</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/panneaux-solaires-copropriete-guide</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lepanneausolaire.com/blog/panneaux-solaires-assurance-garanties-guide</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
-  <!-- Pages legales -->
+  <!-- Mentions legales -->
   <url>
     <loc>https://lepanneausolaire.com/mentions-legales</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
 
+  <!-- Politique de confidentialite -->
   <url>
     <loc>https://lepanneausolaire.com/politique-de-confidentialite</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
 
+  <!-- Cookies -->
   <url>
     <loc>https://lepanneausolaire.com/cookies</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
 

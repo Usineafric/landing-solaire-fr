@@ -141,7 +141,7 @@ export const articleImages = {
     { url: "/images/blog/facture-edf-2.webp", alt: "Écran Linky affichage index", caption: "Le compteur Linky affiche index de consommation et injection" }
   ],
   "printemps-solaire": [
-    { url: "/images/blog/printemps-solaire-1.webp", alt: "Maison française au printemps avec panneaux solaires et jardin fleuri", caption: "Le printemps offre les conditions idéales pour poser vos panneaux" },
+    { url: "/images/blog/printemps-solaire-hero.webp", alt: "Maison française au printemps avec panneaux solaires et jardin fleuri", caption: "Le printemps offre les conditions idéales pour poser vos panneaux" },
     { url: "/images/blog/printemps-solaire-2.webp", alt: "Technicien installant des panneaux solaires par beau temps printanier", caption: "Les installateurs sont plus disponibles au printemps qu'en été" }
   ]
 };

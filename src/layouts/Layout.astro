@@ -1,0 +1,53 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+}
+
+const { title, description = "Installation de panneaux solaires en France. Devis gratuit, aides 2026, guide complet.", image = "/og-image.jpg", canonical } = Astro.props;
+const siteUrl = "https://lepanneausolaire.com";
+const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+const canonicalUrl = canonical || Astro.url.href;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullImageUrl} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Le Panneau Solaire" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullImageUrl} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6BR1NTYQMN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6BR1NTYQMN');
+    </script>
+  </head>
+  <body class="min-h-screen bg-white text-gray-900 antialiased">
+    <slot />
+  </body>
+</html>

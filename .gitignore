@@ -32,3 +32,6 @@ dist-ssr
 # Google Cloud credentials (NEVER commit)
 google-credentials.json
 *-service-account*.json
+
+# Generator log
+scripts/.generated.json

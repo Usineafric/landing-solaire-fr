@@ -1,0 +1,124 @@
+---
+import Layout from './Layout.astro';
+import LeadCTA from '../components/LeadCTA.astro';
+
+interface Props {
+  frontmatter: {
+    title: string;
+    metaTitle: string;
+    metaDescription: string;
+    excerpt: string;
+    date: string;
+    author: string;
+    category: string;
+    image: string;
+    readTime: string;
+    faq?: Array<{ question: string; answer: string }>;
+  };
+}
+
+const { frontmatter } = Astro.props;
+const formattedDate = new Date(frontmatter.date).toLocaleDateString('fr-FR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+const categoryLabels: Record<string, string> = {
+  'guide-pratique': 'Guide pratique',
+  'prix-financement': 'Prix et financement',
+  'technique': 'Technique',
+  'rentabilite': 'Rentabilité',
+  'aides-subventions': 'Aides et subventions',
+  'regional': 'Par région',
+};
+
+const faqSchema = frontmatter.faq?.length
+  ? JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: frontmatter.faq.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer,
+        },
+      })),
+    })
+  : null;
+---
+
+<Layout title={frontmatter.metaTitle} description={frontmatter.metaDescription} image={frontmatter.image}>
+  {faqSchema && <script type="application/ld+json" set:html={faqSchema} />}
+
+  <article class="max-w-4xl mx-auto px-4 py-12">
+    <!-- Header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">
+          {categoryLabels[frontmatter.category] || frontmatter.category}
+        </span>
+        <span class="text-gray-500 text-sm">{frontmatter.readTime} de lecture</span>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{frontmatter.title}</h1>
+      <p class="text-lg text-gray-600 mb-6">{frontmatter.excerpt}</p>
+      <div class="flex items-center gap-4 text-sm text-gray-500">
+        <span>Par {frontmatter.author}</span>
+        <span>·</span>
+        <time datetime={frontmatter.date}>{formattedDate}</time>
+      </div>
+    </header>
+
+    <!-- Hero Image -->
+    {frontmatter.image && (
+      <img
+        src={frontmatter.image}
+        alt={frontmatter.title}
+        class="w-full rounded-2xl mb-10 shadow-lg"
+        width="1200"
+        height="630"
+        loading="eager"
+      />
+    )}
+
+    <!-- Article Content -->
+    <div class="prose prose-lg prose-yellow max-w-none
+      prose-headings:text-gray-900
+      prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
+      prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+      prose-p:text-gray-700 prose-p:leading-relaxed
+      prose-a:text-yellow-600 prose-a:underline
+      prose-strong:text-gray-900
+      prose-table:border-collapse
+      prose-th:bg-gray-100 prose-th:p-3
+      prose-td:p-3 prose-td:border prose-td:border-gray-200
+      prose-blockquote:border-l-yellow-500 prose-blockquote:bg-yellow-50 prose-blockquote:py-1 prose-blockquote:px-4 prose-blockquote:rounded-r-lg
+      prose-li:text-gray-700">
+      <slot />
+    </div>
+
+    <!-- FAQ Section -->
+    {frontmatter.faq && frontmatter.faq.length > 0 && (
+      <section class="mt-16 border-t pt-10">
+        <h2 class="text-2xl font-bold mb-8">Questions fréquentes</h2>
+        <div class="space-y-6">
+          {frontmatter.faq.map((item) => (
+            <details class="group bg-gray-50 rounded-xl p-6 cursor-pointer">
+              <summary class="flex items-center justify-between font-semibold text-gray-900 list-none">
+                {item.question}
+                <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <p class="mt-4 text-gray-600 leading-relaxed">{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Lead CTA -->
+    <LeadCTA />
+  </article>
+</Layout>

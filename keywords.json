@@ -1,0 +1,94 @@
+{
+  "site": {
+    "name": "Le Panneau Solaire",
+    "url": "https://lepanneausolaire.com",
+    "default_author": "Équipe Le Panneau Solaire"
+  },
+  "niches": [
+    {
+      "id": "panneaux-solaires",
+      "name": "Panneaux Solaires",
+      "languages": ["fr"],
+      "categories": [
+        "guide-pratique",
+        "prix-financement",
+        "technique",
+        "rentabilite",
+        "aides-subventions",
+        "regional"
+      ],
+      "keywords": [
+        {
+          "keyword": "panneau solaire pour camping car guide 2026",
+          "slug": "panneau-solaire-camping-car-guide-2026",
+          "category": "guide-pratique",
+          "language": "fr",
+          "priority": 1
+        },
+        {
+          "keyword": "panneau solaire thermique vs photovoltaique",
+          "slug": "panneau-solaire-thermique-vs-photovoltaique",
+          "category": "technique",
+          "language": "fr",
+          "priority": 1
+        },
+        {
+          "keyword": "raccordement enedis panneaux solaires delai 2026",
+          "slug": "raccordement-enedis-panneaux-solaires-delai-2026",
+          "category": "guide-pratique",
+          "language": "fr",
+          "priority": 2
+        },
+        {
+          "keyword": "panneaux solaires et grele resistance",
+          "slug": "panneaux-solaires-grele-resistance",
+          "category": "technique",
+          "language": "fr",
+          "priority": 2
+        },
+        {
+          "keyword": "production panneau solaire par mois france",
+          "slug": "production-panneau-solaire-par-mois-france",
+          "category": "rentabilite",
+          "language": "fr",
+          "priority": 1
+        },
+        {
+          "keyword": "panneaux solaires bretagne aides rentabilite",
+          "slug": "panneaux-solaires-bretagne-aides-rentabilite",
+          "category": "regional",
+          "language": "fr",
+          "priority": 2
+        },
+        {
+          "keyword": "recyclage panneaux solaires france filiere",
+          "slug": "recyclage-panneaux-solaires-france-filiere",
+          "category": "technique",
+          "language": "fr",
+          "priority": 3
+        },
+        {
+          "keyword": "borne recharge voiture electrique panneaux solaires",
+          "slug": "borne-recharge-voiture-electrique-panneaux-solaires",
+          "category": "guide-pratique",
+          "language": "fr",
+          "priority": 1
+        },
+        {
+          "keyword": "panneaux solaires maison neuve RT 2025",
+          "slug": "panneaux-solaires-maison-neuve-rt-2025",
+          "category": "guide-pratique",
+          "language": "fr",
+          "priority": 2
+        },
+        {
+          "keyword": "arnaque panneaux solaires comment eviter",
+          "slug": "arnaque-panneaux-solaires-comment-eviter",
+          "category": "guide-pratique",
+          "language": "fr",
+          "priority": 1
+        }
+      ]
+    }
+  ]
+}

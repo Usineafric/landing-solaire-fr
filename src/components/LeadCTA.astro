@@ -1,0 +1,75 @@
+---
+// Lead Capture CTA — inserted at the bottom of every blog post
+---
+
+<section class="mt-16 bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-8 md:p-12 border border-yellow-200">
+  <div class="text-center max-w-2xl mx-auto">
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+      Demandez votre étude solaire gratuite
+    </h2>
+    <p class="text-gray-600 mb-8 text-lg">
+      Recevez une estimation personnalisée de vos économies en 48h.
+      Sans engagement, 100% gratuit.
+    </p>
+
+    <form
+      id="blog-lead-form"
+      class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto mb-6"
+      action="/api/lead"
+      method="POST"
+    >
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="Votre email"
+        class="flex-1 px-4 py-3 rounded-xl border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 outline-none text-gray-900"
+      />
+      <input
+        type="text"
+        name="postalCode"
+        required
+        pattern="[0-9]{5}"
+        placeholder="Code postal"
+        class="w-32 px-4 py-3 rounded-xl border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 outline-none text-gray-900"
+      />
+      <button
+        type="submit"
+        class="px-6 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-xl hover:from-yellow-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl"
+      >
+        Devis gratuit
+      </button>
+    </form>
+
+    <p class="text-xs text-gray-500">
+      Vos données sont protégées. Consultez notre
+      <a href="/politique-de-confidentialite" class="underline">politique de confidentialité</a>.
+    </p>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('blog-lead-form');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    try {
+      const res = await fetch('/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'admin',
+          leadData: { email: data.email, postalCode: data.postalCode, firstName: 'Blog', lastName: 'Lead', source: window.location.pathname },
+        }),
+      });
+
+      if (res.ok) {
+        form.innerHTML = '<p class="text-green-600 font-bold text-lg py-4">Merci ! Nous vous recontactons sous 48h.</p>';
+      }
+    } catch (err) {
+      console.error('Lead form error:', err);
+    }
+  });
+</script>

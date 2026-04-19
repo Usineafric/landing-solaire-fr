@@ -143,6 +143,10 @@ export const articleImages = {
   "printemps-solaire": [
     { url: "/images/blog/printemps-solaire-hero.webp", alt: "Maison française au printemps avec panneaux solaires et jardin fleuri", caption: "Le printemps offre les conditions idéales pour poser vos panneaux" },
     { url: "/images/blog/printemps-solaire-2.webp", alt: "Technicien installant des panneaux solaires par beau temps printanier", caption: "Les installateurs sont plus disponibles au printemps qu'en été" }
+  ],
+  "borne-voiture-solaire": [
+    { url: "/images/blog/borne-voiture-solaire-hero.webp", alt: "Voiture électrique se chargeant grâce aux panneaux solaires de la maison", caption: "Rechargez votre voiture électrique avec votre propre énergie solaire" },
+    { url: "/images/blog/borne-voiture-solaire-2.webp", alt: "Borne de recharge domestique Wallbox", caption: "Une wallbox connectée aux panneaux solaires maximise l'autoconsommation" }
   ]
 };
 
@@ -11175,6 +11179,306 @@ Si vous cochez au moins 5 cases, vous êtes dans la configuration idéale pour i
 Le printemps 2026 est là. Chaque semaine qui passe, c'est de la production solaire en moins et potentiellement des aides en moins. **Ne laissez pas passer cette fenêtre.**
 
 **Demandez votre étude personnalisée gratuite** dès aujourd'hui. En 48h, nous analysons votre toiture, calculons votre production potentielle et estimons vos économies sur 25 ans.
+
+[➡️ Demander mon étude gratuite](#form)`
+  },
+  // ============================================
+  // ARTICLE 34 - BORNE RECHARGE VE + PANNEAUX SOLAIRES
+  // ============================================
+  {
+    id: "borne-recharge-voiture-electrique-panneaux-solaires",
+    title: "Borne de Recharge + Panneaux Solaires : Le Guide 2026",
+    excerpt: "Coupler une borne de recharge à vos panneaux solaires permet de rouler gratuitement grâce au soleil. Guide complet 2026 : prix, installation, économies réelles et aides disponibles.",
+    image: "/images/blog/borne-voiture-solaire-hero.webp",
+    category: "technique",
+    readTime: "16 min",
+    date: "2026-04-20",
+    author: "Équipe Le Panneau Solaire",
+    metaTitle: "Borne Recharge Voiture Électrique + Panneaux Solaires 2026",
+    metaDescription: "Coupler borne de recharge et panneaux solaires : économisez 1 500€/an de carburant. Guide installation, prix, aides 2026.",
+    images: "borne-voiture-solaire",
+    relatedPosts: ["autoconsommation-vs-revente-surplus", "batteries-stockage-solaire-guide", "combien-panneaux-solaires-maison"],
+    faq: [
+      {
+        question: "Combien de panneaux solaires pour recharger une voiture électrique ?",
+        answer: "Pour une voiture électrique consommant 15 000 km/an (soit environ 2 500 kWh), il faut ajouter 2 à 3 kWc à votre installation solaire (5-8 panneaux de 400 Wc). Cela représente un surcoût de 4 000 à 6 000€ mais génère environ 500-800€ d'économies annuelles sur votre budget carburant."
+      },
+      {
+        question: "Une borne de recharge solaire est-elle rentable ?",
+        answer: "Oui, très rentable. Recharger votre voiture avec l'énergie solaire coûte 0€ par kWh vs 0,2762€/kWh au réseau et 1,70€/litre à la pompe. Sur 15 000 km/an, vous économisez 1 200 à 1 800€ par an. Le retour sur investissement d'une wallbox solaire est de 4 à 6 ans."
+      },
+      {
+        question: "Quelle puissance de borne pour voiture électrique ?",
+        answer: "Pour un usage domestique, une wallbox de 7,4 kW (monophasé) suffit pour recharger 40-50 km d'autonomie par heure. Pour les grosses berlines ou recharge rapide, optez pour 11 kW ou 22 kW (triphasé). La borne 3,7 kW (prise renforcée) reste possible mais très lente : 8-10h pour une charge complète."
+      },
+      {
+        question: "Quelles aides pour installer une borne de recharge en 2026 ?",
+        answer: "En 2026 : crédit d'impôt de 500€ pour l'installation d'une borne à domicile, prime Advenir jusqu'à 960€ pour les copropriétés, TVA réduite à 5,5% sous conditions, et aides régionales variables (Île-de-France jusqu'à 500€, Occitanie 1 000€). Ces aides sont cumulables avec les aides panneaux solaires."
+      },
+      {
+        question: "Peut-on recharger une voiture électrique la nuit avec ses panneaux solaires ?",
+        answer: "Pas directement, car les panneaux ne produisent pas la nuit. Trois solutions : 1) ajouter une batterie domestique (5-15 kWh) pour stocker le surplus diurne, 2) programmer la recharge en journée avec un système de pilotage intelligent, 3) utiliser le tarif EDF Heures Creuses la nuit et vendre votre surplus solaire en journée pour compenser."
+      }
+    ],
+    content: `## Rouler au soleil : le combo solaire + voiture électrique
+
+L'équation semble presque trop belle : des panneaux solaires sur votre toit, une **voiture électrique dans votre garage**, et une borne de recharge qui les relie. Résultat : vous roulez avec l'énergie du soleil, **quasi gratuitement**, pendant 20 à 30 ans.
+
+En 2026, avec la hausse continue du prix de l'électricité (+75% en 6 ans) et des carburants fossiles, coupler ces deux technologies devient **l'investissement le plus rentable** pour un foyer français équipé ou en passe de l'être d'une voiture électrique.
+
+**Ce que vous allez découvrir :**
+- Pourquoi le couplage solaire + VE est si rentable
+- Combien de panneaux ajouter selon votre kilométrage
+- Les types de bornes compatibles et leur prix
+- Les aides 2026 cumulables
+- Les systèmes de pilotage intelligent qui maximisent l'autoconsommation
+- Un calcul précis de retour sur investissement
+
+---
+
+## Pourquoi coupler solaire et voiture électrique ?
+
+### Le calcul économique imbattable
+
+En France, le coût au kilomètre varie radicalement selon la source d'énergie :
+
+| Source d'énergie | Coût pour 100 km |
+|------------------|-------------------|
+| Essence (6 L/100km) | **10,20 €** |
+| Diesel (5 L/100km) | **8,50 €** |
+| Électricité réseau (0,2762 €/kWh) | **4,14 €** |
+| **Électricité solaire autoproduite** | **0,20 €** (coût amortissement panneaux) |
+
+Sur 15 000 km/an, rouler au soleil vous fait économiser **1 470€** par rapport à l'essence et **590€** par rapport à la recharge réseau classique.
+
+> **Le saviez-vous ?** Un véhicule électrique consomme en moyenne 15-18 kWh pour 100 km. Une installation solaire de 3 kWc supplémentaire produit environ 3 600 kWh/an, soit 20 000 km de roulage gratuit.
+
+### L'indépendance énergétique totale
+
+Au-delà de l'économie, c'est un enjeu **d'autonomie** :
+- Fluctuations du prix du pétrole sans impact sur votre budget
+- Pas de dépendance aux stations-service
+- Protection contre les hausses futures de l'électricité
+- Indépendance face aux tensions géopolitiques sur l'énergie
+
+---
+
+## Combien de panneaux ajouter pour votre voiture ?
+
+Le dimensionnement dépend de **trois facteurs** :
+1. Votre consommation de 100 km (kWh)
+2. Votre kilométrage annuel
+3. L'ensoleillement de votre région
+
+### Tableau de dimensionnement
+
+| Kilométrage annuel | Consommation annuelle | Panneaux supplémentaires | Surcoût installation |
+|--------------------|----------------------|-------------------------|---------------------|
+| 10 000 km | ~1 700 kWh | 1,5 kWc (4 panneaux) | +3 000 à 4 000€ |
+| 15 000 km | ~2 500 kWh | 2,5 kWc (6 panneaux) | +4 500 à 6 000€ |
+| 20 000 km | ~3 400 kWh | 3 kWc (8 panneaux) | +5 500 à 7 500€ |
+| 25 000 km | ~4 200 kWh | 4 kWc (10 panneaux) | +7 000 à 9 500€ |
+| 30 000 km | ~5 000 kWh | 4,5 kWc (12 panneaux) | +8 000 à 11 000€ |
+
+**Exemple concret :** Une famille qui fait 15 000 km/an avec une Renault Megane E-Tech (17 kWh/100km) doit ajouter 2,5 kWc (6 panneaux) à son installation existante. Ces panneaux produiront environ 3 000 kWh/an, couvrant entièrement les besoins de la voiture.
+
+### Cas pratique : famille Dubois en Nouvelle-Aquitaine
+
+- **Installation existante :** 6 kWc (15 panneaux)
+- **Voiture ajoutée :** Peugeot e-208, 15 kWh/100km, 12 000 km/an
+- **Besoin supplémentaire :** 1 800 kWh/an
+- **Ajout :** 1,5 kWc (4 panneaux)
+- **Coût additionnel :** 4 500€ (aides déduites)
+- **Économie carburant :** 1 200€/an
+- **Retour sur investissement :** 3,75 ans
+
+---
+
+## Les types de bornes de recharge
+
+### 1. La prise renforcée (Green'Up Schneider) — 3,7 kW
+
+**Prix :** 150-300€ + installation 300-500€
+**Temps de charge :** 8 à 12h pour 300 km d'autonomie
+**Usage :** occasionnel, petits trajets quotidiens
+
+C'est la solution d'entrée de gamme, parfaite si vous roulez peu et rechargez chez vous chaque nuit. L'inconvénient : pas de pilotage intelligent, pas d'optimisation avec les panneaux solaires.
+
+### 2. La wallbox standard — 7,4 kW (monophasé)
+
+**Prix :** 800-1 500€ + installation 400-800€
+**Temps de charge :** 4 à 6h pour une charge complète
+**Usage :** quotidien, idéal pour la plupart des foyers
+
+C'est **la solution la plus courante**. Compatible avec toutes les voitures électriques, elle offre un bon compromis puissance/prix. Certains modèles intègrent le pilotage solaire.
+
+### 3. La wallbox connectée solaire — 7,4 à 11 kW
+
+**Prix :** 1 200-2 500€ + installation 500-1 000€
+**Marques leaders :** Wallbox Pulsar Plus, Easee Home, Hager witty.solar, Green Motion
+
+Ces bornes sont **conçues pour le solaire**. Elles ajustent la puissance de recharge en temps réel selon la production photovoltaïque, maximisant l'autoconsommation. Certains modèles attendent que la production dépasse un seuil avant de charger.
+
+> **Notre recommandation :** Pour un usage quotidien avec panneaux solaires, optez pour une wallbox connectée à 7,4 kW. Le surcoût vs une wallbox standard (~500€) est vite compensé par les économies sur la facture d'électricité.
+
+### 4. La wallbox triphasée — 11 à 22 kW
+
+**Prix :** 1 500-3 500€ + installation 800-1 500€
+**Temps de charge :** 2 à 4h pour une charge complète
+**Usage :** grosses berlines, familles multi-véhicules, pros
+
+Nécessite une **alimentation triphasée** (pas toujours disponible dans les logements anciens). À réserver aux cas qui le justifient vraiment : l'écart de vitesse de charge est souvent inutile pour un usage domestique.
+
+---
+
+## Le pilotage intelligent : la vraie innovation 2026
+
+Sans pilotage, votre borne consomme toute la puissance disponible sans tenir compte de votre production solaire. **Résultat :** vous tirez souvent du réseau au prix fort (0,2762€/kWh) alors que vos panneaux produisent.
+
+### Les 3 modes de pilotage
+
+**Mode 1 : Pilotage "excès solaire" (Surplus)**
+- La borne recharge uniquement quand la production dépasse la consommation de la maison
+- Maximise l'autoconsommation à 100%
+- Temps de charge variable selon l'ensoleillement
+
+**Mode 2 : Pilotage "mixte" (hybride)**
+- Utilise d'abord le solaire, complète au réseau si besoin
+- Bon compromis vitesse/économie
+- Permet de programmer une charge minimum garantie
+
+**Mode 3 : Pilotage "heures creuses"**
+- Couple avec le tarif EDF HC (0,2146€/kWh la nuit)
+- Vend le surplus solaire en journée via EDF OA
+- Stratégie efficace sans batterie
+
+### Les systèmes les plus populaires en France
+
+- **MyEnergi Zappi :** la référence, compatible tous panneaux (1 900€)
+- **Wallbox Pulsar Plus + Power Boost :** interface intuitive, API ouverte (1 300€)
+- **Easee Home + Easee Equalizer :** norvégien, esthétique, simple (1 400€)
+- **Hager witty.solar :** made in France, garantie 3 ans (1 700€)
+
+---
+
+## Les aides 2026 pour votre borne de recharge
+
+### Aides nationales
+
+| Aide | Montant | Conditions |
+|------|---------|-----------|
+| Crédit d'impôt borne | **500€** | Résidence principale + secondaire |
+| TVA réduite 5,5% | Économie ~80€ | Logement > 2 ans |
+| Prime Advenir (copropriétés) | **960€** | Immeuble collectif |
+| Certificats CEE | 100-300€ | Selon fournisseur |
+
+### Aides régionales cumulables
+
+- **Île-de-France :** jusqu'à 500€ via le Conseil Régional
+- **Occitanie :** 1 000€ via Éco-Chèque Énergie
+- **Nouvelle-Aquitaine :** 300€ pour les véhicules électriques
+- **PACA :** subvention variable via Communautés de communes
+
+### Cumul aides borne + panneaux solaires
+
+En couplant les deux projets, vous pouvez cumuler :
+- Prime autoconsommation (1 680€ pour 6 kWc)
+- TVA 10% panneaux ≤3 kWc
+- Crédit d'impôt borne (500€)
+- Prime Advenir (960€ si copro)
+- Aides régionales spécifiques
+
+**Total des aides pour un projet complet : 3 500 à 5 500€**
+
+---
+
+## Retour sur investissement : le calcul complet
+
+### Hypothèses
+
+- **Installation solaire existante :** 6 kWc (déjà amortie)
+- **Ajout panneaux VE :** 2,5 kWc (6 panneaux) = 5 500€
+- **Borne wallbox solaire 7,4 kW :** 1 800€ installée
+- **Aides déduites :** -1 500€
+- **Investissement net :** 5 800€
+
+### Économies annuelles
+
+| Poste | Économie annuelle |
+|-------|-------------------|
+| Carburant essence évité (15 000 km) | 1 470€ |
+| Moins : recharge réseau occasionnelle (20%) | -180€ |
+| **Économie nette** | **1 290€/an** |
+
+### ROI
+
+**Retour sur investissement : 5 800€ / 1 290€ = 4,5 ans**
+
+Sur les **25 ans** de durée de vie du système, vous économisez **32 250€** vs rouler à l'essence. C'est l'un des investissements les plus rentables qu'un foyer français puisse faire.
+
+---
+
+## Installation : les étapes concrètes
+
+### Étape 1 : Audit de votre installation électrique
+Un électricien certifié **IRVE** (Installation de Recharge de Véhicules Électriques) vérifie :
+- La capacité du tableau électrique (au moins 40A recommandé)
+- L'état de la terre et des protections
+- La possibilité de tirer un câble dédié
+
+### Étape 2 : Choix de l'emplacement
+- **Garage fermé :** idéal, protection des intempéries
+- **Extérieur :** wallbox IP54 minimum, protection contre le vol
+- **Distance au tableau :** privilégier < 20 m pour limiter les pertes
+
+### Étape 3 : Installation (1 journée)
+- Tirage du câble dédié depuis le tableau
+- Pose du disjoncteur différentiel 30mA type B
+- Fixation de la wallbox
+- Raccordement au CPL ou Wi-Fi pour le pilotage solaire
+
+### Étape 4 : Mise en service et paramétrage
+- Configuration du mode de pilotage (surplus / mixte / HC)
+- Connexion à l'onduleur solaire si compatible
+- Test de charge avec différents scénarios
+- Formation à l'utilisation de l'application
+
+---
+
+## Les pièges à éviter
+
+### Erreur n°1 : installer une borne sans penser aux panneaux solaires futurs
+Si vous installez une borne maintenant et des panneaux plus tard, choisissez **dès le départ une wallbox solar-ready**. Ajouter le pilotage solaire après coup peut nécessiter de changer la borne.
+
+### Erreur n°2 : sous-dimensionner les panneaux
+Ne rognez pas sur les panneaux pour économiser 2 000€ : vous perdrez 30% d'autoconsommation sur la durée. Mieux vaut ajouter 1 kWc supplémentaire pour sécuriser la couverture hivernale.
+
+### Erreur n°3 : négliger le disjoncteur différentiel type B
+Les voitures électriques nécessitent un différentiel **type B** (et non type A classique). Ce composant coûte 200-300€ mais est **obligatoire** pour la sécurité et les assurances.
+
+### Erreur n°4 : choisir un installateur non-IRVE
+Seul un électricien **certifié IRVE** peut installer une borne >3,7 kW en toute légalité et vous permet d'accéder aux aides. Vérifiez la certification sur le site de l'AFNOR.
+
+---
+
+## FAQ rapide
+
+**Puis-je installer une borne moi-même ?**
+Non pour les wallbox >3,7 kW (certification IRVE obligatoire). Oui pour la prise renforcée 3,7 kW, mais sans les aides.
+
+**Faut-il une batterie domestique en plus ?**
+Pas forcément. Si vous rechargez principalement le jour (télétravail, weekend), le surplus solaire suffit. Une batterie devient intéressante pour charger la nuit sans payer le réseau.
+
+**Combien de temps pour recharger 300 km avec le solaire ?**
+Avec une wallbox 7,4 kW en plein soleil : environ 6-7h. Avec une production solaire moyenne (3 kW) : 10-12h. Idéal pour une charge sur la journée.
+
+---
+
+## Demandez votre étude solaire gratuite
+
+Vous envisagez de coupler vos panneaux solaires à une borne de recharge ? **Demandez votre étude personnalisée gratuite** pour connaître le dimensionnement optimal de votre installation, les aides disponibles et votre retour sur investissement précis.
+
+Notre équipe analyse votre consommation actuelle, votre kilométrage annuel et les spécificités de votre logement pour vous proposer la solution la plus adaptée.
 
 [➡️ Demander mon étude gratuite](#form)`
   }
